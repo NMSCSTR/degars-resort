@@ -1,0 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.sidebar {
+    width: 900px;
+    background-color: #ffffff;
+    height: 100vh;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar a li {
+    padding: 15px;
+}
+.sidebar ul a  {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.sidebar li:hover {
+    background-color: #000000;
+    color: #ffffff;
+    
+}
+
+/* Define the main content area styles */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+

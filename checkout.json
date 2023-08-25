@@ -1,0 +1,77 @@
+{
+    "data": {
+      "id": "cs_ZHgyrD7BkapVMeBHib1",
+      "type": "checkout_session",
+      "attributes": {
+        "billing": {
+          "address": {
+            "city": null,
+            "country": null,
+            "line1": null,
+            "line2": null,
+            "postal_code": null,
+            "state": null
+          },
+            "email": "rhondelpagobo99@gmail.com",
+            "name": "Rhondel M. Pagobo",
+            "phone": "09506587329"
+        },
+        "billing_information_fields_editable": "enabled",
+        "cancel_url": "https://paymongo.page/l/reservation-failed",
+        "checkout_url": "https://checkout.paymongo.com/cs_ZHgyrD7BkapVMeBHib1BJuof_client_zPuvwYX1rqDBS8aoyUDfbChv#cGtfbGl2ZV93bmlaV0tLc0pwNHZTMWtITkFuNnl0Wmg=",
+        "client_key": "cs_ZHgyrD7BkapVMeBHib1BJuof_client_zPuvwYX1S8aoyUDfbChv",
+        "customer_email": null,
+        "description": "Reservation payment",
+        "line_items": [
+          {
+            "amount": 10000,
+            "currency": "PHP",
+            "description": null,
+            "images": [],
+            "name": "Package1",
+            "quantity": 1
+          }
+        ],
+        "livemode": true,
+        "merchant": "DEGAR'S RESORT",
+        "payments": [],
+        "payment_intent": {
+          "id": "pi_mzQ5eGs8UHTzbz3oSj",
+          "type": "payment_intent",
+          "attributes": {
+            "amount": 10000,
+            "capture_type": "automatic",
+            "client_key": "pi_mzQ5eGs8inPjrSCTfwmR95e78Tm3w7u3dD4",
+            "currency": "PHP",
+            "description": "Reservation payment",
+            "livemode": true,
+            "statement_descriptor": "DEGARS RESORT",
+            "status": "awaiting_payment_method",
+            "last_payment_error": null,
+            "payment_method_allowed": [
+              "gcash"
+            ],
+            "payments": [],
+            "next_action": null,
+            "payment_method_options": null,
+            "metadata": null,
+            "setup_future_usage": null,
+            "created_at": 1691187493,
+            "updated_at": 1691187493
+          }
+        },
+        "payment_method_types": [
+          "gcash"
+        ],
+        "reference_number": null,
+        "send_email_receipt": true,
+        "show_description": true,
+        "show_line_items": true,
+        "status": "active",
+        "success_url": "",
+        "created_at": 1691187493,
+        "updated_at": 1691187493,
+        "metadata": null
+      }
+    }
+  }
