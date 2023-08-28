@@ -124,7 +124,7 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="dashboard.php">Dashboard</a>
-        <a href="reservation.php">Dashboard</a>
+        <a href="reservation.php">Reservations</a>
         <a href="#inventory-collapse" data-bs-toggle="collapse" class="collapsed" >Inventory <span class="toggle-icon fw-bolder">&#60;</span> </a>
             <div class="collapse" id="inventory-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal small m-4 mt-0 mb-0">
