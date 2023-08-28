@@ -38,21 +38,29 @@ if (isset($_GET['updateProductById'])) {
 
                     <form action="functions/processproduct.php" method="post">
                         <div class="modal-body">
-                            <div class="form-group" id="updateContainer">
-                                <input type="hidden" name="productid" value="<?php echo $productid ?>" id="">
-                                <label for="productname">Productname</label>
+                            <input type="hidden" name="productid" value="<?php echo $productid ?>" id="floatingInput">
+                            <div class="form-floating mb-3">
                                 <input type="text" class="form-control form-control-xl mb-2" id="productname"
                                     name="productname" value="<?php echo $productname;?>">
-                                <label for="price">Price</label>
+                                <label for="productname">Productname</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
                                 <input type="text" class="form-control form-control-xl mb-2" id="price" name="price"
                                     value="<?php echo $price;?>">
-                                <label for="status">Status</label>
+                                <label for="price">Price</label>
+                            </div>
+
+                            <div class="form-floating">
                                 <select class="form-select mb-2" id="dropdownSelect status" name="status" required>
                                     <!-- <option selected>Select an option</option> -->
                                     <option value="Available">Available</option>
                                     <option value="Not Available">Not Available</option>
                                 </select>
-                                <label for="#category">Category</label>
+                                <label for="status">Status</label>
+                            </div>
+
+                            <div class="form-floating">
                                 <?php 
                                     require_once 'functions/functions.php';
                                     $categoryInstance = new Category();
@@ -72,14 +80,15 @@ if (isset($_GET['updateProductById'])) {
                                     <option selected><span class="text-danger">No category found</span></option>
                                 </select>
                                 <?php }?>
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <a href="product.php" class="btn btn-dark btn-md shadow" onclick="return confirm('Discard changes?')">Back</a>
-                                    <button type="submit" name="updateProduct" class="btn btn-warning btn-md shadow"
-                                        id="updateBtn">
-                                        Save changes
-                                    </button>
-                                </div>
-
+                                <label for="#category">Category</label>
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="product.php" class="btn btn-dark btn-md shadow"
+                                    onclick="return confirm('Discard changes?')">Back</a>
+                                <button type="submit" name="updateProduct" class="btn btn-warning btn-md shadow"
+                                    id="updateBtn">
+                                    Save changes
+                                </button>
                             </div>
                         </div>
                     </form>
