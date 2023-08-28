@@ -28,7 +28,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                 </div>
                 <hr>
                 <!-- Datatables -->
-                <div class="table-responsive" id="hideDataTable">
+                <div class="table-responsive">
                     <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">
                         <thead>
                             <tr>
@@ -48,20 +48,16 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                                 </td>
                                 <td><?php echo $row['dateadded'];?></td>
                                 <td>
-                                    <a href="updateCategory.php?updateByCategoryId=<?php echo $row['categoryid'];?>"
-                                        class="btn btn-warning btn-sm shadow rounded me-md-2"><i
-                                            class="fas fa-edit me-2"></i>Edit</a>
-                                    <a href="functions/processproduct.php?deleteCategoryById=<?= $row['categoryid']; ?>"
-                                        class="btn btn-danger shadow rounded me-md-2 btn-del" id="btn-delCat"><i
-                                            class="fas fa-trash-alt me-2"></i>Delete</a>
+                                    <a href="updateCategory.php?updateByCategoryId=<?php echo $row['categoryid'];?>" class="btn btn-warning btn-sm shadow rounded me-2">
+                                        <i class="fas fa-edit me-2"></i> Edit</a>
+                                    <a href="functions/processproduct.php?deleteCategoryById=<?php echo $row['categoryid'];?>" id="btndelCat" class="btn btn-danger btn-sm shadow rounded me-2" >
+                                        <i class="fas fa-trash-alt me-2"></i> Delete</a>
                                 </td>
                             </tr>
                             <?php }?>
                         </tbody>
                     </table>
                 </div>
-                <!-- <button id="printButton" class="btn btn-success mt-2 mb-2 shadow" onclick="printTable()"><i
-                        class="fas fa-solid fa-print"></i> Print</button> -->
             </div>
 
             <!-- Category Modal -->
@@ -139,7 +135,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
 </main>
 
 <script>
-$('#btn-delCat').on('click', function(e) {
+$('#btndelCat').on('click', function(e) {
     e.preventDefault();
     const href = $(this).attr('href')
 
