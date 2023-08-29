@@ -83,8 +83,8 @@ if (isset($_GET['updateProductById'])) {
                                 <label for="#category">Category</label>
                             </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <a href="product.php" class="btn btn-dark btn-md shadow"
-                                    onclick="return confirm('Discard changes?')">Back</a>
+                                <a href="product.php" class="btn btn-outline-dark btn-md shadow"
+                                    onclick="return confirm('Discard changes?')">Discard</a>
                                 <button type="submit" name="updateProduct" class="btn btn-warning btn-md shadow"
                                     id="updateBtn">
                                     Save changes

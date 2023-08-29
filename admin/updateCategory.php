@@ -51,17 +51,9 @@ if (isset($_GET['updateByCategoryId'])) {
                                     >
                                     <label for="floatingInput">Category Name</label>
                                 </div>
-                                <!-- <input 
-                                    type="text" 
-                                    class="form-control form-control-xl mb-2 shadow" 
-                                    id="categoryname"
-                                    name="categoryname"
-                                    
-                                    value="<?php echo $categoryname;?>"
-                                > -->
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <a href="category.php" class="btn btn-primary btn-sm shadow" onclick="return confirm('Discard changes?')">Back</a>
-                                    <button type="submit" name="updateCategory" class="btn btn-dark btn-sm shadow" >
+                                    <a href="category.php" class="btn btn-outline-danger btn-sm shadow p-2" onclick="return confirm('Discard changes?')">Discard</a>
+                                    <button type="submit" name="updateCategory" class="btn btn-dark btn-sm shadow p-2" >
                                         Save changes
                                     </button>
                                 </div>
