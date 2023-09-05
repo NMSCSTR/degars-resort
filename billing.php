@@ -16,9 +16,9 @@
 <body>
 <?php
 
-$name = "Rhondel M. Pagobo";
-$email = "rhondelpagobo@gmail.com";
-$phone = "09506587329";
+$name = "sample name";
+$email = "sample@gmail.com";
+$phone = "0950668845446";
 
 
 $curl = curl_init();
@@ -68,7 +68,7 @@ CURLOPT_POSTFIELDS => json_encode([
 CURLOPT_HTTPHEADER => [
     "Content-Type: application/json",
     "accept: application/json",
-    "authorization: Basic c2tfbGl2ZV9EOThaY0h3ajVZMzU1SDQxMWtRYUVkQlY6--"
+    "authorization: Basic c2tfbGl2ZV9EOThaY0h3ajVZMzU1SDQx"
 ],
 ]);
 
