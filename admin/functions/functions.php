@@ -44,6 +44,7 @@ class Product extends Database{
             return false;
         }
     }
+
     public function updateProduct($productid, $productname, $price,$status, $categoryid) {
         $conn = $this->getConnection();
 

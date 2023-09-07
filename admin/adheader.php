@@ -103,9 +103,9 @@ body {
     <nav class="navbar navbar-dark bg-dark shadow">
         <div class="container">
             <div class="btn btn-dark">
-                <span id="openNav" style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
+                <span id="openNav" style="font-size:20px;cursor:pointer;" onclick="openNav()">&#9776; Degars Resort</span>
             </div>
-
+                
             <div class="dropdown">
                 <a href="" class="btn btn-dark btn-md dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                     data-bs-toggle="dropdown" aria-expanded="false">Welcome <span

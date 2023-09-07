@@ -1,9 +1,9 @@
 <?php include 'header.php'; ?>
+<title>Degars Resort | Login</title>
 <div class="container fade-in">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h2 class="text-start">Administrator Login</h2>
-            <hr>
+            <h2 class="text-center">Administrator Login</h2>
             <form method="POST" action="functions/loginf.php" id="login-form">
                 <div class="password-container" id="password-container">
                     <div class="form-group">
