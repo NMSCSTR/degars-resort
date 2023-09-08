@@ -68,7 +68,8 @@ CURLOPT_POSTFIELDS => json_encode([
 CURLOPT_HTTPHEADER => [
     "Content-Type: application/json",
     "accept: application/json",
-    "authorization: Basic c2tfbGl2ZV9EOThaY0h3ajVZMzU1SDQx"
+    "authorization: Basic c2tfbGl2ZV9EOThaY0h3ajVZMzU1SDQxMWtRYUVkQlY6c2tfbGl2ZV9EOThaY0h3ajVZMzU1SDQxMWtRYUVkQlY="
+    
 ],
 ]);
 

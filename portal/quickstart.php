@@ -12,5 +12,9 @@
         </div>
     </div>
 </main>
+<br><br><br><br><br><br>
+<!-- <footer class="mt-5">
+    <?php include_once 'stickyFooter.php'?>
+</footer> -->
 
 <?php include 'portFooter.php';?>
