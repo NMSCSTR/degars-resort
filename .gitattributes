@@ -16,3 +16,9 @@
 # Recognize JavaScript files as JavaScript
 *.js linguist-language=JavaScript
 
+# Recognize Bootstrap-related files as HTML or CSS
+bootstrap/* linguist-language=HTML
+bootstrap/* linguist-language=CSS
+
+# Recognize cURL-related scripts as Shell
+curl-scripts/* linguist-language=Shell
