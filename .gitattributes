@@ -1,0 +1,24 @@
+# Recognize PHP files as PHP
+*.php linguist-language=PHP
+
+# Recognize HTML files as HTML
+*.html linguist-language=HTML
+
+# Recognize CSS files as CSS
+*.css linguist-language=CSS
+
+# Recognize Ruby files as Ruby
+*.rb linguist-language=Ruby
+
+# Recognize Java files as Java
+*.java linguist-language=Java
+
+# Recognize JavaScript files as JavaScript
+*.js linguist-language=JavaScript
+
+# Recognize Bootstrap-related files as HTML or CSS
+bootstrap/* linguist-language=HTML
+bootstrap/* linguist-language=CSS
+
+# Recognize cURL-related scripts as Shell
+curl-scripts/* linguist-language=Shell
