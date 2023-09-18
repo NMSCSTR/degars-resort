@@ -4,8 +4,8 @@
 <div class="container fade-in">
     <div class="row justify-content-center">
         <div class="col-md-6">
-        <img class="d-block mx-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Diigo.svg/256px-Diigo.svg.png" alt="" width="72" height="57">
-            <h1 class="display-5 fw-bold text-center">Administrator Login</h1><hr>
+        <img class="d-block mx-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Diigo.svg/256px-Diigo.svg.png" alt="" width="72" height="72">
+            <h1 class="fw-bolder text-center">Administrator Login</h1><hr>
             <form method="POST" action="functions/loginf.php" id="login-form">
                 <div class="password-container" id="password-container">
                     <div class="form-group">

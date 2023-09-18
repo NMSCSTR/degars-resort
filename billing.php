@@ -2,20 +2,16 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
 
 </head>
 
 <body>
 <?php
-
 $name = "sample name";
 $email = "sample@gmail.com";
 $phone = "0950668845446";
@@ -41,15 +37,15 @@ CURLOPT_POSTFIELDS => json_encode([
             ],
             'send_email_receipt' => true,
             'show_description' => true,
-            'show_line_items' => true,
+            'show_line_items' => false,
             'cancel_url' => 'https://paymongo.page/l/reservation-failed',
-            'description' => 'Reservation payment',
+            'description' => 'EXCLUSIVE RESERVATION',
             'line_items' => [
                 [
                     'currency' => 'PHP',
                     'amount' => 10000,
                     'description' => 'this payment is for the reservation of the resort',
-                    'name' => 'Package 1',
+                    'name' => 'EXCLUSIVE RESERVATION, 10 Case Beer, 20 sample item',
                     'quantity' => 1
                 ]
             ],
@@ -60,7 +56,6 @@ CURLOPT_POSTFIELDS => json_encode([
                 'paymaya',
                 'dob',
                 'card',
-                'billease'
             ]
         ]
     ]
@@ -99,7 +94,7 @@ if ($err) {
         header('Refresh: 3;URL='.$checkout_url);
         exit; // Make sure to exit after redirection
     } else {
-        // If the response is missing the required data, handle the error gracefully
+        // If the response is mi    ssing the required data, handle the error gracefully
         echo "Error creating payment link. Please try again later.";
     }
 }

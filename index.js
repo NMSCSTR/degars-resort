@@ -50,6 +50,8 @@ console.log(mapping);
 
 
 
+//Reservations(reservations,customer,purchase,checkoutdata)
 
-
-
+//checkoutdata = checkoutsession_id,
+//Reservations = res_id, eventName, reservationDate, dueDate, selectedPool, rate, checkoutUrl, status, resCreated
+//customer = customer_id

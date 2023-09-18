@@ -34,7 +34,7 @@ body {
 </style>
 <body>
 <header>
-    <nav class="navbar navbar-expand-xl bg-success navbar-dark shadow">
+    <nav class="navbar navbar-expand-xl bg-success bg-gradient navbar-dark shadow">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Diigo.svg/256px-Diigo.svg.png"
