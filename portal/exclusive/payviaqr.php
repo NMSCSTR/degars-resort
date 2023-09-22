@@ -19,7 +19,7 @@
     <div class="container-sm mt-5">
         <div class="row g-0 position-relative">
             <div class="col-md-6 mb-md-0 p-md-4 mb-4">
-                <img src="../../res/images/qr.png" class="img-fluid" alt="">
+                <img src="../../res/images/qr1.png" class="img-fluid" alt="">
             </div>
             <div class="col-sm-6 p-4 ps-md-0 ">
                 <h3 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> Upload Payment Proof</h3>

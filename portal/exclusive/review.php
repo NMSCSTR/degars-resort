@@ -103,6 +103,9 @@
                                     </li>
                                 </ul>
                                 <div class="d-grid gap-2">
+                                    <a href="http://192.168.1.8/degars-resort/portal/exclusive/payviaqr.php" class="btn btn-outline-success">
+                                        Pay Via Qr
+                                    </a>
                                     <button type="button" class="btn btn-dark">
                                         Go to checkout
                                     </button>
