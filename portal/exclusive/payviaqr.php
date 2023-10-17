@@ -1,19 +1,19 @@
 <?php include '../portHeader.php';?>
 <title>Pay Via Qr</title>
 <style>
-    html {
-        height: 100%;
-    }
+html {
+    height: 100%;
+}
 
-    body {
-        min-height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
-    .bd-footer {
-        margin-top: auto;
-    }
+.bd-footer {
+    margin-top: auto;
+}
 </style>
 <main>
     <div class="container-sm mt-5">
@@ -26,7 +26,7 @@
                 <hr>
                 <form action="" method="post">
                     <div class="card mb-4">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3 bg-dark text-white">
                             <h5 class="mb-0">Summary</h5>
                         </div>
                         <div class="card-body">
@@ -54,7 +54,8 @@
                                             </strong> -->
                                     </div>
                                     <span><strong><span>&#8369; 1383.75</span></strong></span>
-                                </li><hr>
+                                </li>
+                                <hr>
                                 <li
                                     class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                     <div>
@@ -68,6 +69,8 @@
                             </ul>
                         </div>
                     </div>
+                    <p class="text-danger">Note: Please input the exact amount when you pay. We will review submitted
+                        receipt before approval.</p>
                     <div class="form-floating mb-3">
                         <select class="form-select text-capitalize fw-bold" id="floatingSelect"
                             aria-label="Floating label select example">
@@ -83,12 +86,14 @@
                         <label for="floatingInput"> Upload receipt</label>
                     </div>
                     <div class="d-grid gap-2">
-                                    <button type="button" class="btn btn-dark">
-                                        Submit
-                                    </button>
-                                </div>
-                                <br>
-                    <p class="text-danger">Note: Please input the exact amount when you pay. We will review submitted receipt before approval.</p>
+                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/review.php" class="btn btn-outline-danger">
+                            Back
+                        </a>
+                        <a href="http://192.168.1.4/degars-resort/portal/exclusive/success.php" class="btn btn-dark">
+                            Submit
+                        </a>
+                    </div>
+                    
                 </form>
             </div>
         </div>

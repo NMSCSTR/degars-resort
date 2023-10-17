@@ -26,7 +26,7 @@
                     <div class="d-flex justify-content-end gap-2">
                         <a href="http://192.168.1.8/degars-resort/portal/exclusive/exclusivebooking.php" class="btn btn-outline-danger"><i class="fas fa-arrow-left"></i> Back</a>
                         <div class="vr"></div>
-                        <a href="../../billing.php" class="btn btn-dark" name="submitExclusiveReservation">Proceed <i class="fas fa-arrow-right"></i></a>
+                        <a href="http://192.168.1.4/degars-resort/portal/exclusive/review.php" class="btn btn-dark" name="submitExclusiveReservation">Proceed <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </form>
 

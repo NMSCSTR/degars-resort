@@ -7,14 +7,14 @@
                 <option selected>Select an option</option>
                 <option value="package/packagebooking.php">Package Reservation</option>
                 <option value="exclusive/exclusivebooking.php">Exclusive Reservation</option>
+                <option value="">Walkin</option>
             </select>
             <label for="chooseReservation">Choose Reservation</label>
         </div>
     </div>
 </main>
 <br><br><br><br><br><br>
-<!-- <footer class="mt-5">
-    <?php include_once 'stickyFooter.php'?>
-</footer> -->
-
-<?php include 'portFooter.php';?>
+<footer class="mt-5">
+    <!-- <?php include_once 'stickyFooter.php'?> -->
+    <?php include 'portFooter.php';?>
+</footer>

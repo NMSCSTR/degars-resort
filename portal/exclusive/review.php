@@ -23,25 +23,33 @@
                                     </div>
                                 </li>
                                 <hr>
-                                <p><strong>Purchase Product</strong></p>
+                                <p><strong>Customer Details</strong></p>
                                 <li
                                     class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                                    <p class="text-start">2 CASE BEER</p>
+                                    <p class="text-start">Name</p>
                                     <div class="col-lg-4 col-md-6">
                                         <p class="text-sm-center">
-                                            <strong><span>&#8369;</span> 1,300.00</strong>
+                                            <strong>Rhondel M. Pagobo</strong>
                                         </p>
                                     </div>
                                 </li>
                                 <li
                                     class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                                    <p class="text-start">1 CASE COKE</p>
+                                    <p class="text-start">Email Address</p>
                                     <div class="col-lg-4 col-md-6">
                                         <p class="text-sm-center">
-                                            <strong><span>&#8369;</span> 320.00</strong>
+                                            <strong>rhondelpagobo99@gmail.com</strong>
                                         </p>
                                     </div>
-
+                                </li>
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                    <p class="text-start">Mobile Number</p>
+                                    <div class="col-lg-4 col-md-6">
+                                        <p class="text-sm-center">
+                                            <strong>09506587329</strong>
+                                        </p>
+                                    </div>
                                 </li>
                             </div>
                         </div>
@@ -72,7 +80,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <div class="card-header py-3">
+                            <div class="card-header bg-dark text-white py-3">
                                 <h5 class="mb-0">Summary</h5>
                             </div>
                             <div class="card-body">
@@ -103,12 +111,12 @@
                                     </li>
                                 </ul>
                                 <div class="d-grid gap-2">
-                                    <a href="http://192.168.1.8/degars-resort/portal/exclusive/payviaqr.php" class="btn btn-outline-success">
+                                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/payviaqr.php" class="btn btn-outline-warning">
                                         Pay Via Qr
                                     </a>
-                                    <button type="button" class="btn btn-dark">
+                                    <a href="http://192.168.1.4/degars-resort/billing.php" class="btn btn-dark">
                                         Go to checkout
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
