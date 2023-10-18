@@ -1,20 +1,23 @@
-<?php include '../portHeader.php';?>
+<header>
+    <?php include '../portHeader.php';?>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bd-footer {
+            margin-top: auto;
+        }
+    </style>
+</header>
 <title>Exclusive Reservation</title>
-<style>
-html {
-    height: 100%;
-}
 
-body {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.bd-footer {
-    margin-top: auto;
-}
-</style>
 <main>
     <div class="container-sm mt-5">
         <div class="row g-0 position-relative">
@@ -69,12 +72,15 @@ body {
                         <a href="http://192.168.1.4/degars-resort/portal/quickstart.php" class="btn btn-outline-danger">
                             Back</a>
                         <div class="vr"></div>
-                        <a href="customerForm.php" class="btn btn-dark" name="submitExclusuveReservation">Proceed</a>
+                        <a href="customerForm.php" class="btn btn-dark" name="submitExclusuveReservation">Proceed
+                        
+                        </a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </main>
-
-<?php include '../portFooter.php';?>
+<footer>
+    <?php include '../portFooter.php';?>
+</footer>

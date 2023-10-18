@@ -19,106 +19,55 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
         <div class="card shadow bg-body rounded">
             <h5 class="card-header bg-dark text-white p-4"><i class="fas fa-edit me-2"></i> Manage Reservation</h5>
             <div class="card-body">
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4">
-                    <a href="#" class="btn btn-dark shadow rounded me-md-2"><i
-                            class="fas fa-solid fa-eye me-2"></i>View All</a>
-                    <!-- <button type="button" class="btn btn-warning shadow rounded me-md-2" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"><i class="fas fa-plus me-2"></i>Add Category</button> -->
-                </div>
-                <hr>
-                <!-- Datatables -->
-                <div class="table-responsive" id="hideDataTable">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                            aria-expanded="false">Exclusive</a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#">
+                                    Package <span class="badge text-bg-danger">4</span>
+                                </a>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Walkin</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Qr Payments</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="container">
+                <div class="table-responsive">
                     <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">
                         <thead>
                             <tr>
-                                <!-- <th>Id</th> -->
-                                <th> Category Name</th>
+                                <th>Ref#</th>
+                                <th>Reserve Date</th>
+                                <th>Rate</th>
                                 <th>Date Added</th>
                                 <th>Operation</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $results = mysqli_query($conn,"SELECT * FROM category ORDER BY `categoryid` ASC"); ?>
-                            <?php while ($row = $results->fetch_assoc()) { ?>
                             <tr>
-                                <!-- <td><?php echo $row['categoryid'];?></td> -->
+                                <td>Ref-7239</td>
+                                <td>10/29/2023</td>
+                                <td>1500</td>
+                                <td>2023-07-22</td>
                                 <td>
-                                    <?php echo $row['categoryname']; ?>
-                                </td>
-                                <td><?php echo $row['dateadded'];?></td>
-                                <td>
-                                    <a href="updateCategory.php?updateByCategoryId=<?php echo $row['categoryid'];?>"
-                                        class="btn btn-warning btn-sm shadow rounded me-md-2"><i
+                                    <a href="" class="btn btn-warning btn-sm shadow rounded me-md-2"><i
                                             class="fas fa-edit me-2"></i>Edit</a>
-                                    <a href="functions/processproduct.php?deleteCategoryById=<?= $row['categoryid']; ?>"
-                                        class="btn btn-danger shadow rounded me-md-2 btn-del" id="btn-delCat"><i
+                                    <a href="" class="btn btn-danger btn-sm shadow rounded me-md-2" id="btn-delProd"><i
                                             class="fas fa-trash-alt me-2"></i>Delete</a>
                                 </td>
                             </tr>
-                            <?php }?>
+                            <!-- Add more rows as needed -->
                         </tbody>
                     </table>
                 </div>
-                <!-- <button id="printButton" class="btn btn-success mt-2 mb-2 shadow" onclick="printTable()"><i
-                        class="fas fa-solid fa-print"></i> Print</button> -->
             </div>
 
-            <!-- Category Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header bg-dark text-white">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <form action="functions/processproduct.php" method="post">
-                            <div class="modal-body">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control shadow" id="floatingInput" id="categoryname"
-                                        name="categoryname"
-                                        placeholder="Category Name">
-                                    <label for="floatingInput">Category Name</label>
-                                </div>
-                                <!-- <div class="mb-3">
-                                    <label for="categoryname" class="form-label">Category Name</label>
-                                    <input type="text" class="form-control form-control-xl shadow" id="categoryname"
-                                        name="categoryname">
-                                </div> -->
-                            </div>
-                            <div class="modal-footer">
-                                <button type="reset" class="btn btn-danger">Reset</button>
-                                <button type="submit" name="addCategory" class="btn btn-primary">Add</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="exampleModal<?php echo $row['categoryid'];?>" tabindex="-1"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header bg-dark text-white">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <form action="functions/processproduct.php" method="post">
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="categoryname" class="form-label">Category Name</label>
-                                    <input type="text" class="form-control form-control-xl" id="categoryname"
-                                        name="categoryname">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" name="updatecategory" class="btn btn-primary">update</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <div id="scripttag">
                 <!-- Include jQuery -->
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

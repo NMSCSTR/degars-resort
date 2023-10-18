@@ -1,7 +1,7 @@
 <?php include '../portHeader.php';?>
 <title>Exclusive | Review Reservation</title>
 <main>
-    <div class="container-sm mt-4" style="">
+    <div class="container-sm mt-4">
         <h3 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> Review Reservation</h3>
         <hr>
         <section class="h-100 gradient-custom">
