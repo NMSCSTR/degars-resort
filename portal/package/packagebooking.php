@@ -58,7 +58,7 @@
                                 <h4 class="mb-1 me-1">1500.00</h4>
                                     <span class="text-danger"><s>$1600.00</s></span>
                                 </div>
-                                <h6 class="text-success">With Videoki</h6>
+                                <h6 class="text-success">With Videoke</h6>
                                 <div class="d-flex flex-column mt-4">
                                     <button class="btn btn-primary btn-sm" type="button">More Details</button>
                                     <button class="btn btn-outline-warning btn-sm mt-2" type="button">

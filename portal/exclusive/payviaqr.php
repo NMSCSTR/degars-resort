@@ -1,5 +1,5 @@
 <?php include '../portHeader.php';?>
-<title>Pay Via Qr</title>
+<title>Exclusive | Pay Via Qr</title>
 <style>
 html {
     height: 100%;

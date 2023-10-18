@@ -19,8 +19,8 @@ body {
     <div class="container-sm mt-5">
         <div class="row g-0 position-relative">
             <div class="col-md-6 mb-md-0 p-md-4 mb-4">
-                <?php include_once 'carousels.php'?>
-                <!-- <?php include_once 'svgbg.php'?> -->
+                <!-- <?php include_once 'carousels.php'?> -->
+                <?php include_once 'svgbg.php'?>
             </div>
             <div class="container-fluid col-md-6 p-4 ps-md-0">
                 <h4 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> Exclusive Reservation</h4>

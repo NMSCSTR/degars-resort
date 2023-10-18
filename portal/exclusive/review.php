@@ -1,5 +1,5 @@
 <?php include '../portHeader.php';?>
-<title>Review Reservation</title>
+<title>Exclusive | Review Reservation</title>
 <main>
     <div class="container-sm mt-4" style="">
         <h3 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> Review Reservation</h3>
