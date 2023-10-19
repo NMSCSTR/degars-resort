@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
 ?>
 <?php include_once 'adheader.php'; ?>
-<title>Degars | Rooms</title>
+<title>Degars | Add Rooms</title>
 <div id="main">
 <div class="container pt-4">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">

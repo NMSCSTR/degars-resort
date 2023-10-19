@@ -4,7 +4,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
 ?>
 <?php include '../config/db_connection.php'?>
 <?php include_once 'adheader.php'; ?>
-<title>Degars | Exclusive</title>
+<title>Degars | Package</title>
 <main id="main">
     <div class="container pt-4">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -22,15 +22,16 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                 <ul class="nav nav-tabs">
                     <li class="nav-item dropdown">
                         <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                            aria-expanded="false">Exclusive Reservations
+                            aria-expanded="false">Package Reservations
                             <span
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 1
                                 <span class="visually-hidden">New reservation</span>
                             </span></a>
+                        </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="packageReservation.php">
-                                    Package Reservations
+                            <li><a class="dropdown-item" href="reservations.php">
+                            Exclusive Reservations <span class="badge text-bg-danger">1</span>
                                 </a>
                             </li>
                             <li><a class="dropdown-item" href="walkinReservation.php">Walkin Reservations</a></li>
@@ -70,7 +71,6 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                                             class="fas fa-edit me-2"></i>Edit</a>
                                     <a href="" class="btn btn-danger btn-sm shadow rounded me-md-2" id="btn-delProd"><i
                                             class="fas fa-trash-alt me-2"></i>Delete</a>
-                                    <a href="" class="btn btn-outline-dark btn-sm shadow rounded me-md-2" id="btn-viewMore" title="View More Informations">View More <i class="fas fa-arrow-right"></i></a>
                                 </td>
                             </tr>
                             <!-- Add more rows as needed -->
