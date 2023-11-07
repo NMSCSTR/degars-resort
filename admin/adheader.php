@@ -122,21 +122,21 @@ body {
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="dashboard.php"><i class="fas fa-tachometer-alt text-warning"></i> Dashboard</a>
-        <a href="reservations.php"><i class="fas fa-calendar text-warning"></i> Reservations</a>
+        <a href="dashboard.php"><i class="fas fa-tachometer-alt text-success"></i> Dashboard</a>
+        <a href="reservations.php"><i class="fas fa-calendar text-success"></i> Reservations</a>
         <a href="#inventory-collapse" data-bs-toggle="collapse" class="collapsed">
-            <i class="fas fa-box text-warning"></i> Inventory <span class="toggle-icon fw-bolder">&#60;</span>
+            <i class="fas fa-box text-success"></i> Inventory <span class="toggle-icon fw-bolder">&#60;</span>
         </a>
         <div class="collapse" id="inventory-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal small m-4 mt-0 mb-0">
-                <li><a href="product.php" class="rounded"><i class="fas fa-cube text-warning"></i> Product</a></li>
-                <li><a href="category.php" class="rounded"><i class="fas fa-list text-warning"></i> Category</a></li>
+                <li><a href="product.php" class="rounded"><i class="fas fa-cube text-success"></i> Product</a></li>
+                <li><a href="category.php" class="rounded"><i class="fas fa-list text-success"></i> Category</a></li>
             </ul>
         </div>
-        <a href="rules.php"><i class="fas fa-exclamation-circle text-warning"></i> Rules</a>
-        <a href="rooms.php"><i class="fas fa-bed text-warning"></i> Rooms</a>
-        <a href="cottages.php"><i class="fas fa-home text-warning"></i> Cottage</a>
-        <a href="users.php"><i class="fas fa-users text-warning"></i> Users</a>
+        <a href="rules.php"><i class="fas fa-exclamation-circle text-success"></i> Rules</a>
+        <a href="rooms.php"><i class="fas fa-bed text-success"></i> Rooms</a>
+        <a href="cottages.php"><i class="fas fa-home text-success"></i> Cottage</a>
+        <a href="users.php"><i class="fas fa-users text-success"></i> Users</a>
     </div>
 
 

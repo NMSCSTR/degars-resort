@@ -21,8 +21,8 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
             <div class="card-body">
                 <ul class="nav nav-tabs">
                     <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="walkinReservations.php" role="button"
-                            aria-expanded="false">Walkin Reservations
+                        <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown"
+                            href="walkinReservations.php" role="button" aria-expanded="false">Walkin
                             <span
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 1
@@ -31,11 +31,12 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="packageReservation.php  ">
-                            Package Reservations <span class="badge text-bg-danger">4</span>
+                            <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                                    Package Reservations <span class="badge text-bg-danger">4</span>
                                 </a>
                             </li>
-                            <li><a class="dropdown-item" href="reservations.php">Exclusive Reservations</a></li>
-                            <li><a class="dropdown-item" href="roomReservation.php">Room Reservations</a></li>
+                            <li><a class="dropdown-item" href="reservations.php"><span class="d-inline-block bg-success rounded-circle p-1"></span> Exclusive Reservations</a></li>
+                            <li><a class="dropdown-item" href="roomReservation.php"><span class="d-inline-block bg-info rounded-circle p-1"></span> Room Reservations</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -50,27 +51,30 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                         <thead>
                             <tr>
                                 <th>Ref#</th>
+                                <th>CheckoutURL</th>
                                 <th>Reserve Date</th>
                                 <th>Rate</th>
                                 <th>Partial</th>
-                                <th>MOP</th>
-                                <th>Date Added</th>
                                 <th>Operation</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Ref-7239</td>
+                                <td><a
+                                        href="https://pm.link/degarresort/nQw3Mtv">https://pm.link/degarresort/nQw3Mtv</a>
+                                </td>
                                 <td>10/29/2023</td>
                                 <td>1500</td>
                                 <td>750</td>
-                                <td>50% Downpayment</td>
-                                <td>2023-07-22</td>
                                 <td>
                                     <a href="" class="btn btn-warning btn-sm shadow rounded me-md-2"><i
                                             class="fas fa-edit me-2"></i>Edit</a>
                                     <a href="" class="btn btn-danger btn-sm shadow rounded me-md-2" id="btn-delProd"><i
                                             class="fas fa-trash-alt me-2"></i>Delete</a>
+                                    <a href="" class="btn btn-outline-dark btn-sm shadow rounded me-md-2"
+                                        id="btn-viewMore" title="View More Informations">View More <i
+                                            class="fas fa-arrow-right"></i></a>
                                 </td>
                             </tr>
                             <!-- Add more rows as needed -->

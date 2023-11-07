@@ -3,12 +3,14 @@
 <script src="resources/js/dashboard.js"></script>
 <script src="resources/js/sweetalert.js"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
+
 <?php 
+
     if (isset($_SESSION['status']) && $_SESSION['status'] != '') 
     { ?>
         <script>
             Swal.fire({
-            // position: 'top-end',
+            position: 'top-end',
             icon: '<?php echo $_SESSION['code'];?>',
             title: '<?php echo $_SESSION['status'];?>',
             // html: '<?php echo $_SESSION['code'];?>',
@@ -16,7 +18,6 @@
             timer: 2500
         })
         </script>
-
         <?php 
         unset ($_SESSION['status']); 
     }

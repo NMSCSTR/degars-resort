@@ -1,211 +1,76 @@
 <?php include '../portHeader.php';?>
 <title>Package Booking</title>
-<section style="background-color: #fff;">
-    <div class="container py-3">
-        <h3 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> Available Packages</h3>
-        <hr>
-        <div class="row mb-3">
-            <div class="col-md-12 col-xl-12">
-                <div class="card shadow-0 border rounded-3">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                    <img src="../../res/images/p1.png"
-                                        class="w-100" />
-                                    <a href="#!">
-                                        <div class="hover-overlay">
-                                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);">
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6 col-xl-6">
-                                <h2 class="text-danger">Package 1</h2>
-                                <hr>
-                                <!-- <div class="d-flex flex-row">
-                                    <div class="text-danger mb-1 me-2">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <span>310</span>
-                                </div> -->
-                                <!-- <div class="mt-1 mb-0 text-muted small">
-                                    <span>100% cotton</span>
-                                    <span class="text-primary"> • </span>
-                                    <span>Light weight</span>
-                                    <span class="text-primary"> • </span>
-                                    <span>Best finish<br /></span>
-                                </div> -->
-                                <!-- <div class="mb-2 text-muted small">
-                                    <span>Unique design</span>
-                                    <span class="text-primary"> • </span>
-                                    <span>For men</span>
-                                    <span class="text-primary"> • </span>
-                                    <span>Casual<br /></span>
-                                </div> -->
-                                <p class="mb-4 mb-md-0">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro consectetur, quidem
-                                    quis facere quos explicabo deleniti voluptates maiores beatae voluptatem vel et ut
-                                    accusamus enim consequuntur dignissimos reiciendis corporis. Qui?
-                                </p>
-                            </div>
-                            <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-                                <div class="d-flex flex-row align-items-center mb-1">
-                                <h4 class="mb-1 me-1">1500.00</h4>
-                                    <span class="text-danger"><s>$1600.00</s></span>
-                                </div>
-                                <h6 class="text-success">With Videoke</h6>
-                                <div class="d-flex flex-column mt-4">
-                                    <button class="btn btn-primary btn-sm" type="button">More Details</button>
-                                    <button class="btn btn-outline-warning btn-sm mt-2" type="button">
-                                        Reserve Now
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-md-12 col-xl-12">
-                <div class="card shadow-0 border rounded-3">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                    <img src="../../res/images/p2.png"
-                                        class="w-100" />
-                                    <a href="#!">
-                                        <div class="hover-overlay">
-                                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);">
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6 col-xl-6">
-                                <h2 class="text-danger">Package 2</h2>
-                                <hr>
-                                <!-- <div class="d-flex flex-row">
-                                    <div class="text-danger mb-1 me-2">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <span>289</span>
-                                </div>
-                                <div class="mt-1 mb-0 text-muted small">
-                                    <span class="text-primary"> • </span>
-                                    <span>Light weight</span>
-                                    <span>100% cotton</span>
-                                    <span class="text-primary"> • </span>
-                                    <span>Best finish<br /></span>
-                                </div>
-                                <div class="mb-2 text-muted small">
-                                    <span>Unique design</span>
-                                    <span class="text-primary"> • </span>
-                                    <span>For men</span>
-                                    <span class="text-primary"> • </span>
-                                    <span>Casual<br /></span>
-                                </div> -->
-                                <p class="mb-4 mb-md-0">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam recusandae aliquid
-                                    tempore animi! Eum vel quaerat cum veritatis accusantium maxime in voluptatem ab
-                                    asperiores, ipsum fugiat voluptate magnam molestias aut.
-                                </p>
-                            </div>
-                            <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-                                <div class="d-flex flex-row align-items-center mb-1">
-                                <h4 class="mb-1 me-1">4000.00</h4>
-                                    <span class="text-danger"><s>$4250.00</s></span>
-                                </div>
-                                <h6 class="text-success">Free 1 Cottage</h6>
-                                <div class="d-flex flex-column mt-4">
-                                    <button class="btn btn-primary btn-sm" type="button">More Details</button>
-                                    <button class="btn btn-outline-warning btn-sm mt-2" type="button">
-                                        Reserve Now
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-md-12 col-xl-12">
-                <div class="card shadow-0 border rounded-3">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                    <img src="../../res/images/p2.png"
-                                        class="w-100" />
-                                    <a href="#!">
-                                        <div class="hover-overlay">
-                                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);">
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6 col-xl-6">
-                                <h2 class="text-danger">Special Offers</h2>
-                                <hr>
-                                <!-- <div class="d-flex flex-row">
-                                    <div class="text-danger mb-1 me-2">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <span>145</span>
-                                </div> -->
-                                <!-- <div class="mt-1 mb-0 text-muted small">
-                                    <span>100% cotton</span>
-                                    <span class="text-primary"> • </span>
-                                    <span>Light weight</span>
-                                    <span class="text-primary"> • </span>
-                                    <span>Best finish<br /></span>
-                                </div>
-                                <div class="mb-2 text-muted small">
-                                    <span>Unique design</span>
-                                    <span class="text-primary"> • </span>
-                                    <span>For women</span>
-                                    <span class="text-primary"> • </span>
-                                    <span>Casual<br /></span>
-                                </div> -->
-                                <p class="mb-4 mb-md-0">
-                                    There are many variations of passages of Lorem Ipsum available, but the
-                                    majority have suffered alteration in some form, by injected humour, or
-                                    randomised words which don't look even slightly believable.
-                                </p>
-                            </div>
-                            <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-                                <div class="d-flex flex-row align-items-center mb-1">
-                                    <h4 class="mb-1 me-1">₱5700.00</h4>
-                                    <span class="text-danger"><s>$6200.00</s></span>
-                                </div>
-                                <h6 class="text-success">Exclusive</h6>
-                                <div class="d-flex flex-column mt-4">
-                                    <button class="btn btn-primary btn-sm" type="button">More Details</button>
-                                    <button class="btn btn-outline-warning btn-sm mt-2" type="button">
-                                        Reserve Now
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<style>
+.pkg {
+    max-width: 960px;
+}
 
+.pricing-header {
+    max-width: 700px;
+}
+</style>
+<div class="container pkg">
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal text-body-emphasis">Packages & Pricing</h1>
+        <p class="fs-5 text-body-secondary">Quickly build an effective pricing table for your potential customers with
+            this Bootstrap example.</p>
+    </div>
+    </header>
+
+    <main>
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header bg-dark text-white py-3">
+                        <h4 class="my-0 fw-normal">Package 1</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title"><span>&#8369</span>5,500.00</h1>
+                        <ul class="list-unstyled mt-3 mb-4" style="font-size: 15px;">
+                            <li>Good for 50 Person only</li><br><br>
+                        </ul>
+                        <button type="button" class="w-100 btn btn-lg btn-outline-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header bg-dark text-white py-3">
+                        <h4 class="my-0 fw-normal">Package 2</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title"><span>&#8369</span>8,500.00</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Free 2 Air-Conditioned rooms(Good ror 10 persons)</li>
+                            <li>Good for 7O person</li>
+                        </ul>
+                        <button type="button" class="w-100 btn btn-lg btn-outline-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                    <div class="card-header py-3 text-bg-primary border-primary">
+                        <h4 class="my-0 fw-normal">Package 3</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">₱12,000.00</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>30 users included</li>
+                            <li>15 GB of storage</li>
+                            <li>Phone and email support</li>
+                        </ul>
+                        <button type="button" class="w-100 btn btn-lg btn-primary">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main><hr>
+    <h4><i class="fas fa-info-circle text-danger"></i> This information also included for all packages</h4>
+    <ul>
+        <li>Exclusive use of the area</li>
+        <li>₱300.00 Corkage fee for drinks & beverages</li>
+        <li>₱50.00 per head for excess person</li>
+    </ul>
+</div>
 <?php include '../portFooter.php';?>

@@ -1,0 +1,18 @@
+    {
+        "data": {
+        "id": "cus_icdsopzA6FNtqSdCV4FRPYo2",
+        "type": "customer",
+        "attributes": {
+            "default_device": "phone",
+            "default_payment_method_id": null,
+            "livemode": true,
+            "email": "catigumaldril@gmail.com",
+            "first_name": "Aldril",
+            "has_vaulted_payment_methods": false,
+            "last_name": "Catigum",
+            "phone": "+639950076122",
+            "created_at": 1697687663,
+            "updated_at": 1697687663
+        }
+        }
+    }

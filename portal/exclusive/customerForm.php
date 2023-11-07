@@ -1,8 +1,17 @@
-<?php include '../portHeader.php';?>
+<?php 
+session_start();
+include '../portHeader.php';
+// $type = $_SESSION['reservation_type'];
+// $eventname = $_SESSION['reservation_eventname'];
+// $reservationdate = $_SESSION['reservation_date'];
+// $paymentduedate = $_SESSION['reservation_paymentduedate'];
+// $rates = $_SESSION['reservation_rates'];
+?>
+
 <title>Exclusive | Customer Form</title>
 
 <main>
-    <div class="container-sm mt-5" style="">
+    <div class="container-sm mt-5">
         <div class="row g-0 position-relative">
             <div class="col-md-6 mb-md-0 p-md-4">
             <?php include_once 'svgbg2.php'?>
@@ -12,8 +21,12 @@
                 <hr>
                 <form action="" method="post">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control fw-bold" id="floatingInput" value="Rhondel M. Pagobo" placeholder="Fullname">
-                        <label for="floatingInput"><i class="fas fa-user"></i> Fullname </label>
+                        <input type="text" class="form-control fw-bold" id="floatingInput" value="Rhondel" placeholder="Firstname">
+                        <label for="floatingInput"><i class="fas fa-user"></i> Firstname </label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control fw-bold" id="floatingInput" value="Pagobo" placeholder="Lastname">
+                        <label for="floatingInput"><i class="fas fa-user"></i> Lastname </label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control fw-bold" id="floatingInput" value="rhondelpagobo99@gmail.com" placeholder="Email address">

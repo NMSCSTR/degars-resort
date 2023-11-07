@@ -1,23 +1,25 @@
-<header>
-    <?php include '../portHeader.php';?>
-    <style>
-        html {
-            height: 100%;
-        }
+<?php
+session_start();
+// error_reporting(E_ALL);
+include '../portHeader.php';
+?>
+<style>
+html {
+    height: 100%;
+}
 
-        body {
-            min-height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
-        .bd-footer {
-            margin-top: auto;
-        }
-    </style>
-</header>
+.bd-footer {
+    margin-top: auto;
+}
+</style>
+
 <title>Exclusive Reservation</title>
-
 <main>
     <div class="container-sm mt-5">
         <div class="row g-0 position-relative">
@@ -28,7 +30,7 @@
             <div class="container-fluid col-md-6 p-4 ps-md-0">
                 <h4 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> Exclusive Reservation</h4>
                 <hr>
-                <form action="" method="post">
+                <form action="../functions/process.php" method="post">
                     <!-- <div class="row g-2">
                         <div class="col-md">
                             <div class="form-floating mb-3">
@@ -46,12 +48,17 @@
                         </div>
                     </div> -->
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control fw-bold" value="Birthday Party" id="floatingInput"
-                            placeholder="Event name">
+                        <input type="hidden" name="type" value="Exclusive">
+                        <input type="text" name="eventname" class="form-control fw-bold" value="Birthday Party"
+                            id="floatingInput" placeholder="Event name" required>
                         <label for="floatingInput"><i class="fas fa-pencil-alt"></i> Event Name</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="date" class="form-control fw-bold" id="floatingInput" placeholder="select date">
+                        <?php
+                            $minDate = date("Y-m-d"); // Get the current date in "YYYY-MM-DD" format
+                        ?>
+                        <input type="date" name="reservationdate" id="date" min="<?php echo $minDate; ?>" class="form-control fw-bold" id="floatingInput"
+                            placeholder="select date" required>
                         <label for="floatingInput"><i class="fas fa-calendar-day"></i> Select Date </label>
                     </div>
                     <!-- <div class="form-floating mb-3">
@@ -64,23 +71,44 @@
                         <label for="floatingSelect"><i class="fas fa-swimming-pool"></i> Select Pool</label>
                     </div> -->
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control text-capitalize fw-bold" value="PHP 5600"
-                            id="floatingInput" placeholder="rates">
+                        <input type="text" class="form-control text-capitalize fw-bold" name="rates"
+                            id="floatingInput" placeholder="rates" required>
                         <label for="floatingInput"><i class="fas fa-money-bill"></i> Rates</label>
                     </div>
                     <div class="d-flex justify-content-end gap-2">
                         <a href="http://192.168.1.4/degars-resort/portal/quickstart.php" class="btn btn-outline-danger">
                             Back</a>
                         <div class="vr"></div>
-                        <a href="customerForm.php" class="btn btn-dark" name="submitExclusuveReservation">Proceed
-                        
-                        </a>
+                        <button type="submit" class="btn btn-dark shadow-lg rounded" name="addReservation"> Proceed</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </main>
-<footer>
-    <?php include '../portFooter.php';?>
-</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var inputDate = document.getElementById('date');
+
+    inputDate.addEventListener('input', function() {
+        var selectedDate = new Date(this.value);
+        var currentDate = new Date();
+        
+        
+        currentDate.setDate(currentDate.getDate() + 1);
+        var minDate = currentDate.toISOString().split('T')[0];
+
+        if (selectedDate <= currentDate) {
+            alert('Please select a future date.');
+            this.value = '';
+        }
+
+        this.setAttribute('min', minDate);
+    });
+});
+</script>
+
+<?php include '../portFooter.php';?>

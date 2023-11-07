@@ -12,8 +12,12 @@
                 <hr>
                 <form action="" method="post">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control fw-bold" id="floatingInput" value="Rhondel M. Pagobo" placeholder="Fullname">
-                        <label for="floatingInput"><i class="fas fa-user"></i> Fullname </label>
+                        <input type="text" class="form-control fw-bold" id="floatingInput" value="Rhondel" placeholder="Firstname">
+                        <label for="floatingInput"><i class="fas fa-user"></i> Firstname </label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control fw-bold" id="floatingInput" value="Pagobo" placeholder="Lastname">
+                        <label for="floatingInput"><i class="fas fa-user"></i> Lastname </label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control fw-bold" id="floatingInput" value="rhondelpagobo99@gmail.com" placeholder="Email address">

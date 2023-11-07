@@ -109,12 +109,33 @@
                                         </div>
                                         <span><strong><span>&#8369; 1383.75</span></strong></span>
                                     </li>
+                                    <hr>
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                    <div>
+                                        <strong>Allowed to pay atleast 50%</strong>
+                                        <!-- <strong>
+                                                <p class="mb-0">(including VAT)</p>
+                                            </strong> -->
+                                    </div>
+                                    <span><strong><span>&#8369; 691.875</span></strong></span>
+                                </li>
                                 </ul>
+                                <div class="form-floating mb-3">
+                                    <select class="form-select text-capitalize fw-bold" id="floatingSelect"
+                                        aria-label="Floating label select example">
+                                        <option selected>Select mode of payment</option>
+                                        <option value="">50% downpayment</option>
+                                        <option value="">Full Payment</option>
+                                    </select>
+                                    <label for="floatingSelect"><i class="fas fa-swimming-pool"></i> Mode of paymentl</label>
+                                </div>
                                 <div class="d-grid gap-2">
-                                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/payviaqr.php" class="btn btn-outline-warning">
+                                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/payviaqr.php"
+                                        class="btn btn-outline-warning">
                                         Pay Via Qr
                                     </a>
-                                    <a href="http://192.168.1.4/degars-resort/billing.php" class="btn btn-dark">
+                                    <a href="#" class="btn btn-dark">
                                         Go to checkout
                                     </a>
                                 </div>
