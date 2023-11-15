@@ -27,8 +27,7 @@ class Database {
 }
 class Reservations extends Database
 {
-    public function addReservation($type, $eventname, $reservationdate, $paymentduedate, $rates)
-    {
+    public function addReservation($type, $eventname, $reservationdate, $paymentduedate, $rates) {
         $conn = $this->getConnection();
 
         $type = $conn->real_escape_string($type);
@@ -46,6 +45,31 @@ class Reservations extends Database
             return false;
         }
     }
+    public function deleteReservation($id) {
+        $conn = $this->getConnection();
+        $deleteReservation = "DELETE FROM reservation WHERE id='$id'";
+        if ($conn->query($deleteReservation)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function updateReservation($id, $type, $eventname, $reservationdate, $paymentduedate, $rates) {
+        $conn = $this->getConnection();
+        $type = $conn->real_escape_string($type);
+        $eventname = $conn->real_escape_string($eventname);
+        $reservationdate = $conn->real_escape_string($reservationdate);
+        $paymentduedate = $conn->real_escape_string($paymentduedate);
+        $rates = $conn->real_escape_string($rates);
+        $updateReservation = "UPDATE reservation SET type='$type', eventname='$eventname', reservationdate='$reservationdate";
+        if ($conn->query($updateReservation) === true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    
 
 }
 

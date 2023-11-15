@@ -134,6 +134,7 @@ body {
             </ul>
         </div>
         <a href="rules.php"><i class="fas fa-exclamation-circle text-success"></i> Rules</a>
+        <a href="allpayment.php"><i class="fas fa-exclamation-circle text-success"></i> All Payment</a>
         <a href="rooms.php"><i class="fas fa-bed text-success"></i> Rooms</a>
         <a href="cottages.php"><i class="fas fa-home text-success"></i> Cottage</a>
         <a href="users.php"><i class="fas fa-users text-success"></i> Users</a>

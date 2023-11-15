@@ -10,63 +10,59 @@
 </head>
 
 <body>
-<?php
-$name = "sample name";
-$email = "sample@gmail.com";
-$phone = "0950668845446";
+    <?php
 
 
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-CURLOPT_URL => "https://api.paymongo.com/v1/checkout_sessions",
-CURLOPT_RETURNTRANSFER => true,
-CURLOPT_ENCODING => "",
-CURLOPT_MAXREDIRS => 10,
-CURLOPT_TIMEOUT => 30,
-CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-CURLOPT_CUSTOMREQUEST => "POST",
-CURLOPT_POSTFIELDS => json_encode([
-    'data' => [
-        'attributes' => [
-            'billing' => [
-                'name' => 'Rhondel M. Pagobo',
-                'email' => 'rhondelpagobo99@gmail.com',
-                'phone' => '09506587329'
-            ],
-            'send_email_receipt' => true,
-            'show_description' => true,
-            'show_line_items' => false,
-            'cancel_url' => 'https://paymongo.page/l/reservation-failed',
-            'description' => 'EXCLUSIVE RESERVATION',
-            'reference_number' => 'fd;zxjkdvs',
-            'line_items' => [
-                [
-                    'currency' => 'PHP',
-                    'amount' => 10000,
-                    'description' => 'this payment is for the reservation of the resort',
-                    'name' => '',
-                    'quantity' => 1
-                ]
-            ],
-            'success_url' => 'https://dashboard.paymongo.com/home',
-            'payment_method_types' => [
-                'gcash',
-                'grab_pay',
-                'paymaya',
-                'dob',
-                'card',
-            ]
-        ]
-    ]
-]),
-CURLOPT_HTTPHEADER => [
-    "Content-Type: application/json",
-    "accept: application/json",
-    "authorization: Basic c2tfbGl2ZV9EOThaY0h3ajVZMzU1SDQxMWtRYUVkQlY6c2tfbGl2ZV9EOThaY0h3ajVZMzU1SDQxMWtRYUVkQlY="
-    
-],
-]);
+    CURLOPT_URL => "https://api.paymongo.com/v1/checkout_sessions",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_POSTFIELDS => json_encode([
+      'data' => [
+          'attributes' => [
+                  'billing' => [
+                                  'name' => 'Rizalyn Mandawe',
+                                  'email' => 'rizalyn.mandawe@nmsc.edu.ph',
+                                  'phone' => '09506587329'
+                  ],
+                  'send_email_receipt' => true,
+                  'show_description' => true,
+                  'show_line_items' => false,
+                  'cancel_url' => 'https://dashboard.paymongo.com/home',
+                  'description' => 'Resort Reservation payment',
+                  'payment_method_types' => [
+                                  'gcash',
+                                  'billease',
+                                  'card',
+                                  'dob',
+                                  'dob_ubp',
+                                  'paymaya'
+                  ],
+                  'success_url' => 'https://mail.google.com/',
+                  'line_items' => [
+                                  [
+                                                                  'currency' => 'PHP',
+                                                                  'amount' => 10000,
+                                                                  'description' => 'RESORT RESERVATION',
+                                                                  'name' => 'RESERVATION',
+                                                                  'quantity' => 1
+                                  ]
+                  ]
+          ]
+      ]
+    ]),
+    CURLOPT_HTTPHEADER => [
+      "Content-Type: application/json",
+      "accept: application/json",
+      "authorization: Basic c2tfbGl2ZV9EOThaY0h3ajVZMzU1SDQxMWtRYUVkQlY6c2tfbGl2ZV9EOThaY0h3ajVZMzU1SDQxMWtRYUVkQlY="
+    ],
+  ]);
 
 $response = curl_exec($curl);
 $err = curl_error($curl);

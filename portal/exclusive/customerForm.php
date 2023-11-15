@@ -1,12 +1,8 @@
-<?php 
-session_start();
-include '../portHeader.php';
-// $type = $_SESSION['reservation_type'];
-// $eventname = $_SESSION['reservation_eventname'];
-// $reservationdate = $_SESSION['reservation_date'];
-// $paymentduedate = $_SESSION['reservation_paymentduedate'];
-// $rates = $_SESSION['reservation_rates'];
+<?php
+    session_start();
+    include '../portHeader.php';
 ?>
+
 
 <title>Exclusive | Customer Form</title>
 
@@ -14,12 +10,17 @@ include '../portHeader.php';
     <div class="container-sm mt-5">
         <div class="row g-0 position-relative">
             <div class="col-md-6 mb-md-0 p-md-4">
-            <?php include_once 'svgbg2.php'?>
+            <?php include_once 'carousels.php'?>
+            <!-- <?php include_once 'svgbg2.php'?> -->
             </div>
             <div class="col-md-6 p-4 ps-md-0">
                 <h3 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> Please fill up this form</h3>
                 <hr>
                 <form action="" method="post">
+                <div class="form-floating mb-3">
+                        <input type="text" class="form-control fw-bold" id="floatingInput" value="<?php echo $_SESSION['reservation_id']; ?>" placeholder="reservation id">
+                        <label for="floatingInput"><i class="fas fa-user"></i> Reservation Id </label>
+                    </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control fw-bold" id="floatingInput" value="Rhondel" placeholder="Firstname">
                         <label for="floatingInput"><i class="fas fa-user"></i> Firstname </label>

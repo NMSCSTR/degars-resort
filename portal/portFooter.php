@@ -54,6 +54,60 @@
         </div>
     </div>
 </footer> -->
+<style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+    </style>
+
+
+<!-- 
+<footer class="page-footer font-small unique-color-dark mt-5">
+        <div class="container mt-5 mb-4 text-center text-md-left">
+            <div class="row mt-3">
+                <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+                    <h6 class="text-uppercase font-weight-bold">
+                        <strong class="text-success">Degars Manor</strong>
+                    </h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui libero accusamus laudantium
+                        quasi quas perspiciatis repellendus eius! Dolores eligendi officiis ad cum quas, neque suscipit
+                        iste dolorem numquam modi laboriosam!
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase font-weight-bold"><strong>Products</strong></h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p><a href="#!">View rates</a></p>
+                    <p><a href="#!">View Cottages</a></p>
+                    <p><a href="#!">View rooms</a></p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase font-weight-bold"><strong>Social Media links</strong></h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p><a href="#!">Facebook</a></p>
+                    <p><a href="#!">Email</a></p>
+                    <p><a href="#!">Twitter</a></p>
+                    <p><a href="#!">Instagram</a></p>
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-3">
+                    <h6 class="text-uppercase font-weight-bold"><strong>Contact</strong></h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p><i class="fas fa-home"></i> Silanga, Tangub City</p>
+                    <p><i class="fa fa-envelope mr-3"></i> degarsmanor@email.com</p>
+                    <p><i class="fa fa-phone mr-3"></i> +639 508 297 97</p>
+                    <p><i class="fa fa-print mr-3"></i> +639 262 713 257</p>
+                </div>
+            </div>
+        </div>
+    </footer> -->
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">

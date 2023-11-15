@@ -18,8 +18,8 @@ body {
 <main>
     <div class="container-sm mt-5">
         <div class="row g-0 position-relative">
-            <div class="col-md-6 mb-md-0 p-md-4 mb-4">
-                <img src="../../res/images/qr1.png" class="img-fluid" alt="">
+            <div class="col-md-6 img-fluid mt-4">
+                <img src="../../res/images/gcashQR.jpg" class="img-fluid" alt="">
             </div>
             <div class="col-sm-6 p-4 ps-md-0 ">
                 <h3 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> Upload Payment Proof</h3>
@@ -69,35 +69,73 @@ body {
                             </ul>
                         </div>
                     </div>
-                    <p class="text-danger">Note: Please input the exact amount when you pay. We will review submitted
-                        receipt before approval.</p>
-                    <div class="form-floating mb-3">
-                        <select class="form-select text-capitalize fw-bold" id="floatingSelect"
-                            aria-label="Floating label select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">50% Downpayment</option>
-                            <option value="2">Full Payment</option>
-                        </select>
-                        <label for="floatingSelect"> Select Payment</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="file" class="form-control text-uppercase fw-bold" id="floatingInput"
-                            placeholder="Event name">
-                        <label for="floatingInput"> Upload receipt</label>
-                    </div>
-                    <div class="d-grid gap-2">
-                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/review.php" class="btn btn-outline-danger">
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <a href="http://192.168.1.4/degars-resort/portal/exclusive/review.php"
+                            class="btn btn-outline-danger">
                             Back
                         </a>
-                        <a href="http://192.168.1.4/degars-resort/portal/exclusive/success.php" class="btn btn-dark">
-                            Submit
-                        </a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                            Send receipt
+                        </button>
                     </div>
-                    
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Send Receipt</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-danger text-wrap">Note: Please input the exact amount when you pay.
+                                        We will
+                                        review submitted
+                                        receipt before approval.</p>
+                                    <div class="container mb-2"><img class="img-fluid" id="viewImg" src="" height="500"
+                                            alt=""></div>
+                                    <div class="form-floating mb-3">
+                                        <input type="file" class="form-control text-uppercase fw-bold" id="inputImg"
+                                            placeholder="Event name">
+                                        <label for="floatingInput"> Upload receipt</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select text-capitalize fw-bold" id="floatingSelect"
+                                            aria-label="Floating label select example">
+                                            <option selected>Open this select menu</option>
+                                            <option value="1">50% Downpayment</option>
+                                            <option value="2">Full Payment</option>
+                                        </select>
+                                        <label for="floatingSelect"> Select Payment</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/uploadqr.php"
+                                        class="btn btn-dark">
+                                        Proceed
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </main>
+<script>
+let viewImg = document.getElementById('viewImg');
+let inputImg = document.getElementById('inputImg');
 
+inputImg.onchange = (e) => {
+    if (inputImg.files[0])
+        viewImg.src = URL.createObjectURL(inputImg.files[0]);
+};
+</script>
 <?php include '../portFooter.php';?>

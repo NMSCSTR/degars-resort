@@ -3,6 +3,10 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// $db = mysqli_connect('localhost', 'root', '', 'capstwo');
+// $fetchid = "SELECT reservation_id FROM reservation ORDER By datetimeadded DESC";
+// $row = mysqli_fetch_assoc($db,$fetchid);
+
 require_once('functions.php'); 
 
 $setReservation = new Reservations();
@@ -17,13 +21,9 @@ if (isset($_POST['addReservation'])) {
     if ($setReservation->addReservation($type,$eventname,$reservationdate,$paymentduedate,$rates)) {
         $_SESSION['status'] = "Reservation save successfully!";
         $_SESSION['code'] = "success";
-        $_SESSION['reservation_type'] = $type;
-        $_SESSION['reservation_eventname'] = $eventname;
-        $_SESSION['reservation_date'] = $reservationdate;
-        $_SESSION['reservation_paymentduedate'] = $paymentduedate;
-        $_SESSION['reservation_rates'] = $rates;
+        $reservation_id = $row['reservation_id'];
+        $_SESSION['reservation_id'] = $reservation_id;
         header('Location: ../exclusive/customerForm.php?' . http_build_query($_SESSION));
-        // header('Location: ../exclusive/customerForm.php');
     } else {
         echo "Error adding reservation";
     }
