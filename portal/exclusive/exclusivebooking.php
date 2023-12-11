@@ -1,7 +1,6 @@
 <?php
 session_start();
-// error_reporting(E_ALL);
-include '../portHeader.php';
+error_reporting(E_ALL);
 ?>
 <style>
 html {
@@ -18,7 +17,7 @@ body {
     margin-top: auto;
 }
 </style>
-
+<?php include '../portHeader.php'; ?>
 <title>Exclusive Reservation</title>
 <main>
     <div class="container-sm mt-5">
@@ -30,7 +29,7 @@ body {
             <div class="container-fluid col-md-6 p-4 ps-md-0">
                 <h4 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> Exclusive Reservation</h4>
                 <hr>
-                <form action="../functions/process.php" method="post">
+                <form action="../functions/savereservation.php" method="post">
                     <!-- <div class="row g-2">
                         <div class="col-md">
                             <div class="form-floating mb-3">
@@ -49,7 +48,7 @@ body {
                     </div> -->
                     <div class="form-floating mb-3">
                         <input type="hidden" name="type" value="Exclusive">
-                        <input type="text" name="eventname" class="form-control fw-bold" value="Birthday Party"
+                        <input type="text" name="eventname" class="form-control fw-bold" value=""
                             id="floatingInput" placeholder="Event name" required>
                         <label for="floatingInput"><i class="fas fa-pencil-alt"></i> Event Name</label>
                     </div>
@@ -72,7 +71,7 @@ body {
                     </div> -->
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control text-capitalize fw-bold" name="rates"
-                            id="floatingInput" value="100" placeholder="rates" required>
+                            id="floatingInput" value="" placeholder="rates" onchange="formatInput(this)" required>
                         <label for="floatingInput"><i class="fas fa-money-bill"></i> Rates</label>
                     </div>
                     <div class="d-flex justify-content-end gap-2">
@@ -88,6 +87,22 @@ body {
 </main>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    function formatInput(input) {
+        // Get the value of the input
+        let inputValue = input.value;
+
+        // Check if the input value is a number
+        if (!isNaN(inputValue)) {
+        // Format the number to display two decimal places
+        inputValue = parseFloat(inputValue).toFixed(2);
+        }
+
+        // Update the input value with the formatted value
+        input.value = inputValue;
+    }
+</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

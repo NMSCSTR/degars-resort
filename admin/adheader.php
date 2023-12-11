@@ -100,14 +100,14 @@ body {
 </style>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark shadow">
+    <nav class="navbar navbar-light bg-light shadow">
         <div class="container">
-            <div class="btn btn-dark">
+            <div class="btn btn-light">
                 <span id="openNav" style="font-size:20px;cursor:pointer;" onclick="openNav()">&#9776; Degars Resort</span>
             </div>
                 
             <div class="dropdown">
-                <a href="" class="btn btn-dark btn-md dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                <a href="" class="btn btn-light btn-md dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                     data-bs-toggle="dropdown" aria-expanded="false">Welcome <span
                         class="text-warning text-capitalize"><?php echo $_SESSION['admin_username'];?></span></a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
@@ -120,6 +120,7 @@ body {
         </div>
     </nav>
 
+    
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="dashboard.php"><i class="fas fa-tachometer-alt text-success"></i> Dashboard</a>
@@ -139,7 +140,6 @@ body {
         <a href="cottages.php"><i class="fas fa-home text-success"></i> Cottage</a>
         <a href="users.php"><i class="fas fa-users text-success"></i> Users</a>
     </div>
-
 
 
 
@@ -165,6 +165,7 @@ body {
         document.getElementById("openNav").style.marginLeft = "0";
     }
     </script>
+
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const collapseLink = document.querySelector('.collapse-link');
@@ -174,4 +175,5 @@ body {
             toggleIcon.classList.toggle('collapsed');
         });
     });
+
     </script>

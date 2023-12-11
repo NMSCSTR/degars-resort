@@ -42,7 +42,7 @@ body {
 
 <body>
 <header>
-    <nav class="navbar navbar-expand-xl bg-dark bg-gradient navbar-dark shadow">
+    <nav class="navbar navbar-expand-xl bg-light bg-gradient navbar-light shadow">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">
                 <img src="https://img.icons8.com/external-others-inmotus-design/67/external-D-qwerty-keypad-others-inmotus-design.png"

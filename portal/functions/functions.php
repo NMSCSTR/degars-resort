@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -25,6 +26,8 @@ class Database {
         $this->conn->close();
     }
 }
+
+
 class Reservations extends Database
 {
     public function addReservation($type, $eventname, $reservationdate, $paymentduedate, $rates) {
@@ -45,6 +48,8 @@ class Reservations extends Database
             return false;
         }
     }
+
+    
     public function deleteReservation($id) {
         $conn = $this->getConnection();
         $deleteReservation = "DELETE FROM reservation WHERE id='$id'";
@@ -54,13 +59,17 @@ class Reservations extends Database
             return false;
         }
     }
+
+
     public function updateReservation($id, $type, $eventname, $reservationdate, $paymentduedate, $rates) {
+
         $conn = $this->getConnection();
         $type = $conn->real_escape_string($type);
         $eventname = $conn->real_escape_string($eventname);
         $reservationdate = $conn->real_escape_string($reservationdate);
         $paymentduedate = $conn->real_escape_string($paymentduedate);
         $rates = $conn->real_escape_string($rates);
+
         $updateReservation = "UPDATE reservation SET type='$type', eventname='$eventname', reservationdate='$reservationdate";
         if ($conn->query($updateReservation) === true) {
             return true;

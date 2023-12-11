@@ -12,7 +12,8 @@
                 <label for="floatingInput"> Upload receipt</label>
             </div>
             <div class="form-floating mb-3">
-                <select class="form-select text-capitalize fw-bold" id="floatingSelect"
+                <select 
+                class="form-select text-capitalize fw-bold" id="floatingSelect"
                     aria-label="Floating label select example">
                     <option selected>Open this select menu</option>
                     <option value="1">50% Downpayment</option>
@@ -42,4 +43,6 @@
             viewImg.src = URL.createObjectURL(inputImg.files[0]);
     };
 </script>
+
+
 <?php include '../portFooter.php';?>

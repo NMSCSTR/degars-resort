@@ -13,7 +13,7 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  // Decode the JSON response to an associative array
+
   $data = json_decode($response, true);
 
   // Extract the fields from the response
