@@ -1,20 +1,19 @@
 <?php 
+$db = mysqli_connect("localhost","root","","capstwo");
 if (isset($_POST['savecompleted'])) {
 
 
-
     $reference_id = "";
-    echo $reservation_id = $_POST['reservation_id'];echo "</br>";
-    echo$customer_id = $_POST['customer_id'];echo "</br>";
-    echo $modeofpayment = $_POST['modeofpayment'];echo "</br>";
+    $reservation_id = $_POST['reservation_id'];
+    $customer_id = $_POST['customer_id'];
+    $modeofpayment = $_POST['modeofpayment'];
     $status = "PENDING";
-    echo $servicefee = $_POST['servicefee'];echo "</br>";
-    echo $totalamount = $_POST['totalamount'];
+    $servicefee = $_POST['servicefee'];
+    $totalamount = $_POST['totalamount'] * 100;
     $checkouturl = "";
 
     $fetch_res_details = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `reservation` WHERE reservation_id = '$reservation_id' "));
     $fetch_cus_details = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `customer` WHERE customer_id = '$customer_id' "));
-
 
 
 $curl = curl_init();
@@ -31,10 +30,11 @@ curl_setopt_array($curl, [
     'data' => [
         'attributes' => [
                 'billing' => [
-                        'name' => $fetch_cus_details['firstname'] . $fetch_cus_details['lastname'],
-                        'email' => $fetch_cus_details['email_address'],
-                        'phone' => $fetch_cus_details['phone_number']
-                ],
+                'name' => $fetch_cus_details['firstname'] . ' ' . $fetch_cus_details['lastname'],
+                'email' => $fetch_cus_details['email_address'],
+                'phone' => $fetch_cus_details['phone_number']
+            ],
+
                 'send_email_receipt' => true,
                 'show_description' => true,
                 'show_line_items' => false,
@@ -42,7 +42,6 @@ curl_setopt_array($curl, [
                 'description' => 'Resort Reservation payment',
                 'payment_method_types' => [
                                 'gcash',
-                                'billease',
                                 'card',
                                 'dob',
                                 'dob_ubp',
@@ -52,7 +51,7 @@ curl_setopt_array($curl, [
                 'line_items' => [
                                 [
                                     'currency' => 'PHP',
-                                    'amount' => 10000,
+                                    'amount' => $totalamount,
                                     'description' => 'RESORT RESERVATION',
                                     'name' => 'RESERVATION',
                                     'quantity' => 1
@@ -95,7 +94,8 @@ if ($err) {
         exit; // Make sure to exit after redirection
     } else {
         // If the response is mi    ssing the required data, handle the error gracefully
-        echo "Error creating payment link. Please try again later.";
+        
+        echo "Error";
     }
 }
 

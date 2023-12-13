@@ -19,8 +19,9 @@
                 <div class="row d-flex justify-content-center my-4">
                     <div class="col-md-8">
                         <div class="card mb-4 shadow">
-                            <div class="card-header bg-light text-dark py-3">
-                                <h5 class="mb-0">Reservation Details</h5>
+                            <div class="card-header bg-light text-secondary py-3">
+                                <h5 class="mb-0"><i class="far fa-calendar-alt"></i>
+                                    Reservation Details</h5>
                             </div>
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
@@ -34,8 +35,19 @@
                                             </p>
                                         </div>
                                     </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                        <p class="text-start">Reservation Date</p>
+                                        <div class="col-lg-4 col-md-6">
+                                            <p class="text-sm-center">
+                                                <strong>
+                                                    <?php echo date('F d, Y', strtotime($fetch_res_details['reservationdate'])); ?></strong>
+                                            </p>
+                                        </div>
+                                    </li>
                                     <hr>
-                                    <p><strong>Customer Details</strong></p>
+                                    <p><strong><i class="fas fa-address-card"></i>
+                                            Customer Details</strong></p>
                                     <li
                                         class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                         <p class="text-start">Name</p>
@@ -70,7 +82,8 @@
 
                         <div class="card mb-4">
                             <div class="card-body shadow">
-                                <p><strong>Expected payment due</strong>( 3 days before reservation date)</p>
+                                <p><strong><i class="fas fa-clock"></i> Expected payment due</strong>( 3 days before
+                                    reservation date)</p>
                                 <p class="mb-0">
                                     <?php echo date('F d, Y', strtotime($fetch_res_details['paymentduedate'])); ?></p>
                             </div>
@@ -84,7 +97,8 @@
                     <div class="col-md-4">
                         <div class="card shadow mb-4">
                             <div class="card-header bg-light text-secondary py-3">
-                                <h5 class="mb-0">Summary</h5>
+                                <h5 class="mb-0"><i class="far fa-list-alt"></i>
+                                    Summary</h5>
                             </div>
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
@@ -99,7 +113,7 @@
                                             <span>&#8369; 1,300.00</span>
                                         </li> -->
                                     <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                        Gcash Service Fees (2.5%)
+                                        Gcash Service Fee (2.5%)
                                         <?php
                                             $resfee = $fetch_res_details['rates'];
                                             $percentage = 2.5;
@@ -140,8 +154,8 @@
                                             placeholder="customer id">
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <select class="form-select text-capitalize fw-bold" name="modeofpayment" id="floatingSelect"
-                                            aria-label="Floating label select example">
+                                        <select class="form-select text-capitalize fw-bold" name="modeofpayment"
+                                            id="floatingSelect" aria-label="Floating label select example">
                                             <option value="50%">50% downpayment</option>
                                             <option value="Full Payment">Full Payment</option>
                                         </select>
@@ -158,9 +172,10 @@
                                             placeholder="customer id">
                                     </div>
                                     <div class="d-grid gap-2 mb-3">
-                                    <!-- <button type="submit" name="savecompleted" class="btn btn-success"><i class="fas fa-credit-card"></i> Go to checkout</button> -->
+                                        <button type="submit" name="savecompleted" class="btn btn-success"><i
+                                                class="fas fa-credit-card"></i> Go to checkout</button>
 
-                                    <a href="../../billing.php"class="btn btn-success"><i class="fas fa-credit-card"></i> Go to checkout</a>
+                                        <!-- <a href="../../billing.php"class="btn btn-success"><i class="fas fa-credit-card"></i> Go to checkout</a> -->
                                     </div>
                                 </form>
 
@@ -177,13 +192,20 @@
                                 </div>
 
                                 <div class="d-flex justify-content-center gap-2">
-                                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/payviaqr.php"
+                                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/payviaqr.php?customer_id=<?php echo $customer_id ?>&reservation_id=<?php echo $reservation_id ?>"
                                         class="btn btn-outline-primary">
                                         <i class="fas fa-qrcode text-dark"></i>
                                         Pay Via QR
                                     </a>
+
+                                    <?php 
+                                        $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";  
+                                        $payLaterUrl = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];  
+                                        
+                                    ?>
+
                                     <div class="vr"></div>
-                                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/payviaqr.php"
+                                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/paylater.php?customer_id=<?php echo $customer_id ?>&reservation_id=<?php echo $reservation_id ?>&payLaterUrl=<?php echo $payLaterUrl ?>"
                                         class="btn btn-danger">
                                         <i class="fas fa-clock"></i>
                                         Pay later
@@ -193,9 +215,14 @@
                         </div>
                     </div>
 
+
                     <div>
-                        <h6 class="mb-0"><a href="exclusivebooking.php" class="text-body"><i
-                                    class="fas fa-long-arrow-alt-left me-2"></i> Back to reservation</a></h6>
+                        <h6 class="mb-0">
+                            <a href="exclusivebooking.php" class="text-body mt-4"
+                                onclick="Confirm('Back to reservation page?. Your current reservation will be undone')"><i
+                                    class="fas fa-long-arrow-alt-left me-2"></i> Back to reservation page
+                            </a>
+                        </h6>
                     </div>
                 </div>
             </div>

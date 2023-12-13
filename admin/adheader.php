@@ -124,7 +124,17 @@ body {
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="dashboard.php"><i class="fas fa-tachometer-alt text-success"></i> Dashboard</a>
-        <a href="reservations.php"><i class="fas fa-calendar text-success"></i> Reservations</a>
+        <a href="#inventory-collapse" data-bs-toggle="collapse" class="collapsed">
+            <i class="fas fa-box text-success"></i> Reservation <span class="toggle-icon fw-bolder">&#60;</span>
+        </a>
+        <div class="collapse" id="inventory-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal small m-4 mt-0 mb-0">
+                <li><a href="exclusive.php" class="rounded"><i class="fas fa-cube text-success"></i> Exclusive</a></li>
+                <li><a href="package.php" class="rounded"><i class="fas fa-list text-success"></i> Package</a></li>
+                <li><a href="walkin.php" class="rounded"><i class="fas fa-list text-success"></i> Walkin</a></li>
+                <li><a href="qrpayments.php" class="rounded"><i class="fas fa-list text-success"></i> QR Payments</a></li>
+            </ul>
+        </div>
         <a href="#inventory-collapse" data-bs-toggle="collapse" class="collapsed">
             <i class="fas fa-box text-success"></i> Inventory <span class="toggle-icon fw-bolder">&#60;</span>
         </a>

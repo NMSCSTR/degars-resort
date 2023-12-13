@@ -1,5 +1,6 @@
 <div class="card-body">
-    <p><strong>We accept</strong></p>
+    <p><strong><i class="fas fa-check-circle"></i>
+ We accept</strong></p>
     <img class="me-2" width="45px"
         src="https://play-lh.googleusercontent.com/QNP0Aj2hyumAmYiWVAsJtY2LLTQnzHxdW7-DpwFUFNkPJjgRxi-BXg7A4yI6tgYKMeU"
         alt="Visa" />

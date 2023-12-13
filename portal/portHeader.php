@@ -63,7 +63,7 @@ body {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <i class="fab fa-instagram"></i> Instagram
+                            <i class="fab fa-instagram-square"></i> Instagram
                             </a>
                         </li>
                         <li class="nav-item">
@@ -72,8 +72,8 @@ body {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-disabled="true">
-                                <i class="far fa-envelope"></i> Gmail
+                            <a class="nav-link">
+                                <i class="fas fa-envelope"></i> Gmail
                             </a>
                         </li>
                     </ul>
