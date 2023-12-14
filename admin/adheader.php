@@ -103,9 +103,10 @@ body {
     <nav class="navbar navbar-light bg-light shadow">
         <div class="container">
             <div class="btn btn-light">
-                <span id="openNav" style="font-size:20px;cursor:pointer;" onclick="openNav()">&#9776; Degars Resort</span>
+                <span id="openNav" style="font-size:20px;cursor:pointer;" onclick="openNav()">&#9776; Degars
+                    Resort</span>
             </div>
-                
+
             <div class="dropdown">
                 <a href="" class="btn btn-light btn-md dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                     data-bs-toggle="dropdown" aria-expanded="false">Welcome <span
@@ -120,35 +121,36 @@ body {
         </div>
     </nav>
 
-    
+
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="dashboard.php"><i class="fas fa-tachometer-alt text-success"></i> Dashboard</a>
+        <a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
         <a href="#inventory-collapse" data-bs-toggle="collapse" class="collapsed">
-            <i class="fas fa-box text-success"></i> Reservation <span class="toggle-icon fw-bolder">&#60;</span>
+        <i class="fas fa-calendar-plus"></i> Reservation <span class="toggle-icon fw-bolder">&#60;</span>
         </a>
         <div class="collapse" id="inventory-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal small m-4 mt-0 mb-0">
-                <li><a href="exclusive.php" class="rounded"><i class="fas fa-cube text-success"></i> Exclusive</a></li>
-                <li><a href="package.php" class="rounded"><i class="fas fa-list text-success"></i> Package</a></li>
-                <li><a href="walkin.php" class="rounded"><i class="fas fa-list text-success"></i> Walkin</a></li>
-                <li><a href="qrpayments.php" class="rounded"><i class="fas fa-list text-success"></i> QR Payments</a></li>
+                <li><a href="exclusive.php" class="rounded"><i class="fas fa-trophy"></i> Exclusive</a></li>
+                <li><a href="package.php" class="rounded"><i class="fas fa-gift"></i>
+                        Package</a></li>
+                <li><a href="walkin.php" class="rounded"><i class="fas fa-walking"></i> Walkin</a></li>
+                <li><a href="qrpayments.php" class="rounded"><i class="fas fa-qrcode"></i> QR Payments</a></li>
             </ul>
         </div>
         <a href="#inventory-collapse" data-bs-toggle="collapse" class="collapsed">
-            <i class="fas fa-box text-success"></i> Inventory <span class="toggle-icon fw-bolder">&#60;</span>
+                <i class="fas fa-archive"></i> Inventory <span class="toggle-icon fw-bolder">&#60;</span>
         </a>
         <div class="collapse" id="inventory-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal small m-4 mt-0 mb-0">
-                <li><a href="product.php" class="rounded"><i class="fas fa-cube text-success"></i> Product</a></li>
-                <li><a href="category.php" class="rounded"><i class="fas fa-list text-success"></i> Category</a></li>
+                <li><a href="product.php" class="rounded"><i class="fas fa-cube"></i> Product</a></li>
+                <li><a href="category.php" class="rounded"><i class="fas fa-list"></i> Category</a></li>
             </ul>
         </div>
-        <a href="rules.php"><i class="fas fa-exclamation-circle text-success"></i> Rules</a>
-        <a href="allpayment.php"><i class="fas fa-exclamation-circle text-success"></i> All Payment</a>
-        <a href="rooms.php"><i class="fas fa-bed text-success"></i> Rooms</a>
-        <a href="cottages.php"><i class="fas fa-home text-success"></i> Cottage</a>
-        <a href="users.php"><i class="fas fa-users text-success"></i> Users</a>
+        <a href="rules.php"><i class="fas fa-book"></i> Rules</a>
+        <a href="allpayment.php"><i class="fas fa-dollar-sign"></i> All Payment</a>
+        <a href="rooms.php"><i class="fas fa-bed"></i> Rooms</a>
+        <a href="cottages.php"><i class="fas fa-home"></i> Cottage</a>
+        <a href="users.php"><i class="fas fa-users"></i> Users</a>
     </div>
 
 
@@ -185,5 +187,4 @@ body {
             toggleIcon.classList.toggle('collapsed');
         });
     });
-
     </script>

@@ -23,6 +23,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                         <tr>
                             <th>Ref#</th>
                             <th>Status</th>
+                            <th>Type</th>
                             <th>Reserve Date</th>
                             <th>Rates</th>
                             <th>Mode of payment</th>
@@ -31,59 +32,67 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                     </thead>
                     <tbody>
                         <tr>
-                            <?php
-                                $db = mysqli_connect("localhost","root","","capstwo");
-                                $fetchqrpay = mysqli_query($db, "
-                                    SELECT
-                                        payviaqr.payviaqr_id,
-                                        reservation.type,
-                                        payviaqr.transaction_ref,
-                                        payviaqr.status,
-                                        payviaqr.gcash_name,
-                                        payviaqr.gcash_number,
-                                        payviaqr.receipt_img,
-                                        payviaqr.mode_of_payment,
-                                        reservation.eventname,
-                                        reservation.reservation_id,
-                                        reservation.reservationdate,
-                                        reservation.paymentduedate,
-                                        reservation.rates,
-                                        customer.customer_id,
-                                        customer.firstname,
-                                        customer.lastname,
-                                        customer.email_address,
-                                        customer.phone_number
-                                    FROM
-                                        payviaqr
-                                    LEFT JOIN
-                                        reservation ON reservation.reservation_id = payviaqr.reservation_id
-                                    LEFT JOIN
-                                        customer ON customer.customer_id = payviaqr.customer_id 
-                                ");
+                        <?php
+                            $db = mysqli_connect("localhost","root","","capstwo");
+                            $fetchqrpay = mysqli_query($db, "
+                                SELECT
+                                    payviaqr.payviaqr_id,
+                                    reservation.type,
+                                    payviaqr.transaction_ref,
+                                    payviaqr.status,
+                                    payviaqr.gcash_name,
+                                    payviaqr.gcash_number,
+                                    payviaqr.receipt_img,
+                                    payviaqr.mode_of_payment,
+                                    reservation.type,
+                                    reservation.eventname,
+                                    reservation.reservation_id,
+                                    reservation.reservationdate,
+                                    reservation.paymentduedate,
+                                    reservation.rates,
+                                    customer.customer_id,
+                                    customer.firstname,
+                                    customer.lastname,
+                                    customer.email_address,
+                                    customer.phone_number
+                                FROM
+                                    payviaqr
+                                LEFT JOIN
+                                    reservation ON reservation.reservation_id = payviaqr.reservation_id
+                                LEFT JOIN
+                                    customer ON customer.customer_id = payviaqr.customer_id 
+                            ");
 
                             while ($row = $fetchqrpay->fetch_array()) { ?>
                             <td><?php echo $row['transaction_ref']; ?></td>
-                            <td><?php echo $row['status']; ?></td>
+                            <td><span
+                                    class="badge <?php echo $row['status'] === 'Approved' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?>"><?php echo $row['status']; ?></span>
+                            </td>
+                            <td><?php echo $row['type']; ?></td>
                             <td><?php echo $row['reservationdate']; ?></td>
                             <td><?php echo $row['rates']; ?></td>
                             <td><?php echo $row['mode_of_payment']; ?></td>
                             <td>
                                 <a class="btn btn-outline-success btn-sm border-0" title="Approved reservation"
-                                    href=""><i class="fas fa-check-circle"></i>
+                                    href="functions/approvedqr.php?payviaqr_id=<?php echo $row['payviaqr_id']; ?>"><i class="fas fa-check-circle"></i>
                                 </a>
-                                <a class="btn btn-outline-danger btn-sm border-0" title="Cancel Reservation" href=""><i
-                                        class="fas fa-times-circle"></i>
+                                <a class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
+                                    href="functions/declineqr.php?payviaqr_id=<?php echo $row['payviaqr_id']; ?>&transaction_ref=<?php echo $row['transaction_ref']; ?>">
+                                    <i class="fas fa-times-circle"></i>
                                 </a>
+
                                 <a class="btn btn-outline-dark btn-sm border-0" title="See more details" href=""
-                                    data-bs-toggle="modal" data-bs-target="#staticBackdrop<?php echo $row['transaction_ref']; ?>"><i
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop<?php echo $row['transaction_ref']; ?>"><i
                                         class="fas fa-ellipsis-h"></i>
                                 </a>
                             </td>
                         </tr>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="staticBackdrop<?php echo $row['transaction_ref']; ?>" data-bs-backdrop="static" data-bs-keyboard="false"
-                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade" id="staticBackdrop<?php echo $row['transaction_ref']; ?>"
+                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-g">
                                 <div class="modal-content">
                                     <div class="modal-header">

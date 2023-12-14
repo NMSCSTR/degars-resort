@@ -30,22 +30,6 @@ body {
                 <h4 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> Exclusive Reservation</h4>
                 <hr>
                 <form action="../functions/savereservation.php" method="post">
-                    <!-- <div class="row g-2">
-                        <div class="col-md">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control text-uppercase fw-bold" id="floatingInput"
-                                    placeholder="Event name">
-                                <label for="floatingInput"><i class="fas fa-pencil-alt"></i> Event Name</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating mb-3">
-                                <input type="date" class="form-control text-uppercase fw-bold" id="floatingInput"
-                                    placeholder="select date">
-                                <label for="floatingInput"><i class="fas fa-calendar-day"></i> Select Date </label>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="form-floating mb-3">
                         <input type="hidden" name="type" value="Exclusive">
                         <input type="text" name="eventname" class="form-control fw-bold" value="" id="floatingInput"

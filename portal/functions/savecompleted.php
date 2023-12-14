@@ -1,9 +1,10 @@
 <?php 
 $db = mysqli_connect("localhost","root","","capstwo");
+
 if (isset($_POST['savecompleted'])) {
 
 
-    $reference_id = "";
+    $transaction_ref = "ref" . substr(uniqid(), 7, 8);
     $reservation_id = $_POST['reservation_id'];
     $customer_id = $_POST['customer_id'];
     $modeofpayment = $_POST['modeofpayment'];
@@ -29,34 +30,35 @@ curl_setopt_array($curl, [
     CURLOPT_POSTFIELDS => json_encode([
     'data' => [
         'attributes' => [
-                'billing' => [
+            'billing' => 
+            [
                 'name' => $fetch_cus_details['firstname'] . ' ' . $fetch_cus_details['lastname'],
                 'email' => $fetch_cus_details['email_address'],
                 'phone' => $fetch_cus_details['phone_number']
-            ],
 
-                'send_email_receipt' => true,
-                'show_description' => true,
-                'show_line_items' => false,
-                'cancel_url' => 'https://dashboard.paymongo.com/home',
-                'description' => 'Resort Reservation payment',
-                'payment_method_types' => [
-                                'gcash',
-                                'card',
-                                'dob',
-                                'dob_ubp',
-                                'paymaya'
-                ],
-                'success_url' => 'https://mail.google.com/',
-                'line_items' => [
-                                [
-                                    'currency' => 'PHP',
-                                    'amount' => $totalamount,
-                                    'description' => 'RESORT RESERVATION',
-                                    'name' => 'RESERVATION',
-                                    'quantity' => 1
-                                ]
+            ],
+            'send_email_receipt' => true,
+            'show_description' => true,
+            'show_line_items' => false,
+            'cancel_url' => 'https://dashboard.paymongo.com/home',
+            'description' => 'Resort Reservation payment',
+            'payment_method_types' => [
+                'gcash',
+                'card',
+                'dob',
+                'dob_ubp',
+                'paymaya'
+            ],
+            'success_url' => 'https://mail.google.com/',
+            'line_items' => [
+                [
+                    'currency' => 'PHP',
+                    'amount' => $totalamount,
+                    'description' => 'RESORT RESERVATION',
+                    'name' => 'RESERVATION',
+                    'quantity' => 1
                 ]
+            ]
         ]
     ]
     ]),
@@ -75,14 +77,16 @@ curl_close($curl);
 if ($err) {
     echo "cURL Error #:" . $err;
 } else {
-    // Decode the JSON response to an associative array
-    $data = json_decode($response, true);
 
-    // Check if the 'data' key exists in the response
+    $data = json_decode($response, true);
     if (isset($data['data']['attributes']['checkout_url'])) {
-        // Extract the checkout URL from the response
+
         $checkout_url = $data['data']['attributes']['checkout_url'];
-        // Redirect the user to the checkout URL
+
+        // Saving the checkout URL to database for later use
+        $savecompleted = mysqli_query($db, "INSERT INTO `completed_reservation` (`reservation_id`, `customer_id`, `transaction_ref`, `modeofpayment`, `status`, `servicefee`, `totalamount`, `checkouturl`) VALUES ('', '', '', '', '', '', '', '')
+        ");
+
         echo 
         '<h3 style="text-align:center; margin-top: 10em;">
             <div class="spinner-border" role="status">
@@ -90,11 +94,13 @@ if ($err) {
             </div>
             Redirecting please wait..
         </h3>';
+
+
+
         header('Refresh: 3;URL='.$checkout_url);
-        exit; // Make sure to exit after redirection
+        exit; 
+
     } else {
-        // If the response is mi    ssing the required data, handle the error gracefully
-        
         echo "Error";
     }
 }
