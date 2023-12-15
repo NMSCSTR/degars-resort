@@ -1,12 +1,12 @@
 <?php include 'portHeader.php';?>
-<title>Quickstart</title>
+<title>Quickstart</title>   
 <main>
     <div class="container">
         <div class="form-floating mt-4 p-2">
             <select class="form-select" id="chooseReservation" name="chooseReservation" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" required>
                 <option selected>Select an option</option>
-                <option value="package/packagebooking.php">Package Reservation</option>
-                <option value="exclusive/exclusivebooking.php">Exclusive Reservation</option>
+                <option value="package/packagebooking.php?type=Package">Package Reservation</option>
+                <option value="exclusive/exclusivebooking.php?type=Exclusive&rates=100">Exclusive Reservation</option>
                 <option value="">Walkin</option>
             </select>
             <label for="chooseReservation">Choose Reservation</label>

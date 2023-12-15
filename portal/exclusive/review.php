@@ -4,12 +4,13 @@
     $db = mysqli_connect("localhost","root","","capstwo");
     $reservation_id = $_GET['reservation_id'];
     $customer_id = $_GET['customer_id'];
+    
 
     $fetch_res_details = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `reservation` WHERE reservation_id = '$reservation_id' "));
 
     $fetch_cus_details = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `customer` WHERE customer_id = '$customer_id' "));
 ?>
-<title>Exclusive | Review Reservation</title>
+<title><?php echo $_GET['type']; ?> | Review Reservation</title>
 <main>
     <div class="container-xl mt-4">
         <!-- <h6 class="mt-0 fw-bold pr-4"><i class="fas fa-calendar-alt"></i> Review Reservation</h6>
@@ -27,7 +28,7 @@
                                 <ul class="list-group list-group-flush">
                                     <li
                                         class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                                        <p class="text-start">Exclusive Reservation</p>
+                                        <p class="text-start"><?php echo $_GET['type']; ?> Reservation</p>
                                         <div class="col-lg-4 col-md-6">
                                             <p class="text-sm-center">
                                                 <strong>&#8369;
@@ -104,7 +105,7 @@
                                 <ul class="list-group list-group-flush">
                                     <li
                                         class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                                        Exclusive Reservation Fee
+                                        <span class="text-success"><?php echo $_GET['type']; ?> Reservation Fee</span>
                                         <span>&#8369;
                                             <?php echo number_format($fetch_res_details['rates'], 2); ?></span>
                                     </li>
@@ -116,7 +117,7 @@
                                         Gcash Service Fee (2.5%)
                                         <?php
                                             $resfee = $fetch_res_details['rates'];
-                                            $percentage = 2.5;
+                                            $percentage = 0; // 2.5
                                             $servicefee = ($percentage / 100) * $resfee;
 
                                             $totalamount = $resfee + $servicefee;
@@ -156,7 +157,7 @@
                                     <div class="form-floating mb-3">
                                         <select class="form-select text-capitalize fw-bold" name="modeofpayment"
                                             id="floatingSelect" aria-label="Floating label select example">
-                                            <option value="50%">50% downpayment</option>
+                                            <option value="50% Downpayment">50% downpayment</option>
                                             <option value="Full Payment">Full Payment</option>
                                         </select>
                                         <label for="floatingSelect">Mode of payment</label>
@@ -172,7 +173,7 @@
                                             placeholder="customer id">
                                     </div>
                                     <div class="d-grid gap-2 mb-3">
-                                        <button type="submit" name="savecompleted" class="btn btn-success"><i
+                                        <button type="submit" onclick="return confirm('Make sure you have remaining balance on Gcash to proceed. Insufficient balance when proceeding will lead into failed transaction!')" name="savecompleted" class="btn btn-success"><i
                                                 class="fas fa-credit-card"></i> Go to checkout</button>
 
                                         <!-- <a href="../../billing.php"class="btn btn-success"><i class="fas fa-credit-card"></i> Go to checkout</a> -->
@@ -192,10 +193,11 @@
                                 </div>
 
                                 <div class="d-flex justify-content-center gap-2">
-                                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/payviaqr.php?customer_id=<?php echo $customer_id ?>&reservation_id=<?php echo $reservation_id ?>"
-                                        class="btn btn-outline-primary">
-                                        <i class="fas fa-qrcode text-dark"></i>
-                                        Pay Via QR
+                                    <a href="http://192.168.1.4/degars-resort/portal/quickstart.php"
+                                        onclick="return confirm('Back to reservation page?. Your current reservation will be undone')"
+                                        class="btn btn-danger">
+                                        <i class="fas fa-undo"></i>
+                                        Back
                                     </a>
 
                                     <?php 
@@ -205,10 +207,10 @@
                                     ?>
 
                                     <div class="vr"></div>
-                                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/paylater.php?customer_id=<?php echo $customer_id ?>&reservation_id=<?php echo $reservation_id ?>&payLaterUrl=<?php echo $payLaterUrl ?>"
-                                        class="btn btn-danger">
-                                        <i class="fas fa-clock"></i>
-                                        Pay later
+                                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/payviaqr.php?customer_id=<?php echo $customer_id ?>&reservation_id=<?php echo $reservation_id ?>&type=<?php echo $_GET['type']; ?>"
+                                        class="btn btn-outline-primary">
+                                        <i class="fas fa-qrcode text-dark"></i>
+                                        Pay Via QR
                                     </a>
                                 </div>
                             </div>
@@ -218,10 +220,10 @@
 
                     <div>
                         <h6 class="mb-0">
-                            <a href="exclusivebooking.php" class="text-body mt-4"
+                            <!-- <a href="exclusivebooking.php" class="text-body mt-4"
                                 onclick="Confirm('Back to reservation page?. Your current reservation will be undone')"><i
                                     class="fas fa-long-arrow-alt-left me-2"></i> Back to reservation page
-                            </a>
+                            </a> -->
                         </h6>
                     </div>
                 </div>

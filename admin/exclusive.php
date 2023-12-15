@@ -10,7 +10,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Exclusive Reservation</li>
+                <li class="breadcrumb-item active" aria-current="page">Exclusive & Package Reservation</li>
             </ol>
         </nav>
     </div>
@@ -21,40 +21,64 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                 <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Reference ID</th>
-                            <th>Reservation ID</th>
-                            <th>Customer ID</th>
-                            <th>Mode of Payment</th>
+                            <th>Ref#</th>
                             <th>Status</th>
-                            <th>Service Fee</th>
+                            <th>Type</th>
+                            <th>Reservation Date</th>
+                            <th>Due Date</th>
+                            <th>Mode Of Payment</th>
                             <th>Total Amount</th>
+                            <th>Service Fee</th>
                             <th>Checkout URL</th>
-                            <th>Date Added</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
-                            <td>12345</td>
-                            <td>67890</td>
-                            <td>Credit Card</td>
-                            <td>Confirmed</td>
-                            <td>$10.00</td>
-                            <td>$100.00</td>
-                            <td>http://example.com/checkout</td>
-                            <td>2023-12-13</td>
+                            <?php 
+                                include_once 'functions/getres.php';
+                            while ($row = $fetchex->fetch_array()) { ?>
+                            <?php 
+                            $number = $row['totalamount'];;
+                            $totalamount = number_format($number / 100, 2);
+
+                            //hashing links
+                            $checkout_id = $row['checkout_id'];
+                            $hash = hash('sha256', $checkout_id);
+
+                            ?>
+                            <td><?php echo $row['transaction_ref']; ?></td>
+                            <td><span
+                                    class="badge <?php echo $row['status'] === 'Approved' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?>"><?php echo $row['status']; ?></span>
+                            </td>
+                            <td><?php echo $row['type']; ?></td>
+                            <td><?php echo date('F d, Y', strtotime($row['reservationdate'])) ?></td>
+                            <td><?php echo date('F d, Y', strtotime($row['paymentduedate'])) ?></td>
+                            <td><?php echo $row['modeofpayment']; ?></td>
+                            <td><?php echo $totalamount; ?></td>
+                            <td><?php echo number_format($row['servicefee'] ,2); ?></td>
+                            <td><?php echo $row['checkouturl']; ?></td>
+        
                             <td>
-                            <a class="btn btn-outline-success btn-sm border-0" title="Approved reservation"
-                                    href="functions/approvedqr.php?payviaqr_id=<?php echo $row['payviaqr_id']; ?>"><i class="fas fa-check-circle"></i>
+                                <a class="btn btn-outline-success btn-sm border-0" title="Mark as done"
+                                    href=""><i
+                                        class="fas fa-check-circle"></i>
                                 </a>
                                 <a class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
-                                    href="functions/declineqr.php?payviaqr_id=<?php echo $row['payviaqr_id']; ?>&transaction_ref=<?php echo $row['transaction_ref']; ?>">
+                                    href="">
                                     <i class="fas fa-times-circle"></i>
+                                </a>
+                                <!-- <a class="btn btn-outline-danger btn-sm border-0" title="Mark As Done"
+                                    href="">
+                                    <i class="fas fa-times-circle"></i>
+                                </a> -->
+                                <a class="btn btn-outline-info btn-sm border-0" title="Check Reservation"
+                                    href="allpayment.php?checkout_id=<?php echo $checkout_id; ?>&hash=<?php echo $hash; ?>">
+                                    <i class="far fa-calendar-check"></i>
                                 </a>
                             </td>
                         </tr>
-                        <!-- Add more rows as needed -->
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>

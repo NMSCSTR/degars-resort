@@ -9,7 +9,7 @@
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="https://tahititourisme.com.au/wp-content/uploads/2017/07/MBRM-Pool-HD-%C2%AE-Charles-Veronese-2.jpg"
+            <img src="imgs/Degarfront.jpg"
                 class="d-block w-100 rounded" alt="...">
             <div class="carousel-caption d-none d-md-block">
                 <!-- <h5>First slide label</h5>
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="carousel-item">
-            <img src="https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1200,h_630/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/dnj5eyb8rkjsijsknwec/Dusit%20Thani%20Mactan%20Day%20Pass%20with%20Lunch.jpg" height="" class="d-block w-100 rounded" alt="...">
+            <img src="imgs/" alt="...">
             <div class="carousel-caption d-none d-md-block">
                 <!-- <h5>Second slide label</h5>
                 <p>Some representative placeholder content for the second slide.</p> -->

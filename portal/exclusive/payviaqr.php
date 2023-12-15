@@ -3,6 +3,7 @@ include '../portHeader.php';
 $db = mysqli_connect("localhost","root","","capstwo");
 $reservation_id = $_GET['reservation_id'];
 $customer_id = $_GET['customer_id'];
+$type = $_GET['type'];
 
 $fetch_res_details = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `reservation` WHERE reservation_id = '$reservation_id' "));
 $fetch_cus_details = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `customer` WHERE customer_id = '$customer_id' "));
@@ -94,9 +95,10 @@ body {
                                 </div>
                                 <div class="form-floating mb-3">
                                     <select class="form-select text-capitalize fw-bold" id="floatingSelect"
-                                        aria-label="Floating label select example">
+                                        aria-label="Floating label select example"
+                                        name="mode_of_payment">
                                         <option selected>Open this select menu</option>
-                                        <option value="50%">50% Downpayment</option>
+                                        <option value="50% Downpayment">50% Downpayment</option>
                                         <option value="Fully Payment">Full Payment</option>
                                     </select>
                                     <label for="floatingSelect"> Select Payment</label>

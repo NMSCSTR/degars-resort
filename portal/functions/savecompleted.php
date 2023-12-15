@@ -1,17 +1,33 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
 <?php 
 $db = mysqli_connect("localhost","root","","capstwo");
 
 if (isset($_POST['savecompleted'])) {
 
-
     $transaction_ref = "ref" . substr(uniqid(), 7, 8);
     $reservation_id = $_POST['reservation_id'];
     $customer_id = $_POST['customer_id'];
-    $modeofpayment = $_POST['modeofpayment'];
-    $status = "PENDING";
-    $servicefee = $_POST['servicefee'];
     $totalamount = $_POST['totalamount'] * 100;
-    $checkouturl = "";
+    
+    if ($_POST['modeofpayment'] == 'Full Payment') {
+        $modeofpayment = $_POST['modeofpayment'];
+        $totalamount = $_POST['totalamount'] * 100;
+    } else {
+        $modeofpayment = $_POST['modeofpayment'];
+        $totalamount = ($_POST['totalamount'] * 100) / 2;
+    }
+    
+    $status = "Pending";
+    $servicefee = $_POST['servicefee'];
 
     $fetch_res_details = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `reservation` WHERE reservation_id = '$reservation_id' "));
     $fetch_cus_details = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `customer` WHERE customer_id = '$customer_id' "));
@@ -40,7 +56,7 @@ curl_setopt_array($curl, [
             'send_email_receipt' => true,
             'show_description' => true,
             'show_line_items' => false,
-            'cancel_url' => 'https://dashboard.paymongo.com/home',
+            'cancel_url' => 'http://192.168.1.4/degars-resort/portal/exclusive/failed.php?reservation_id=' . $reservation_id . '&customer_id=' . $customer_id,
             'description' => 'Resort Reservation payment',
             'payment_method_types' => [
                 'gcash',
@@ -49,7 +65,7 @@ curl_setopt_array($curl, [
                 'dob_ubp',
                 'paymaya'
             ],
-            'success_url' => 'https://mail.google.com/',
+            'success_url' => 'http://192.168.1.4/degars-resort/portal/exclusive/success.php?reservation_id=' . $reservation_id . '&customer_id=' . $customer_id,
             'line_items' => [
                 [
                     'currency' => 'PHP',
@@ -82,19 +98,19 @@ if ($err) {
     if (isset($data['data']['attributes']['checkout_url'])) {
 
         $checkout_url = $data['data']['attributes']['checkout_url'];
-
+        $checkout_id =  $data['data']['id'];
+        
         // Saving the checkout URL to database for later use
-        $savecompleted = mysqli_query($db, "INSERT INTO `completed_reservation` (`reservation_id`, `customer_id`, `transaction_ref`, `modeofpayment`, `status`, `servicefee`, `totalamount`, `checkouturl`) VALUES ('', '', '', '', '', '', '', '')
+        $savecompleted = mysqli_query($db, "INSERT INTO `completed_reservation` (`reservation_id`, `customer_id`, `transaction_ref`, `modeofpayment`, `status`, `servicefee`, `totalamount`,`checkout_id`, `checkouturl`) VALUES ('$reservation_id', '$customer_id','$transaction_ref','$modeofpayment', '$status', '$servicefee', '$totalamount', '$checkout_id','$checkout_url')
         ");
 
-        echo 
+        // echo 
         '<h3 style="text-align:center; margin-top: 10em;">
             <div class="spinner-border" role="status">
                 <span class="visually-hidden"></span>
             </div>
             Redirecting please wait..
         </h3>';
-
 
 
         header('Refresh: 3;URL='.$checkout_url);
@@ -105,10 +121,11 @@ if ($err) {
     }
 }
 
-
-
-    
-
 }
-
+?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+</body>
+</html>
 

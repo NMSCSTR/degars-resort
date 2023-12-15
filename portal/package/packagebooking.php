@@ -18,59 +18,35 @@
                 +₱50.00 per head for excess person</li>
     </div>
     <main>
-        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-            <div class="col">
-                <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="row mb-3 text-center">
+            <div class="col-sm-6">
+                <div class="card mb-4 rounded-3 shadow shadow-md">
                     <div class="card-header bg-dark text-white py-3">
                         <h4 class="my-0 fw-normal">Package 1</h4>
                     </div>
                     <div class="card-body">
-                        <h1 class="card-title pricing-card-title"><span>&#8369</span>5,500.00</h1>
-                        <ul class="list-unstyled mt-3 mb-4" style="font-size: 15px;">
-                            <li><i class="fas fa-user text-primary"></i> Good for 50 Person only</li><br><br>
-                        </ul>
-                        <button type="button" class="w-100 btn btn-lg btn-outline-primary">Book Now</button>
+                        <img src="../exclusive/imgs/pkg1.jpg" class="img-fluid mb-2" style="height: 500px;">
+                        <a href="../exclusive/exclusivebooking.php?type=Package1&rates=5500"class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book Now</a>
                     </div>
                 </div>
             </div>
 
             <div class="col">
-                <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header bg-dark text-white py-3">
+                <div class="card mb-4 rounded-3 shadow shadow-md">
+                    <div class="card-header bg-primary text-white py-3">
                         <h4 class="my-0 fw-normal">Package 2</h4>
                     </div>
                     <div class="card-body">
-                        <h1 class="card-title pricing-card-title"><span>&#8369</span>8,500.00</h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li><i class="fas fa-bed text-primary"></i> Free 2 Air-Conditioned rooms (Good for 10 persons)</li>
-                            <li><i class="fas fa-users text-primary"></i> Good for 70 person</li>
-                        </ul>
-                        <button type="button" class="w-100 btn btn-lg btn-outline-primary">Book Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                    <div class="card-header py-3 text-bg-primary border-primary">
-                        <h4 class="my-0 fw-normal">Package 3</h4>
-                    </div>
-                    <div class="card-body">
-                        <h1 class="card-title pricing-card-title">₱12,000.00</h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li><i class="fas fa-users text-primary"></i> 30 users included</li>
-                            <li><i class="fas fa-hdd text-primary"></i> 15 GB of storage</li>
-                            <li><i class="fas fa-phone text-primary"></i> Phone and email support</li>
-                        </ul>
-                        <button type="button" class="w-100 btn btn-lg btn-primary">Book Now</button>
+                        <!-- <h1 class="card-title pricing-card-title"><span>&#8369</span>8,500.00</h1> -->
+                        <img src="../exclusive/imgs/pkg2.jpg" class="img-fluid mb-2" style="height: 500px;">
+                        <a href="../exclusive/exclusivebooking.php?type=Package2&rates=8500"class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book Now</a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    <div class="pt-2">
-        <h6 class="mb-0"><a href="http://192.168.1.4/degars-resort/portal/quickstart.php" class="text-body"><i
-                class="fas fa-long-arrow-alt-left me-2"></i>Back</a></h6>
+    <div class="pt-2 d-flex justify-content-center">
+        <a href="http://192.168.1.4/degars-resort/portal/quickstart.php" class="btn btn-light btn-lg shadow"><i class="fas fa-undo"></i> Back</a>
     </div>
 </div>
 <?php include '../portFooter.php'; ?>

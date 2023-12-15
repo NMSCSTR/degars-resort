@@ -9,7 +9,7 @@ if (isset($_POST['addReservation'])) {
     $rates = $_POST['rates'];
 
     $addreservation = mysqli_query($db, "INSERT INTO reservation (type, eventname, reservationdate, paymentduedate, rates)
-    VALUES ('$type','$eventname', '$reservationdate', '$paymentduedate', '" . number_format($rates, 2) . "')");
+    VALUES ('$type','$eventname', '$reservationdate', '$paymentduedate', '$rates')");
     
     if ($addreservation) {
         
@@ -17,7 +17,7 @@ if (isset($_POST['addReservation'])) {
         $fetchrow = mysqli_fetch_array($get_last_id);
         $_SESSION['exclusive_res_id'] = $fetchrow['reservation_id'];
 
-        header('Location:../exclusive/customerForm.php?reservation_id='.$_SESSION['exclusive_res_id'].'&type='.$fetchrow['type'].'&eventname='.$fetchrow['eventname'].'&reservationdate='.$fetchrow['reservationdate'].'');
+        header('Location:../exclusive/customerForm.php?reservation_id='.$_SESSION['exclusive_res_id'].'&type='.urlencode($type).'&eventname='.$fetchrow['eventname'].'&reservationdate='.$fetchrow['reservationdate'].'');
         exit();
 
     }

@@ -1,36 +1,24 @@
 {
     "data": {
-    "id": "src_bkN7M1S7PYaaqKuvaYgJuQ34",
-    "type": "source",
-    "attributes": {
+      "id": "src_WujgjHYxXQmknKR51Hps5g4d",
+      "type": "source",
+      "attributes": {
         "amount": 10000,
-        "billing": {
-        "address": {
-            "city": null,
-            "country": null,
-            "line1": null,
-            "line2": null,
-            "postal_code": null,
-            "state": null
-        },
-        "email": "rhondelpagobo99@gmail.com",
-        "name": "Raffy Mandawe",
-        "phone": "09506587329"
-        },
+        "billing": null,
         "currency": "PHP",
         "description": null,
         "livemode": true,
         "redirect": {
-        "checkout_url": "https://payments.gcash.com/gcash-cashier-web/1.2.1/index.html#/confirm?bizNo=20231110121212800110170994949829907&timestamp=1699592764855&sign=ZPSxxEckz3Myl8aPT7Q7K6uMOWhiio1W51vxAz868vvNYihQBOPktZBxktole%2B6yZUJkgG5e7WsGx%2FyF6dLo7VUIHhcYxEUyxO4%2Fs9YCWv%2BXRYRJwO9lfMcz6iOzm6tn6p5%2BNckmhEaB2u%2Ft%2FPc0lXRRIdylgK0iEY3glvSpB4clr6%2BlK0Cu8BeZILud0GrFIo4EiIsFxzkpZH3YM8RwpBPDlezWlihR5n5fEXnDDELqPjNRRvTOHTL1bWHQA8cA0jxwZ70jRXmDhNTydbZnBcq2OCd8oNIyn%2BApC8psT23nk7Q38deL78wiaTArkS56qtSWPomtFjExsW02VP6mtQ%3D%3D&merchantName=DEGARS%20RESORT&orderAmount=100.00&pdCode=51051000101000100001",
-        "failed": "https://dashboard.paymongo.com/pages",
-        "success": "https://dashboard.paymongo.com/home"
+          "checkout_url": "https://payments.gcash.com/gcash-cashier-web/1.2.1/index.html#/confirm?bizNo=20231214121212800110170848157795451&timestamp=1702536333454&sign=ef5scn%2FiSzBoeU53jsbiKcNVCvfpofcHBAkqrFRHO8Za2eOEcjQs6xkXaGrG6r0imnlSRO3sSy1YvAmtcKRorAO1LlQc%2FqmqjzPIRSwr76Af3w8XkuYtkDWhe6FFVv9XHGuy2ljsu7Z%2BZyn9O6jfSutLlSc9ija6F%2FGIRKnJKvwkvV6T9kqunM8U2Q94qdKhaMuoLRRmS1Sv1ftECwKMZ%2FwdjdmMLyey102QmYVlPcAUHRxcokQxy3%2FYJGeadAtapcPjbHnuiqpZRXv0JdU5NcQeiIdc3%2BSKGzeJJ4FHut0aPbGMLkdyBbAMwbLoW4Fr93MJc23QCBwi7CgO0cTxww%3D%3D&merchantName=DEGARS%20RESORT&orderAmount=100.00&pdCode=51051000101000100001",
+          "failed": "https://paymongo.page/l/reservation-failed",
+          "success": "https://dashboard.paymongo.com/payments/all"
         },
         "statement_descriptor": null,
         "status": "pending",
         "type": "gcash",
         "metadata": null,
-        "created_at": 1699592764,
-        "updated_at": 1699592764
+        "created_at": 1702536333,
+        "updated_at": 1702536333
+      }
     }
-    }
-}
+  }

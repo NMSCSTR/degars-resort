@@ -9,20 +9,18 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Policy</li>
+            <li class="breadcrumb-item active" aria-current="page">Resort Rules</li>
         </ol>
     </nav>
 </div>
 <main>
     <div class="container">
         <div class="card shadow bg-body rounded">
-            <h5 class="card-header bg-dark text-white p-4"><i class="fas fa-edit me-2"></i> Manage Resort Rules</h5>
             <div class="card-body">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4">
                     <button type="button" class="btn btn-warning shadow rounded me-md-2" data-bs-toggle="modal"
                         data-bs-target="#exampleModal"><i class="fas fa-plus me-2"></i>Add Rules</button>
                 </div>
-                <hr>
                 <!-- Datatables -->
                 <div class="table-responsive">
                     <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">

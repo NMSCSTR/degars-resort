@@ -1,21 +1,18 @@
-<?php 
+<?php
 
-$sname= "localhost";
-$unmae= "root";
+$sname = "localhost";
+$uname = "root";
 $password = "";
 $db_name = "capstwo";
 
-$conn = mysqli_connect($sname, $unmae, $password, $db_name);
+$conn = mysqli_connect($sname, $uname, $password, $db_name);
 
-$sql = "SELECT reservation_id FROM `reservation` ORDER BY `datetimeadded` DESC LIMIT 1";
-$result = mysqli_query($conn, $sql);
+$getUrl = mysqli_query($conn, "SELECT checkouturl FROM `completed_reservation` ");
 
-if(mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $getLastId = $row['reservation_id'];
-
-} else {
-    echo "No reservations found.";
+while ($row = mysqli_fetch_assoc($getUrl)) {
+    echo $row['checkouturl'] . "<br>";
 }
 
+// Close the connection when you're done
+mysqli_close($conn);
 ?>

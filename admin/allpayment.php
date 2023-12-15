@@ -2,39 +2,46 @@
 session_start();
 if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
 ?>
-<?php include '../config/db_connection.php'?>
+<?php include 
+'../config/db_connection.php'; 
+$received_checkout_id = $_GET['checkout_id'];
+$received_hash = $_GET['hash'];
+$computed_hash = hash('sha256', $received_checkout_id);
+if ($computed_hash === $received_hash) {
+    $checkout_id = $received_checkout_id;
+} else {
+    echo 'Invalid data!';
+}
+
+?>
 <?php include_once 'adheader.php'; ?>
-<title>Degars | All payment transaction</title>
+<title>Degars | Checkout Transaction</title>
 <main id="main">
 
     <div class="container pt-4">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Payment Transaction</li>
+                <li class="breadcrumb-item active" aria-current="page">Checkout Transaction</li>
             </ol>
         </nav>
     </div>
 
     <div class="container" id="main">
         <div class="card shadow bg-body rounded">
-            <h5 class="card-header bg-dark text-white p-4"><i class="fas fa-edit me-2"></i> View All Payment Transaction
-            </h5>
             <div class="card-body">
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4">
-                    <a href="product.php" class="btn btn-dark shadow rounded me-md-2"><i
-                            class="fas fa-solid fa-eye me-2"></i>View Product</a>
-                    <button type="button" class="btn btn-warning shadow rounded me-md-2" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"><i class="fas fa-plus me-2"></i>Add Category</button>
-                </div>
-                <hr>
+
                 <!-- Datatables -->
                 <div class="table-responsive">
                     <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">
-                    
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4">
+                            <a href="exclusive.php" class="btn btn-outline-secondary mb-4 d=flex justify-content-end"><i
+                                    class="fas fa-undo"></i> Back to reservation</a>
+                        </div>
+
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Checkout ID</th>
                                 <th>Payment Method</th>
                                 <th>Amount</th>
                                 <th>Status</th>
@@ -42,17 +49,18 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Source ID</th>
+                                <th>Payment ID</th>
                                 <th>Paid At</th>
                                 <th>Updated At</th>
                                 <th>Date Created</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <?php
+                        $curl = curl_init();
 
-                            $curl = curl_init();
-
-                            curl_setopt_array($curl, [
-                            CURLOPT_URL => "https://api.paymongo.com/v1/payments?limit=50",
+                        curl_setopt_array($curl, [
+                            CURLOPT_URL => "https://api.paymongo.com/v1/checkout_sessions/{$checkout_id}",
                             CURLOPT_RETURNTRANSFER => true,
                             CURLOPT_ENCODING => "",
                             CURLOPT_MAXREDIRS => 10,
@@ -63,39 +71,48 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                                 "accept: application/json",
                                 "authorization: Basic c2tfbGl2ZV9EOThaY0h3ajVZMzU1SDQxMWtRYUVkQlY6c2tfbGl2ZV9EOThaY0h3ajVZMzU1SDQxMWtRYUVkQlY="
                             ],
-                            ]);
+                        ]);
 
-                            $response = curl_exec($curl);
-                            $err = curl_error($curl);
+                        $response = curl_exec($curl);
+                        $err = curl_error($curl);
 
-                            curl_close($curl);
+                        curl_close($curl);
 
-                            if ($err) {
+                        if ($err) {
                             echo "cURL Error #:" . $err;
-                            } else {
-                                $data = json_decode($response, true);
-                            }
+                        } else {
+                            $data = json_decode($response, true);
 
-                            foreach ($data['data'] as $payment) {
-                                $formattedAmount = number_format($payment['attributes']['amount'] / 100, 2);
+                            if (isset($data['data']['id'])) {
+                                $checkoutSession = $data['data'];
+                                $payment = $checkoutSession['attributes']['payments'][0]['attributes'];
+                                $payment_id = $checkoutSession['attributes']['payments'][0];
+                                $formattedAmount = number_format($payment['amount'] / 100, 2);
+
                                 echo "<tr>
-                                <td>{$payment['id']}</td>
-                                <td>{$payment['attributes']['source']['type']}</td>
-                                <td>{$formattedAmount}</td>
-                                <td>{$payment['attributes']['status']}</td>
-                                <td>{$payment['attributes']['billing']['email']}</td>
-                                <td>{$payment['attributes']['billing']['name']}</td>
-                                <td>{$payment['attributes']['billing']['phone']}</td>
-                                <td>{$payment['attributes']['source']['id']}</td>
-                                <td>" . date('Y-m-d H:i:s', $payment['attributes']['paid_at']) . "</td>
-                                <td>" . date('Y-m-d H:i:s', $payment['attributes']['updated_at']) . "</td>
-                                <td>" . date('Y-m-d H:i:s', $payment['attributes']['created_at']) . "</td>
+                                        <td>{$checkoutSession['id']}</td>               
+                                        <td>{$payment['source']['type']}</td>
+                                        <td>{$formattedAmount}</td>
+                                        <td>{$payment['status']}</td>
+                                        <td>{$payment['billing']['email']}</td>
+                                        <td>{$payment['billing']['name']}</td>
+                                        <td>{$payment['billing']['phone']}</td>
+                                        <td>{$payment['source']['id']}</td>
+                                        <td>{$payment_id['id']}</td>
+                                        <td>" . date('Y-m-d H:i:s', $payment['paid_at']) . "</td>
+                                        <td>" . date('Y-m-d H:i:s', $payment['updated_at']) . "</td>
+                                        <td>" . date('Y-m-d H:i:s', $payment['created_at']) . "</td>
                                     </tr>";
+                            } else {
+                                echo "<tr><td colspan='12'>No ID provided in the API response.</td></tr>";
                             }
-                            ?>
+                        }
+                        ?>
                         </tbody>
                     </table>
                 </div>
+
+
             </div>
 
             <!-- Category Modal -->

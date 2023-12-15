@@ -60,7 +60,9 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                                 LEFT JOIN
                                     reservation ON reservation.reservation_id = payviaqr.reservation_id
                                 LEFT JOIN
-                                    customer ON customer.customer_id = payviaqr.customer_id 
+                                    customer ON customer.customer_id = payviaqr.customer_id
+                                ORDER BY
+                                    dateqradded DESC
                             ");
 
                             while ($row = $fetchqrpay->fetch_array()) { ?>

@@ -48,7 +48,7 @@
                     </div>
                     <div class="d-flex justify-content-end gap-2">
                         <a href="http://192.168.1.4/degars-resort/portal/exclusive/exclusivebooking.php"
-                            class="btn btn-outline-danger">Back</a>
+                            class="btn btn-outline-danger"><i class="fas fa-undo text-dark"></i> Back</a>
                         <div class="vr"></div>
                         <button type="submit" class="btn btn-dark" name="savecustomer">Submit <i
                                 class="fas fa-check-circle"></i></button>
