@@ -84,11 +84,16 @@ if ($computed_hash === $received_hash) {
                             $data = json_decode($response, true);
 
                             if (isset($data['data']['id'])) {
+                                $db = mysqli_connect("localhost","root","","capstwo");
+                                $c = $_GET['comres_id'];
                                 $checkoutSession = $data['data'];
                                 $payment = $checkoutSession['attributes']['payments'][0]['attributes'];
                                 $payment_id = $checkoutSession['attributes']['payments'][0];
+                                $pay_id = $payment_id['id'];
                                 $formattedAmount = number_format($payment['amount'] / 100, 2);
-
+                                if ($payment['status'] === "paid") {
+                                    $insertpaymentid = mysqli_query($db,"UPDATE `completed_reservation` SET `payment_id` = '$pay_id' WHERE `comres_id` = '$c'");
+                                }
                                 echo "<tr>
                                         <td>{$checkoutSession['id']}</td>               
                                         <td>{$payment['source']['type']}</td>

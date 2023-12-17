@@ -33,19 +33,12 @@ body {
 
 }
 
-.card {
-    transition: transform 0.3s;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
 </style>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
+    <header class="mb-4">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
+            <div class="container">
                 <a class="navbar-brand fw-bold" href="#">
                     <img src="https://img.icons8.com/external-others-inmotus-design/67/external-D-qwerty-keypad-others-inmotus-design.png"
                         alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
@@ -82,64 +75,72 @@ body {
                     <form method="post" action="" class="d-flex" role="search">
                         <input class="form-control me-2" name="search" type="search" placeholder="Type your transac ref"
                             aria-label="Search">
-                        <button class="btn btn-outline-success" name="search" type="submit">Search</button>
+                        <button class="btn btn-outline-success" name="submit" type="submit">Search</button>
                     </form>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
-        <div class="card">
+    <main>   
+    <?php 
+        $db = mysqli_connect("localhost","root","","capstwo");
+        if (isset($_POST['submit'])) {
+            $search = $_POST['search'];
+            $fetch = mysqli_query($db,"
+            SELECT
+                cr.comres_id,
+                cr.transaction_ref,
+                cr.modeofpayment,
+                cr.status,
+                cr.servicefee,
+                cr.totalamount,
+                cr.payment_id,
+                cr.checkout_id,
+                cr.checkouturl,
+                cr.dateadded,
+                reservation.reservation_id,
+                reservation.type,
+                reservation.eventname,
+                reservation.reservationdate,
+                reservation.paymentduedate,
+                reservation.rates,
+                customer.customer_id,
+                customer.firstname,
+                customer.lastname,
+                customer.email_address,
+                customer.phone_number
+            FROM
+                completed_reservation AS cr
+            LEFT JOIN
+                reservation ON reservation.reservation_id = cr.reservation_id
+            LEFT JOIN
+                customer ON customer.customer_id = cr.customer_id
+            WHERE 
+                cr.transaction_ref = '$search'"
+        );
+        if ($fetch) {
+            while ($row = mysqli_fetch_assoc($fetch)) { 
+                $number = $row['totalamount'];
+                $totalamount = number_format($number / 100, 2);
+        ?>
+        <div class="card border-0">
             <div class="card-body">
-            <?php 
-            $db = mysqli_connect("localhost","root","","capstwo");
-            if (isset($_POST['submit'])) {
-                $search = $_POST['search'];
-                $fetchex = mysqli_fetch_assoc(mysqli_query($db,"
-                SELECT
-                    cr.comres_id,
-                    cr.transaction_ref,
-                    cr.modeofpayment,
-                    cr.status,
-                    cr.servicefee,
-                    cr.totalamount,
-                    cr.checkout_id,
-                    cr.checkouturl,
-                    cr.dateadded,
-                    reservation.reservation_id,
-                    reservation.type,
-                    reservation.eventname,
-                    reservation.reservationdate,
-                    reservation.paymentduedate,
-                    reservation.rates,
-                    customer.customer_id,
-                    customer.firstname,
-                    customer.lastname,
-                    customer.email_address,
-                    customer.phone_number
-                FROM
-                    completed_reservation AS cr
-                LEFT JOIN
-                    reservation ON reservation.reservation_id = cr.reservation_id
-                LEFT JOIN
-                    customer ON customer.customer_id = cr.customer_id
-                WHERE 
-                    cr.transaction_ref = '.$search.' "
-            ));
-            }
 
-            ?>
                 <div class="container mb-5 mt-3">
                     <div class="row d-flex align-items-baseline">
                         <div class="col-xl-9">
-                            <p style="color: #7e8d9f;font-size: 20px;">Transac Ref. >> <strong><?php echo $fetchex['transaction_ref']; ?></strong></p>
+                            <p style="color: #7e8d9f;font-size: 20px;">Transac Ref. >> <strong><?php echo $row['transaction_ref']; ?></strong></p>
                         </div>
                         <div class="col-xl-3 float-end">
-                            <a class="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark"><i
-                                    class="fas fa-print text-primary"></i> Print</a>
-                            <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark"><i
-                                    class="far fa-file-pdf text-danger"></i> Export</a>
+                        <?php 
+                            if ($row['status'] ===  "Approved" || $row['status'] === "Cancelled/Refunded") { ?>
+                            <a hidden class="btn btn-light text-capitalize border-0" onclick="return confirm('8% of the total amount will be deducted for transaction refund. Are you sure you want to cancel your reservation and request refund?');" data-mdb-ripple-color="dark" href="requestrefund.php?comres_id=<?php echo $row['comres_id']; ?>&reservation_id=<?php echo $row['reservation_id']; ?>&customer_id=<?php echo $row['customer_id']; ?>&checkout_id=<?php echo $row['checkout_id']; ?>&transaction_ref=<?php echo $row['transaction_ref'] ?>&payment_id=<?php echo $row['payment_id'] ?>&rates=<?php echo $row['rates'] ?>&totalamount=<?php echo $row['totalamount']?>&modeofpayment=<?php echo $row['modeofpayment']?>"><i class="fas fa-hand-paper"></i> Request refund</a>
+                            <?php } else { ?>
+                                <a class="btn btn-light text-capitalize border-0" onclick="return confirm('8% of the total amount will be deducted for transaction refund. Are you sure you want to cancel your reservation and request refund?');" data-mdb-ripple-color="dark" href="requestrefund.php?comres_id=<?php echo $row['comres_id']; ?>&reservation_id=<?php echo $row['reservation_id']; ?>&customer_id=<?php echo $row['customer_id']; ?>&checkout_id=<?php echo $row['checkout_id']; ?>&transaction_ref=<?php echo $row['transaction_ref'] ?>&payment_id=<?php echo $row['payment_id'] ?>&rates=<?php echo $row['rates'] ?>&totalamount=<?php echo $row['totalamount']?>&modeofpayment=<?php echo $row['modeofpayment']?>"><i class="fas fa-hand-paper"></i> Request refund</a>
+                            
+                            <?php } ?>
+                            <a href="../../index.php" class="btn btn-light text-capitalize" data-mdb-ripple-color="dark"><i class="fas fa-undo text-dark"></i> Back</a>
                         </div>
                         <hr>
                     </div>
@@ -147,8 +148,9 @@ body {
                     <div class="container">
                         <div class="col-md-12">
                             <div class="text-center">
-                                <i class="fab fa-mdb fa-4x ms-0" style="color:#5d9fc5 ;"></i>
-                                <p class="pt-0">MDBootstrap.com</p>
+                            <img src="https://img.icons8.com/external-others-inmotus-design/67/external-D-qwerty-keypad-others-inmotus-design.png"
+                        alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                                <p class="pt-0">Degars-resort.com</p>
                             </div>
 
                         </div>
@@ -157,96 +159,93 @@ body {
                         <div class="row">
                             <div class="col-xl-8">
                                 <ul class="list-unstyled">
-                                    <li class="text-muted">To: <span style="color:#5d9fc5 ;">John Lorem</span></li>
-                                    <li class="text-muted">Street, City</li>
-                                    <li class="text-muted">State, Country</li>
-                                    <li class="text-muted"><i class="fas fa-phone"></i> 123-456-789</li>
+                                    <li class="text-muted">To: <span style="color:#5d9fc5 ;"><?php echo $row['firstname']; ?> <?php echo $row['lastname']; ?></span></li>
+                                    <!-- <li class="text-muted">Street, City</li> -->
+                                    <li class="text-muted"><i class="fas fa-envelope"></i> <?php echo $row['email_address']; ?></li>
+                                    <li class="text-muted"><i class="fas fa-phone"></i> <?php echo $row['phone_number']; ?></li>
                                 </ul>
                             </div>
                             <div class="col-xl-4">
-                                <p class="text-muted">Invoice</p>
+                                <p class="text-muted">Reservation Details</p>
                                 <ul class="list-unstyled">
                                     <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
-                                            class="fw-bold">ID:</span>#123-456</li>
+                                            class="fw-bold">ID:</span>#<?php echo $row['comres_id']; ?></li>
                                     <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
-                                            class="fw-bold">Creation Date: </span>Jun 23,2021</li>
+                                            class="fw-bold">Reservation Date: </span><?php echo date('F d, Y', strtotime($row['reservationdate'])); ?></li>
                                     <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                                             class="me-1 fw-bold">Status:</span><span
-                                            class="badge bg-warning text-black fw-bold">
-                                            Unpaid</span></li>
+                                            class="badge badge <?php echo $row['status'] === 'Approved' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?> fw-bold">
+                                            <?php echo $row['status']; ?></span></li>
                                 </ul>
                             </div>
                         </div>
 
-                        <div class="row my-2 mx-1 justify-content-center">
+                        <div class="row my-2 mx-1 table-responsive">
                             <table class="table table-striped table-borderless">
                                 <thead style="background-color:#84B0CA ;" class="text-white">
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">Qty</th>
-                                        <th scope="col">Unit Price</th>
-                                        <th scope="col">Amount</th>
+                                        <th scope="col">Event Name</th>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Mode of payment</th>
+                                        <th scope="col">Rates</th>
+                                        <th scope="col">Payment Due</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Pro Package</td>
-                                        <td>4</td>
-                                        <td>$200</td>
-                                        <td>$800</td>
+                                        <th scope="row"> <?php echo $row['eventname']; ?></th>
+                                        <td><?php echo $row['type']; ?></td>
+                                        <td><?php echo $row['modeofpayment']; ?></td>
+                                        <td><?php echo number_format($row['rates'], 2); ?></td>
+                                        <td><?php echo date('F d, Y', strtotime($row['paymentduedate'])); ?></td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Web hosting</td>
-                                        <td>1</td>
-                                        <td>$10</td>
-                                        <td>$10</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Consulting</td>
-                                        <td>1 year</td>
-                                        <td>$300</td>
-                                        <td>$300</td>
-                                    </tr>
+
                                 </tbody>
 
                             </table>
                         </div>
                         <div class="row">
                             <div class="col-xl-8">
-                                <p class="ms-3">Add additional notes and payment information</p>
+                                <p class="ms-3">Show the transaction reference before you enter in resort</p>
 
                             </div>
                             <div class="col-xl-3">
                                 <ul class="list-unstyled">
-                                    <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>$1110</li>
-                                    <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Tax(15%)</span>$111
+                                    <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span> <?php echo $totalamount; ?></li>
+                                    <li class="text-muted ms-3 mt-2"><span class="text-black me-4">servicefee(2.5%)</span><?php echo number_format($row['servicefee'], 2); ?>
                                     </li>
                                 </ul>
                                 <p class="text-black float-start"><span class="text-black me-3"> Total
-                                        Amount</span><span style="font-size: 25px;">$1221</span></p>
+                                        Amount</span><span style="font-size: 25px;"><?php echo $totalamount; ?></span></p>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-xl-10">
-                                <p>Thank you for your purchase</p>
+                                <p>Thank you for booking @degars-resort.com</p>
                             </div>
                             <div class="col-xl-2">
-                                <button type="button" class="btn btn-primary text-capitalize"
-                                    style="background-color:#60bdf3 ;">Pay Now</button>
+                                <?php 
+                                if ($row['status'] === "Approved" || $row['status'] === "Cancelled/Refunded") { ?>
+                                    <a hidden href="<?php echo $row['checkouturl']; ?>" id="payNowBtn" class="btn btn-primary text-capitalize">Pay Now <i class="fas fa-lock"></i></a>
+                                <?php } else { ?>
+                                    <a href="<?php echo $row['checkouturl']; ?>" id="payNowBtn" class="btn btn-primary text-capitalize">Pay Now </a>
+                                <?php } ?>
                             </div>
                         </div>
-
+                    <?php
+                            }
+                        }else {
+                            echo "<script>alert('You have entered incorrect transaction reference');</script>";
+                        }
+                    }
+                    ?>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
@@ -254,6 +253,7 @@ body {
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
     </script>
     <script src="sweetalert.js"></script>
+
 </body>
 
 </html>

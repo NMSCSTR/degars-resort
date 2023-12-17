@@ -35,9 +35,9 @@ body {
         transition: transform 0.3s;
     }
 
-    .card:hover {
+    /* .card:hover {
         transform: scale(1.05);
-    }
+    } */
 </style>
 
 <body>

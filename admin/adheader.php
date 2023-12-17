@@ -134,6 +134,7 @@ body {
             <li><a href="exclusive.php" class="rounded" style="font-size: 18px;"><i class="fas fa-trophy"></i> Reservations</a></li>
             <li><a href="walkin.php" class="rounded" style="font-size: 18px;"><i class="fas fa-walking"></i> Walkin</a></li>
             <li><a href="qrpayments.php" class="rounded" style="font-size: 18px;"><i class="fas fa-qrcode"></i> QR Payments</a></li>
+            <li><a href="refund.php" class="rounded" style="font-size: 18px;"><i class="fas fa-undo"></i> Refund</a></li>
         </ul>
     </div>
     <a href="#inventory-collapsed" data-bs-toggle="collapse" class="collapsed" style="font-size: 18px;">

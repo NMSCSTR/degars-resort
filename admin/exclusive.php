@@ -16,7 +16,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
     </div>
 
     <div class="container">
-        <div class="card p-4 shadow">
+        <div class="card border-0 p-4 shadow">
             <div class="table-responsive">
                 <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">
                     <thead>
@@ -73,7 +73,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                                     <i class="fas fa-times-circle"></i>
                                 </a> -->
                                 <a class="btn btn-outline-info btn-sm border-0" title="Check Reservation"
-                                    href="allpayment.php?checkout_id=<?php echo $checkout_id; ?>&hash=<?php echo $hash; ?>">
+                                    href="allpayment.php?checkout_id=<?php echo $checkout_id; ?>&hash=<?php echo $hash; ?>&comres_id=<?php echo $row['comres_id'] ?>">
                                     <i class="far fa-calendar-check"></i>
                                 </a>
                             </td>
