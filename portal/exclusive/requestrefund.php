@@ -11,16 +11,18 @@
     $d = $_GET['modeofpayment'];
     if ($d === "50% Downpayment") {
         
-        $per = 8;
-        $rts = $_GET['totalamount'] * 100;
-        $minus = ($per / 100) * $rts;
-        $toberefunds = ($rts - $minus) / 100;
-        $toberefund =  $toberefunds / 100;
+        $fee = 8;
+        $rates = $_GET['rates'];
+        $minus = ($fee / 100 ) * $rates;
+        $totalamount = $_GET['totalamount']  / 100;
+        $balancetorefund = $totalamount - $minus;
+
+
     } else {
-        $per = 8;
-        $rts = $_GET['rates'];
-        $minus = ($per / 100) * $rts;
-        $toberefund = $rts - $minus;
+        $fee = 8;
+        $rates = $_GET['rates'];
+        $minus = ($fee / 100) * $rates;
+        $balancetorefund = $rates - $minus;
     }
     
 
@@ -68,7 +70,7 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Amount to be refunded</label>
                         <input type="text" class="form-control" name="refundedamount"
-                            value="<?php echo number_format($toberefund, 2) ?>" id="exampleFormControlInput1" placeholder="" readonly>
+                            value="<?php echo number_format($balancetorefund, 2) ?>" id="exampleFormControlInput1" placeholder="" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Reason</label>
@@ -79,7 +81,7 @@
                         <a href="check.php" class="btn btn-outline-danger"><i class="fas fa-undo"></i> Back</a>
                         <div class="vr"></div>
                         <button type="submit" class="btn btn-dark" name="reqrefund">Send <i
-                                class="fas fa-paper-plane"></i></button>
+                                class="fas fa-pafee-plane"></i></button>
                     </div>
                 </form>
             </div>

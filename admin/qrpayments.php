@@ -76,17 +76,17 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                             <td><?php echo $row['mode_of_payment']; ?></td>
                             <td>
                                 <a class="btn btn-outline-success btn-sm border-0" title="Approved reservation"
-                                    href="functions/approvedqr.php?payviaqr_id=<?php echo $row['payviaqr_id']; ?>"><i class="fas fa-check-circle"></i>
+                                    href="functions/approvedqr.php?payviaqr_id=<?php echo $row['payviaqr_id']; ?>"><i class="fas fa-check-circle"></i> Approved
                                 </a>
                                 <a class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
                                     href="functions/declineqr.php?payviaqr_id=<?php echo $row['payviaqr_id']; ?>&transaction_ref=<?php echo $row['transaction_ref']; ?>">
-                                    <i class="fas fa-times-circle"></i>
+                                    <i class="fas fa-times-circle"></i> Decline
                                 </a>
 
                                 <a class="btn btn-outline-dark btn-sm border-0" title="See more details" href=""
                                     data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop<?php echo $row['transaction_ref']; ?>"><i
-                                        class="fas fa-ellipsis-h"></i>
+                                        class="fas fa-ellipsis-h"></i> See more details
                                 </a>
                             </td>
                         </tr>

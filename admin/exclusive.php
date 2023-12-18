@@ -57,16 +57,16 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                             <td><?php echo $row['modeofpayment']; ?></td>
                             <td><?php echo $totalamount; ?></td>
                             <td><?php echo number_format($row['servicefee'] ,2); ?></td>
-                            <td><?php echo $row['checkouturl']; ?></td>
+                            <td><a href="<?php echo $row['checkouturl']; ?>"> <?php echo $row['checkouturl']; ?></a></td>
         
                             <td>
                                 <a class="btn btn-outline-success btn-sm border-0" title="Mark as done"
                                     href=""><i
-                                        class="fas fa-check-circle"></i>
+                                        class="fas fa-check-circle"></i> Mark As Done
                                 </a>
                                 <a class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
                                     href="">
-                                    <i class="fas fa-times-circle"></i>
+                                    <i class="fas fa-times-circle"></i>Decline
                                 </a>
                                 <!-- <a class="btn btn-outline-danger btn-sm border-0" title="Mark As Done"
                                     href="">
@@ -74,7 +74,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                                 </a> -->
                                 <a class="btn btn-outline-info btn-sm border-0" title="Check Reservation"
                                     href="allpayment.php?checkout_id=<?php echo $checkout_id; ?>&hash=<?php echo $hash; ?>&comres_id=<?php echo $row['comres_id'] ?>">
-                                    <i class="far fa-calendar-check"></i>
+                                    <i class="far fa-calendar-check"></i> Check
                                 </a>
                             </td>
                         </tr>

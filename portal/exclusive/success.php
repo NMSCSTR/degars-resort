@@ -20,10 +20,10 @@ if ($update_result) {
     $phone_number = $c['phone_number'];
 
     $message_content = "Congratulations! Mr/Ms Rhondel Pagobo your reservation was approved. Copy or save this transaction reference " . $refno . ". Please check your email we have sent a copy of your receipt. If you have any questions about this payment, contact DEGARS RESORT at mariloumercado1955@gmail.com";
-
+    
     $ch = curl_init();
     $parameters = array(
-        'apikey' => '71a0b82e7b5fbd2fb958fcf22d844280', 
+        'apikey' => '71a0b82e7b5fbd2fb958fcf22d84428099', 
         'number' => $phone_number,
         'message' => $message_content,
         'sendername' => 'SEMAPHORE'

@@ -123,6 +123,13 @@ body {
             while ($row = mysqli_fetch_assoc($fetch)) { 
                 $number = $row['totalamount'];
                 $totalamount = number_format($number / 100, 2);
+
+                if ($row['modeofpayment'] === "50% Downpayment") {
+                    $balance = $row['rates'] / 2;
+                } else {
+                    $balance = $row['rates'] - $totalamount;
+                }
+                
         ?>
         <div class="card border-0">
             <div class="card-body">
@@ -134,11 +141,10 @@ body {
                         </div>
                         <div class="col-xl-3 float-end">
                         <?php 
-                            if ($row['status'] ===  "Approved" || $row['status'] === "Cancelled/Refunded") { ?>
+                            if ($row['status'] ===  "Pending" || $row['status'] === "Cancelled/Refunded") { ?>
                             <a hidden class="btn btn-light text-capitalize border-0" onclick="return confirm('8% of the total amount will be deducted for transaction refund. Are you sure you want to cancel your reservation and request refund?');" data-mdb-ripple-color="dark" href="requestrefund.php?comres_id=<?php echo $row['comres_id']; ?>&reservation_id=<?php echo $row['reservation_id']; ?>&customer_id=<?php echo $row['customer_id']; ?>&checkout_id=<?php echo $row['checkout_id']; ?>&transaction_ref=<?php echo $row['transaction_ref'] ?>&payment_id=<?php echo $row['payment_id'] ?>&rates=<?php echo $row['rates'] ?>&totalamount=<?php echo $row['totalamount']?>&modeofpayment=<?php echo $row['modeofpayment']?>"><i class="fas fa-hand-paper"></i> Request refund</a>
                             <?php } else { ?>
                                 <a class="btn btn-light text-capitalize border-0" onclick="return confirm('8% of the total amount will be deducted for transaction refund. Are you sure you want to cancel your reservation and request refund?');" data-mdb-ripple-color="dark" href="requestrefund.php?comres_id=<?php echo $row['comres_id']; ?>&reservation_id=<?php echo $row['reservation_id']; ?>&customer_id=<?php echo $row['customer_id']; ?>&checkout_id=<?php echo $row['checkout_id']; ?>&transaction_ref=<?php echo $row['transaction_ref'] ?>&payment_id=<?php echo $row['payment_id'] ?>&rates=<?php echo $row['rates'] ?>&totalamount=<?php echo $row['totalamount']?>&modeofpayment=<?php echo $row['modeofpayment']?>"><i class="fas fa-hand-paper"></i> Request refund</a>
-                            
                             <?php } ?>
                             <a href="../../index.php" class="btn btn-light text-capitalize" data-mdb-ripple-color="dark"><i class="fas fa-undo text-dark"></i> Back</a>
                         </div>
@@ -173,6 +179,8 @@ body {
                                     <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                                             class="fw-bold">Reservation Date: </span><?php echo date('F d, Y', strtotime($row['reservationdate'])); ?></li>
                                     <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
+                                            class="fw-bold">Due Date: </span><?php echo date('F d, Y', strtotime($row['paymentduedate'])); ?></li>
+                                    <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                                             class="me-1 fw-bold">Status:</span><span
                                             class="badge badge <?php echo $row['status'] === 'Approved' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?> fw-bold">
                                             <?php echo $row['status']; ?></span></li>
@@ -188,7 +196,8 @@ body {
                                         <th scope="col">Type</th>
                                         <th scope="col">Mode of payment</th>
                                         <th scope="col">Rates</th>
-                                        <th scope="col">Payment Due</th>
+                                        <th scope="col">Receive Amount</th>
+                                        <th scope="col">Balance</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -197,7 +206,8 @@ body {
                                         <td><?php echo $row['type']; ?></td>
                                         <td><?php echo $row['modeofpayment']; ?></td>
                                         <td><?php echo number_format($row['rates'], 2); ?></td>
-                                        <td><?php echo date('F d, Y', strtotime($row['paymentduedate'])); ?></td>
+                                        <td><?php echo number_format($totalamount, 2); ?></td>
+                                        <td><?php echo number_format($balance, 2); ?></td>
                                     </tr>
 
                                 </tbody>
@@ -212,11 +222,10 @@ body {
                             <div class="col-xl-3">
                                 <ul class="list-unstyled">
                                     <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span> <?php echo $totalamount; ?></li>
-                                    <li class="text-muted ms-3 mt-2"><span class="text-black me-4">servicefee(2.5%)</span><?php echo number_format($row['servicefee'], 2); ?>
+                                    <li class="text-muted ms-3 mt-2"><span class="text-black me-4">servicefee(0%)</span><?php echo number_format($row['servicefee'], 2); ?>
                                     </li>
                                 </ul>
-                                <p class="text-black float-start"><span class="text-black me-3"> Total
-                                        Amount</span><span style="font-size: 25px;"><?php echo $totalamount; ?></span></p>
+                                <p class="text-black float-start"><span class="text-black me-3"> Remaining Balance</span><span style="font-size: 25px;"><?php echo number_format($balance, 2); ?></span></p>
                             </div>
                         </div>
                         <hr>

@@ -7,7 +7,7 @@
                 <option selected>Select an option</option>
                 <option value="package/packagebooking.php?type=Package">Package Reservation</option>
                 <option value="exclusive/exclusivebooking.php?type=Exclusive&rates=100">Exclusive Reservation</option>
-                <option value="">Walkin</option>
+                <option value="exclusive/walkin.php?entrancefee=60">Walkin</option>
             </select>
             <label for="chooseReservation">Choose Reservation</label>
         </div>

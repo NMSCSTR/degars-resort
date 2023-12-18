@@ -46,7 +46,11 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                             <td>
                                 <a class="btn btn-outline-success btn-sm border-0" title="Grant Request"
                                 onclick="return confirm('Confirm refund, Click Ok!')"
-                                    href="functions/grantrefund.php?transaction_ref=<?php echo $row['transaction_ref']; ?>&refundedamount=<?php echo $row['refundedamount']; ?>&reason=<?php echo $row['reason']; ?>&payment_id=<?php echo $row['payment_id']; ?>&comres_id=<?php echo $row['comres_id']; ?>&refund_id=<?php echo $row['refund_id']?>"><i class="fas fa-check-circle"></i>
+                                    href="functions/grantrefund.php?transaction_ref=<?php echo $row['transaction_ref']; ?>&refundedamount=<?php echo $row['refundedamount']; ?>&reason=<?php echo $row['reason']; ?>&payment_id=<?php echo $row['payment_id']; ?>&comres_id=<?php echo $row['comres_id']; ?>&refund_id=<?php echo $row['refund_id']?>"><i class="fas fa-check-circle"></i> Approved 
+                                </a>
+                                <a class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
+                                    href="">
+                                    <i class="fas fa-times-circle"></i> Decline
                                 </a>
                             </td>
                         </tr>
