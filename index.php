@@ -101,12 +101,13 @@ header,
                             <a class="nav-link" href="#contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="portal/exclusive/check.php">Check Reservation</a>
+                            <!-- Button trigger modal -->
+                            <a class="nav-link text-primary" data-toggle="modal" data-target="#exampleModalCenter">Check Reservation</a>
                         </li>
                     </ul>
                     <!-- Links -->
                     <!-- Social Icon  -->
-                    <!-- <ul class="navbar-nav nav-flex-icons">
+                    <ul class="navbar-nav nav-flex-icons">
                         <li class="nav-item">
                             <a class="nav-link"><i class="fab fa-facebook"></i></a>
                         </li>
@@ -116,13 +117,36 @@ header,
                         <li class="nav-item">
                             <a class="nav-link"><i class="fab fa-instagram"></i></a>
                         </li>
-                    </ul> -->
+                    </ul>
                 </div>
                 <!-- Collapsible content -->
             </div>
         </nav>
         <!--/.Navbar-->
         <!--Mask-->
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Check Reservation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="portal/functions/searchref.php" method="post">
+                            <input type="text" name="transaction_ref" class="dropdown-item form-control mb-2"
+                                style="border: 1px solid #ced4da;" placeholder="Your transaction reference here" maxlength="10" minlength="9" required>
+                            <button type="submit" name="searchref"
+                                class="btn btn-primary btn-block btn-sm">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="intro" class="view">
             <div class="mask rgba-black-strong">
                 <div class="container-fluid d-flex align-items-center justify-content-center h-100">

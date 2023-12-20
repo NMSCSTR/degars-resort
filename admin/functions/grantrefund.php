@@ -58,8 +58,9 @@ if ($err) {
 
     $insert = mysqli_query($db,"INSERT INTO listofrefunded (refund_id, amount, currency, status, notes, created_at)
             VALUES ('$refund_id', $amount, '$currency', '$status', '$notes', FROM_UNIXTIME($created_at))");
-    $updatecr = mysqli_query($db,"UPDATE `completed_reservation` SET `status` ='Cancelled/Refunded' WHERE `comres_id` = $comres_id");
-    $updaterefund = mysqli_query($db,"UPDATE `refund` SET `status` ='Refunded' WHERE `refund_id` = $refund_id");
+
+    $updatecr = mysqli_query($db,"UPDATE `completed_reservation` SET `status` ='Refunded', `approvedby` = '$approvedby' WHERE `comres_id` = $comres_id");
+    $updaterefund = mysqli_query($db,"UPDATE `refund` SET `status` ='Refunded', `approvedby` = '$approvedby' WHERE `refund_id` = $refund_id");
 
     if ($insert && $updatecr && $updaterefund) {
         header("Location: ../refund.php?message=Refund Successful!");

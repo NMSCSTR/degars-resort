@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
+if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 ?>
 <?php include '../config/db_connection.php'?>
 <?php include_once 'adheader.php'; ?>
@@ -29,6 +29,13 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                             <th>Mode Of Payment</th>
                             <th>Total Amount</th>
                             <th>Service Fee</th>
+                            <?php 
+                            if ($is_admin) {
+                                ?>
+                                <th>Approvedby</th>
+                                <?php
+                            }
+                            ?>
                             <th>Checkout URL</th>
                             <th>Action</th>
                         </tr>
@@ -57,17 +64,24 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                             <td><?php echo $row['modeofpayment']; ?></td>
                             <td><?php echo $totalamount; ?></td>
                             <td><?php echo number_format($row['servicefee'] ,2); ?></td>
+                            <?php 
+                            if ($is_admin) {
+                                ?>
+                                    <td><?php echo ucwords($row['approvedby'] === null ? "System" : $row['approvedby']); ?></td> 
+                                <?php
+                            }
+                            ?>
                             <td><a href="<?php echo $row['checkouturl']; ?>"> <?php echo $row['checkouturl']; ?></a></td>
         
                             <td>
                                 <a class="btn btn-outline-success btn-sm border-0" title="Mark as done"
-                                    href=""><i
+                                    href="functions/markasdone.php?reservation_id=<?php echo $row['reservation_id']; ?>&customer_id=<?php echo $row['customer_id']; ?>&approvedby=<?php echo $_SESSION['users_username'];?>"><i
                                         class="fas fa-check-circle"></i> Mark As Done
                                 </a>
-                                <a class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
+                                <!-- <a class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
                                     href="">
                                     <i class="fas fa-times-circle"></i>Decline
-                                </a>
+                                </a> -->
                                 <!-- <a class="btn btn-outline-danger btn-sm border-0" title="Mark As Done"
                                     href="">
                                     <i class="fas fa-times-circle"></i>

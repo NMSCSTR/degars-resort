@@ -10,15 +10,15 @@ if(isset($_POST['savewcustomer'])){
 
     $savecustomer = mysqli_query($db, "INSERT INTO walkincustomer (`walkin_id`, `firstname`, `lastname`, `email_address`, `phone_number`) VALUES ('$walkin_id', '$firstname', '$lastname', '$email_address', '$phone_number')");
 
-    $gettype = mysqli_fetch_assoc(mysqli_query($db,"SELECT `type` FROM reservation WHERE `reservation_id` = '$reservation_id'"));
+    //$getdetails = mysqli_fetch_assoc(mysqli_query($db,"SELECT * FROM walkin WHERE `walkin_id` = '$walkin_id'"));
 
     if ($savecustomer) {
-        $get_cus_id = mysqli_query($db, "SELECT * FROM `customer` ORDER BY `date_inserted` DESC LIMIT 1");
-        $fetchcus = mysqli_fetch_array($get_cus_id);
-        $customer_id = $fetchcus['customer_id'];
-        $reservation_id = $fetchcus['reservation_id'];
+        $getwcus_id = mysqli_query($db, "SELECT * FROM `walkincustomer` ORDER BY `datetimeadded` DESC LIMIT 1");
+        $fwcus = mysqli_fetch_array($getwcus_id);
+        $wcustomer_id = $fwcus['wcustomer_id'];
+        
 
-        header('Location: ../exclusive/review.php?customer_id='. $customer_id .'&reservation_id='. $reservation_id . '&type=' . $gettype['type'] .'');
+        header('Location: ../exclusive/wreview.php?wcustomer_id='. $wcustomer_id .'&walkin_id='. $walkin_id .'');
         exit();
     } else {
 

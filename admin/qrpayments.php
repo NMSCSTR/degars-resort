@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
+if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 ?>
 
 <?php include_once 'adheader.php'; ?>
@@ -26,6 +26,13 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                             <th>Type</th>
                             <th>Reserve Date</th>
                             <th>Rates</th>
+                            <?php 
+                            if ($is_admin) {
+                                ?>
+                                <th>Approvedby</th>
+                                <?php
+                            }
+                            ?>
                             <th>Mode of payment</th>
                             <th>Operation</th>
                         </tr>
@@ -44,6 +51,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                                     payviaqr.gcash_number,
                                     payviaqr.receipt_img,
                                     payviaqr.mode_of_payment,
+                                    payviaqr.approvedby,
                                     reservation.type,
                                     reservation.eventname,
                                     reservation.reservation_id,
@@ -73,13 +81,24 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                             <td><?php echo $row['type']; ?></td>
                             <td><?php echo $row['reservationdate']; ?></td>
                             <td><?php echo $row['rates']; ?></td>
+                            <?php 
+                            if ($is_admin) {
+                                ?>
+                                    <td><?php echo ucwords($row['approvedby']); ?></td>
+                                <?php
+                            }
+                            ?>
                             <td><?php echo $row['mode_of_payment']; ?></td>
                             <td>
-                                <a class="btn btn-outline-success btn-sm border-0" title="Approved reservation"
-                                    href="functions/approvedqr.php?payviaqr_id=<?php echo $row['payviaqr_id']; ?>"><i class="fas fa-check-circle"></i> Approved
+                                <a class="btn btn-outline-success btn-sm border-0" 
+                                onclick="return confirm('Approve?')"
+                                title="Approved reservation"
+                                    href="functions/approvedqr.php?payviaqr_id=<?php echo $row['payviaqr_id']; ?>&reservation_id=<?php echo $row['reservation_id']; ?>&customer_id=<?php echo $row['customer_id']; ?>&approvedby=<?php echo $_SESSION['users_username'];?>"><i class="fas fa-check-circle"></i> Approved
                                 </a>
-                                <a class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
-                                    href="functions/declineqr.php?payviaqr_id=<?php echo $row['payviaqr_id']; ?>&transaction_ref=<?php echo $row['transaction_ref']; ?>">
+                                <a class="btn btn-outline-danger btn-sm border-0" 
+                                onclick="return confirm('Decline?')"
+                                title="Decline reservation"
+                                    href="functions/declineqr.php?payviaqr_id=<?php echo $row['payviaqr_id']; ?>&transaction_ref=<?php echo $row['transaction_ref']; ?>&reservation_id=<?php echo $row['reservation_id']; ?>&customer_id=<?php echo $row['customer_id']; ?>&approvedby=<?php echo $_SESSION['users_username'];?>">
                                     <i class="fas fa-times-circle"></i> Decline
                                 </a>
 

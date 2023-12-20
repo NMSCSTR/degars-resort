@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
+if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 ?>
 <?php include_once 'adheader.php'; ?>
 <title>Rules</title>

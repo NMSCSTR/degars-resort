@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
+if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 ?>
 <?php include '../config/db_connection.php'?>
 <?php include_once 'adheader.php'; ?>
@@ -21,32 +21,55 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                 <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Ref#</th>
-                            <th>Reserve Date</th>
-                            <th>CheckoutURL</th>
-                            <th>Rate</th>
-                            <th>Partial</th>
+                            <th>Transac Id</th>
+                            <th>Ref #</th>
+                            <th>Status</th>
+                            <th>Aminities</th>
+                            <th>Rates</th>
+                            <th>Entrance Fee</th>
+                            <th>Total Amount</th> 
+                            <?php 
+                            if ($is_admin) {
+                                ?>
+                                    <th>ApprovedBy</th>
+                                <?php
+                            }
+                            ?>
+                            <th>Checkout Url</th>
                             <th>Operation</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Ref-7239</td>
-                            <td>10/29/2023</td>
-                            <td><a href="https://pm.link/degarresort/nQw3Mtv">https://pm.link/degarresort/nQw3Mtv</a>
-                            </td>
-                            <td>1500</td>
-                            <td>750</td>
+                        <?php 
+                            include_once 'functions/getwalk.php';
+                            while ($row = $fetch->fetch_array()) { ?>
+
+                            <td><?php echo $row['wtransac_id']; ?></td>
+                            <td><?php echo $row['transaction_ref']; ?></td>
+                            <td><span
+                                    class="badge <?php echo $row['status'] === 'Approved' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?>"><?php echo $row['status']; ?></span>
+                            <td><?php echo $row['name']; ?></td> 
+                            <td><?php echo number_format($row['rates'], 2); ?></td>
+                            <td><?php echo $row['totalentrancefee']; ?></td> 
+                            <td><?php echo number_format($row['totalentrancefee'] + $row['rates'], 2) ; ?></td>
+                            <?php 
+                            if ($is_admin) {
+                                ?>
+                                    <td><?php echo ucwords($row['approvedby'] === null ? "System" : $row['approvedby']); ?></td> 
+                                <?php
+                            }
+                            ?>  
+                            <td><?php echo $row['checkouturl']; ?></td>
                             <td>
-                                <a href="" class="btn btn-warning btn-sm shadow rounded me-md-2"><i
-                                        class="fas fa-edit me-2"></i>Edit</a>
-                                <a href="" class="btn btn-danger btn-sm shadow rounded me-md-2" id="btn-delProd"><i
-                                        class="fas fa-trash-alt me-2"></i>Delete</a>
-                                <a href="" class="btn btn-outline-dark btn-sm shadow rounded me-md-2" id="btn-viewMore"
-                                    title="View More Informations">View More <i class="fas fa-arrow-right"></i></a>
+                                <a class="btn btn-outline-success btn-sm border-0" title="Mark as done"
+                                    href="functions/markasdonewalkin.php?walkin_id=<?php echo $row['walkin_id']; ?>&wcustomer_id=<?php echo $row['wcustomer_id']; ?>&approvedby=<?php echo $_SESSION['users_username'];?>"><i
+                                        class="fas fa-check-circle"></i> Mark As Done
+                                </a>
                             </td>
+
                         </tr>
-                        <!-- Add more rows as needed -->
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>

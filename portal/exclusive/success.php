@@ -1,29 +1,33 @@
 <?php 
 $db = mysqli_connect("localhost", "root", "", "capstwo");
 
-$customer_id = $_GET['customer_id'];
-$reservation_id = $_GET['reservation_id'];
+if(isset($_GET['walkin_id']) && isset($_GET['wcustomer_id'])){
+    $getcustomer = $_GET['wcustomer_id'];
+    $getreservation = $_GET['walkin_id'];
+    $f = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `walkin_transac` WHERE wcustomer_id = '$getcustomer' AND walkin_id = '$getreservation'"));
+    $w = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `walkincustomer` WHERE wcustomer_id = '$getcustomer' AND walkin_id = '$getreservation'"));
+    $refno = $f['transaction_ref'];
+    $phone_number = $w['phone_number'];
+    // Update completed reservation status to 'Approved'
+    $update_result = mysqli_query($db, "UPDATE `walkin_transac` SET `status` ='Approved' WHERE `wcustomer_id` = $getcustomer AND `walkin_id` = $getreservation ");
+}else {
+    $getcustomer = $_GET['reservation_id'];
+    $getreservation = $_GET['customer_id'];
+    $f = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `completed_reservation` WHERE customer_id = '$getcustomer' AND reservation_id = '$getreservation'"));
+    $refno = $f['transaction_ref'];
+    // Update completed reservation status to 'Approved'
+    $update_result = mysqli_query($db, "UPDATE `completed_reservation` SET `status` ='Approved' WHERE `customer_id` = $getcustomer AND `reservation_id` = $getreservation ");
+}
 
-// Fetch customer details
-$c = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `customer` WHERE customer_id = '$customer_id' "));
 
-// Fetch completed reservation details
-$f = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `completed_reservation` WHERE customer_id = '$customer_id' "));
-$refno = $f['transaction_ref'];
-
-// Update completed reservation status to 'Approved'
-$update_result = mysqli_query($db, "UPDATE `completed_reservation` SET `status` ='Approved' WHERE `customer_id` = $customer_id AND `reservation_id` = $reservation_id ");
 
 if ($update_result) {
     // Update successful, proceed with the rest of the code
-
-    $phone_number = $c['phone_number'];
-
     $message_content = "Congratulations! Mr/Ms Rhondel Pagobo your reservation was approved. Copy or save this transaction reference " . $refno . ". Please check your email we have sent a copy of your receipt. If you have any questions about this payment, contact DEGARS RESORT at mariloumercado1955@gmail.com";
     
     $ch = curl_init();
     $parameters = array(
-        'apikey' => '71a0b82e7b5fbd2fb958fcf22d84428099', 
+        'apikey' => '71a0b82e7b5fbd2fb958fcf22d844280 99', 
         'number' => $phone_number,
         'message' => $message_content,
         'sendername' => 'SEMAPHORE'
@@ -85,8 +89,6 @@ if ($update_result) {
     <p class="card-text text-dark text-center h5">Your <span class="text-danger">Degar's Resort Reservation</span>  transaction is successful! Please take a screenshot or copy your transaction reference.</p><br>
     <p class="card-text text-dark text-center h5">Transaction Reference: <span class="text-danger fw-bold"><?= $refno ?></span></p><br>
     <p><a href="../../index.php" class="d-sm-flex justify-content-center">Back to home page.</a></p>
-
-    
 
 </section>
 

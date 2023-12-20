@@ -1,9 +1,10 @@
 <?php 
 session_start();
-if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
+if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 ?>
 <?php 
 include 'adheader.php'; 
+
 require_once 'functions/countproducts.php';
 require_once 'functions/visitorscount.php'; 
 require_once 'functions/countreservation.php'; 

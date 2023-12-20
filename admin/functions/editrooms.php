@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id = $_POST['aminities_id'];
 
             // Retrieve existing image paths from the database
-            $sqlSelect = "SELECT `image1`, `image2`, `image3` FROM `aminities` WHERE `id` = $id";
+            $sqlSelect = "SELECT `image1`, `image2`, `image3` FROM `room_aminities` WHERE `id` = $id";
             $resultSelect = $db->query($sqlSelect);
 
             if ($resultSelect) {

@@ -7,7 +7,7 @@
     include '../portHeader.php';
 ?>
 
-<title>Exclusive | Customer Form</title>
+<title>Degars | Walkin Customer Form</title>
 
 <main>
     <div class="container-sm mt-5">

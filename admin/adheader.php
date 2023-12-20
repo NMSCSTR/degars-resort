@@ -1,3 +1,8 @@
+<?php 
+$is_admin = ($_SESSION['users_role'] == "Admin");
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -111,7 +116,7 @@ body {
             <div class="dropdown">
                 <a href="" class="btn btn-light btn-md dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                     data-bs-toggle="dropdown" aria-expanded="false">Welcome <span
-                        class="text-primary text-capitalize"><?php echo $_SESSION['admin_username'];?></span></a>
+                        class="text-primary text-capitalize"><?php echo $_SESSION['users_username'];?></span></a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
                     <!-- <li><a class="dropdown-item" onclick="return confirm('Are you sure you want to change password?');"
                             href=""><i class="fas fa-edit me-2"></i>Change password</a></li> -->
@@ -124,20 +129,24 @@ body {
 
 
     <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="dashboard.php" style="font-size: 18px;"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-    <a href="#inventory-collapse" data-bs-toggle="collapse" class="collapsed" style="font-size: 18px;">
-        <i class="fas fa-calendar-plus"></i> Reservation <span class="toggle-icon fw-bolder">&#60;</span>
-    </a>
-    <div class="collapse" id="inventory-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal small m-4 mt-0 mb-0">
-            <li><a href="exclusive.php" class="rounded" style="font-size: 18px;"><i class="fas fa-trophy"></i> Reservations</a></li>
-            <li><a href="walkin.php" class="rounded" style="font-size: 18px;"><i class="fas fa-walking"></i> Walkin</a></li>
-            <li><a href="qrpayments.php" class="rounded" style="font-size: 18px;"><i class="fas fa-qrcode"></i> QR Payments</a></li>
-            <li><a href="refund.php" class="rounded" style="font-size: 18px;"><i class="fas fa-undo"></i> Refund</a></li>
-        </ul>
-    </div>
-    <a href="#inventory-collapsed" data-bs-toggle="collapse" class="collapsed" style="font-size: 18px;">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="dashboard.php" style="font-size: 18px;"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="#inventory-collapse" data-bs-toggle="collapse" class="collapsed" style="font-size: 18px;">
+            <i class="fas fa-calendar-plus"></i> Reservation <span class="toggle-icon fw-bolder">&#60;</span>
+        </a>
+        <div class="collapse" id="inventory-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal small m-4 mt-0 mb-0">
+                <li><a href="exclusive.php" class="rounded" style="font-size: 18px;"><i class="fas fa-trophy"></i>
+                        Reservations</a></li>
+                <li><a href="walkin.php" class="rounded" style="font-size: 18px;"><i class="fas fa-walking"></i>
+                        Walkin</a></li>
+                <li><a href="qrpayments.php" class="rounded" style="font-size: 18px;"><i class="fas fa-qrcode"></i> QR
+                        Payments</a></li>
+                <li><a href="refund.php" class="rounded" style="font-size: 18px;"><i class="fas fa-undo"></i> Refund</a>
+                </li>
+            </ul>
+        </div>
+        <!-- <a href="#inventory-collapsed" data-bs-toggle="collapse" class="collapsed" style="font-size: 18px;">
         <i class="fas fa-archive"></i> Inventory <span class="toggle-icon fw-bolder">&#60;</span>
     </a>
     <div class="collapse" id="inventory-collapsed">
@@ -145,12 +154,33 @@ body {
             <li><a href="product.php" class="rounded" style="font-size: 18px;"><i class="fas fa-cube"></i> Product</a></li>
             <li><a href="category.php" class="rounded" style="font-size: 18px;"><i class="fas fa-list"></i> Category</a></li>
         </ul>
+    </div> -->
+        <a href="rules.php" style="font-size: 18px;"><i class="fas fa-book"></i> Rules</a>
+        <!-- <a href="rooms.php" style="font-size: 18px;"><i class="fas fa-bed"></i> Rooms</a> -->
+        <a href="cottages.php" style="font-size: 18px;"><i class="fas fa-home"></i> Aminities</a>
+        <?php 
+        if ($is_admin) {
+        ?>
+        <a href="#inventory-collapse1" data-bs-toggle="collapse" class="collapsed" style="font-size: 18px;">
+        <i class="fas fa-briefcase"></i> Paymongo <span class="toggle-icon fw-bolder">&#60;</span>
+        </a>
+
+        <div class="collapse" id="inventory-collapse1">
+            <ul class="btn-toggle-nav list-unstyled fw-normal small m-4 mt-0 mb-0">
+                <li><a href="https://dashboard.paymongo.com/payments/all" class="rounded" style="font-size: 18px;"><i class="far fa-credit-card"></i>
+                        Payments</a></li>
+                <li><a href="https://dashboard.paymongo.com/payouts-v2" class="rounded" style="font-size: 18px;"><i class="fas fa-money-check"></i>
+                        Payout</a></li>
+            </ul>
+        </div>
+
+        <a href="users.php" style="font-size: 18px;"><i class="fas fa-users"></i> Users</a>
+        <?php
+    }
+    ?>
+
+
     </div>
-    <a href="rules.php" style="font-size: 18px;"><i class="fas fa-book"></i> Rules</a>
-    <a href="rooms.php" style="font-size: 18px;"><i class="fas fa-bed"></i> Rooms</a>
-    <a href="cottages.php" style="font-size: 18px;"><i class="fas fa-home"></i> Cottage</a>
-    <a href="users.php" style="font-size: 18px;"><i class="fas fa-users"></i> Users</a>
-</div>
 
 
     <script>

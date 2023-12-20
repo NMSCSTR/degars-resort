@@ -10,12 +10,12 @@
                 <div class="password-container" id="password-container">
                     <div class="form-group">
                         <label for="username"><i class="fas fa-envelope"></i> Username:</label>
-                        <input type="text" class="form-control" name="admin_username" id="admin_username"
+                        <input type="text" class="form-control" name="users_username" id="admin_username"
                             placeholder="Enter your username" autocomplete="off" required>
                     </div>
                     <div class="form-group">
                         <label for="password"><i class="fas fa-lock"></i> Password:</label>
-                        <input type="password" class="form-control" name="admin_password" id="admin_password"
+                        <input type="password" class="form-control" name="users_password" id="users_password"
                             placeholder="Enter your password" autocomplete="off" required>
                     </div>
                     <i class="show-icon fas fa-eye" id="showPassword"></i>

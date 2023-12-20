@@ -50,9 +50,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $status =  "Pending";
             $gcash_name = $_POST['gcash_name'];
             $gcash_number = $_POST['gcash_number'];
-            $mode_of_payment = $_POST['mode_of_payment'];
+            $servicefee = 0;
+            $checkout_id ="Via Qr";
+            $checkout_url ="Via Qr";
+            
 
-            $sql = "INSERT INTO payviaqr ( `transaction_ref`, `reservation_id`, `customer_id`, `status`, `gcash_name`, `gcash_number`, `mode_of_payment`, `receipt_img`) VALUES ('$transaction_ref','$reservation_id','$customer_id','$status','$gcash_name','$gcash_number','$mode_of_payment','$target_file')";
+            if ($_POST['mode_of_payment'] == 'Full Payment') {
+                $modeofpayment = $_POST['mode_of_payment'];
+                $totalamount = $_POST['totalamount'] * 100;
+            } else {
+                $modeofpayment = $_POST['mode_of_payment'];
+                $totalamount = ($_POST['totalamount'] * 100) / 2;
+            }
+
+            $sql = "INSERT INTO payviaqr ( `transaction_ref`, `reservation_id`, `customer_id`, `status`, `gcash_name`, `gcash_number`, `mode_of_payment`, `receipt_img`) VALUES ('$transaction_ref','$reservation_id','$customer_id','$status','$gcash_name','$gcash_number','$modeofpayment','$target_file')";
+
+            $savecompleted = mysqli_query($db, "INSERT INTO `completed_reservation` (`reservation_id`, `customer_id`, `transaction_ref`, `modeofpayment`, `status`, `servicefee`, `totalamount`,`checkout_id`, `checkouturl`) VALUES ('$reservation_id', '$customer_id','$transaction_ref','$modeofpayment', '$status', '$servicefee', '$totalamount', '$checkout_id','$checkout_url')
+            ");
             if ($db->query($sql) === TRUE) {
                 echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded and the record inserted into the database.";
                 header('Location: ../success.php?customer_id='.$customer_id.'&reservation_id='.$reservation_id.'');

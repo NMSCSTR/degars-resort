@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
+if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 ?>
 
 <?php include_once 'adheader.php'; ?>
@@ -25,6 +25,13 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                             <th>Status</th>
                             <th>Refunded Amount</th>
                             <th>Reason</th>
+                            <?php 
+                            if ($is_admin) {
+                                ?>
+                                    <th>ApprovedBy</th>
+                                <?php
+                            }
+                            ?>
                             <th>Payment Id</th>
                             <th>Operation</th>
                         </tr>
@@ -42,6 +49,13 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                             </td>
                             <td><?php echo $row['refundedamount']; ?></td>
                             <td><?php echo $row['reason']; ?></td>
+                            <?php 
+                            if ($is_admin) {
+                                ?>
+                                    <td><?php echo $row['approvedby']; ?></td>
+                                <?php
+                            }
+                            ?>
                             <td><?php echo $row['payment_id']; ?></td>
                             <td>
                                 <a class="btn btn-outline-success btn-sm border-0" title="Grant Request"

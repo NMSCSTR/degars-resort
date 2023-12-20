@@ -1,4 +1,4 @@
-const passwordInput = document.getElementById("admin_password");
+const passwordInput = document.getElementById("users_password");
 const showPasswordIcon = document.getElementById("showPassword");
 const passContainer = document.getElementById("password-container");
 

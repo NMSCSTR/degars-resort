@@ -11,5 +11,5 @@ if($deletecottage){
 } else {
     echo "<script>alert('Product not deleted');</script>";
 }
-
+$db->close();
 ?>

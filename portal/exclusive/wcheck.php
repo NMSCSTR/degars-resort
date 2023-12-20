@@ -84,71 +84,64 @@ body {
                 $search = $_GET['transaction_ref'];
                 $fetch = mysqli_query($db,"
                 SELECT
-                    cr.comres_id,
-                    cr.transaction_ref,
-                    cr.modeofpayment,
-                    cr.status,
-                    cr.servicefee,
-                    cr.totalamount,
-                    cr.payment_id,
-                    cr.checkout_id,
-                    cr.checkouturl,
-                    cr.dateadded,
-                    reservation.reservation_id,
-                    reservation.type,
-                    reservation.eventname,
-                    reservation.reservationdate,
-                    reservation.paymentduedate,
-                    reservation.rates,
-                    customer.customer_id,
-                    customer.firstname,
-                    customer.lastname,
-                    customer.email_address,
-                    customer.phone_number
+                    wt.wtransac_id,
+                    wt.transaction_ref,
+                    wt.totalentrancefee,
+                    wt.totalamount,
+                    wt.status,
+                    wt.checkout_id,
+                    wt.checkouturl,
+                    wt.payment_id,
+                    wt.datewadded,
+                    aminities.aminities_id,
+                    aminities.name,
+                    aminities.rates,
+                    walkin.walkin_id,
+                    walkin.entrancefee,
+                    walkin.numberofheads,
+                    walkincustomer.wcustomer_id,
+                    walkincustomer.firstname,
+                    walkincustomer.lastname,
+                    walkincustomer.email_address,
+                    walkincustomer.phone_number
                 FROM
-                    completed_reservation AS cr
+                    walkin_transac AS wt
                 LEFT JOIN
-                    reservation ON reservation.reservation_id = cr.reservation_id
+                    walkin ON walkin.walkin_id = wt.walkin_id
                 LEFT JOIN
-                    customer ON customer.customer_id = cr.customer_id
+                    walkincustomer ON walkincustomer.wcustomer_id = wt.wcustomer_id
+                LEFT JOIN
+                    aminities ON aminities.aminities_id = wt.aminities_id
                 WHERE 
-                    cr.transaction_ref = '$search'"
+                    wt.transaction_ref = '$search'"
             );
             if ($fetch) {
                 while ($row = mysqli_fetch_assoc($fetch)) { 
-                    $number = $row['totalamount'];
-                    $totalamount = number_format($number / 100, 2);
-
-                    if ($row['modeofpayment'] === "50% Downpayment") {
-                        $balance = $row['rates'] / 2;
-                    } else {
-                        $balance = $row['rates'] - $totalamount;
-                    }
                     
             ?>
-        <div class="card border-0">
+        <div class="card">
             <div class="card-body">
-
                 <div class="container mb-5 mt-3">
                     <div class="row d-flex align-items-baseline">
                         <div class="col-xl-9">
-                            <p style="color: #7e8d9f;font-size: 20px;">Transac Ref. >>
-                                <strong><?php echo $row['transaction_ref']; ?></strong></p>
+                            <p style="color: #7e8d9f;font-size: 20px;">Transac Ref. >> <strong>
+                                    <?php echo $row['transaction_ref']; ?></strong></p>
                         </div>
                         <div class="col-xl-3 float-end">
                             <?php 
-                                if ($row['status'] ===  "Pending" || $row['status'] === "Refunded" || $row['status'] === "Declined") { ?>
-                                <a hidden class="btn btn-light text-capitalize border-0"
+                                if ($row['status'] ===  "Pending" || $row['status'] === "Refunded" ||$row['status'] === "Declined") { ?>
+                            <a hidden class="btn btn-light text-capitalize border-0"
                                 onclick="return confirm('8% of the total amount will be deducted for transaction refund. Are you sure you want to cancel your reservation and request refund?');"
-                                data-mdb-ripple-color="dark"
-                                href="requestrefund.php?comres_id=<?php echo $row['comres_id']; ?>&reservation_id=<?php echo $row['reservation_id']; ?>&customer_id=<?php echo $row['customer_id']; ?>&checkout_id=<?php echo $row['checkout_id']; ?>&transaction_ref=<?php echo $row['transaction_ref'] ?>&payment_id=<?php echo $row['payment_id'] ?>&rates=<?php echo $row['rates'] ?>&totalamount=<?php echo $row['totalamount']?>&modeofpayment=<?php echo $row['modeofpayment']?>"><i
-                                    class="fas fa-hand-paper"></i> Request refund</a>
+                                data-mdb-ripple-color="dark" 
+                                href="requestrefund.php?wtransac_id=<?php echo $row['wtransac_id']; ?>&walkin_id=<?php echo $row['walkin_id']; ?>&wcustomer_id=<?php echo $row['wcustomer_id']; ?>&">
+                                <i class="fas fa-hand-paper"></i>
+                                Request refund
+                            </a>
                             <?php } else { ?>
                             <a class="btn btn-light text-capitalize border-0"
                                 onclick="return confirm('8% of the total amount will be deducted for transaction refund. Are you sure you want to cancel your reservation and request refund?');"
-                                data-mdb-ripple-color="dark"
-                                href="requestrefund.php?comres_id=<?php echo $row['comres_id']; ?>&reservation_id=<?php echo $row['reservation_id']; ?>&customer_id=<?php echo $row['customer_id']; ?>&checkout_id=<?php echo $row['checkout_id']; ?>&transaction_ref=<?php echo $row['transaction_ref'] ?>&payment_id=<?php echo $row['payment_id'] ?>&rates=<?php echo $row['rates'] ?>&totalamount=<?php echo $row['totalamount']?>&modeofpayment=<?php echo $row['modeofpayment']?>"><i
-                                    class="fas fa-hand-paper"></i> Request refund</a>
+                                data-mdb-ripple-color="dark" href="requestrefund.php?"><i class="fas fa-hand-paper"></i>
+                                Request refund</a>
                             <?php } ?>
                             <a href="../../index.php" class="btn btn-light text-capitalize"
                                 data-mdb-ripple-color="dark"><i class="fas fa-undo text-dark"></i> Back</a>
@@ -181,16 +174,13 @@ body {
                                 </ul>
                             </div>
                             <div class="col-xl-4">
-                                <p class="text-muted">Reservation Details</p>
+                                <p class="text-muted">Walk-In Details</p>
                                 <ul class="list-unstyled">
                                     <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
-                                            class="fw-bold">ID:</span>#<?php echo $row['comres_id']; ?></li>
+                                            class="fw-bold">ID:</span>#<?php echo $row['wtransac_id']; ?></li>
                                     <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
-                                            class="fw-bold">Reservation Date:
-                                        </span><?php echo date('F d, Y', strtotime($row['reservationdate'])); ?></li>
-                                    <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
-                                            class="fw-bold">Due Date:
-                                        </span><?php echo date('F d, Y', strtotime($row['paymentduedate'])); ?></li>
+                                            class="fw-bold">Number of people:
+                                        </span><?php echo $row['numberofheads']; ?></li>
                                     <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                                             class="me-1 fw-bold">Status:</span><span
                                             class="badge badge <?php echo $row['status'] === 'Approved' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?> fw-bold">
@@ -199,28 +189,27 @@ body {
                             </div>
                         </div>
 
-                        <div class="row my-2 mx-1 table-responsive">
+                        <div class="row my-2 mx-1 justify-content-center">
                             <table class="table table-striped table-borderless">
                                 <thead style="background-color:#84B0CA ;" class="text-white">
                                     <tr>
-                                        <th scope="col">Event Name</th>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Mode of payment</th>
+                                        <th scope="col">Description</th>
                                         <th scope="col">Rates</th>
-                                        <th scope="col">Receive Amount</th>
-                                        <th scope="col">Balance</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row"> <?php echo $row['eventname']; ?></th>
-                                        <td><?php echo $row['type']; ?></td>
-                                        <td><?php echo $row['modeofpayment']; ?></td>
-                                        <td><?php echo number_format($row['rates'], 2); ?></td>
-                                        <td><?php echo number_format($totalamount, 2); ?></td>
-                                        <td><?php echo number_format($balance, 2); ?></td>
+                                        <td>Total Entrance Fee(<span
+                                                class="text-primary"><?php echo $row['numberofheads']; ?> x
+                                                ₱<?php echo $row['entrancefee']; ?></span>)</td>
+                                        <td>₱<?php echo $row['totalentrancefee']; ?></td>
                                     </tr>
+                                    <tr>
 
+                                        <td>Aminities (<span class="text-primary"><?php echo $row['name']; ?></span>)
+                                        </td>
+                                        <td>₱<?php echo number_format($row['rates'], 2); ?></td>
+                                    </tr>
                                 </tbody>
 
                             </table>
@@ -232,15 +221,15 @@ body {
                             </div>
                             <div class="col-xl-3">
                                 <ul class="list-unstyled">
-                                    <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>
-                                        <?php echo $totalamount; ?></li>
+                                    <!-- <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>$1110</li> -->
                                     <li class="text-muted ms-3 mt-2"><span
-                                            class="text-black me-4">servicefee(0%)</span><?php echo number_format($row['servicefee'], 2); ?>
+                                            class="text-black me-4">Servicefee(0%)</span>₱0
                                     </li>
                                 </ul>
-                                <p class="text-black float-start"><span class="text-black me-3"> Remaining
-                                        Balance</span><span
-                                        style="font-size: 25px;"><?php echo number_format($balance, 2); ?></span></p>
+                                <p class="text-black float-start"><span class="text-black me-3"> Total
+                                        Amount</span><span
+                                        style="font-size: 25px;"><?php echo number_format($row['totalentrancefee'] + $row['rates'] ,2); ?></span>
+                                </p>
                             </div>
                         </div>
                         <hr>
@@ -250,7 +239,7 @@ body {
                             </div>
                             <div class="col-xl-2">
                                 <?php 
-                                    if ($row['status'] === "Approved" || $row['status'] === "Declined" || $row['status'] === "Refunded") { ?>
+                                    if ($row['status'] === "Approved" || $row['status'] === "Refunded" || $row['status'] === "Declined") { ?>
                                 <a hidden href="<?php echo $row['checkouturl']; ?>" id="payNowBtn"
                                     class="btn btn-primary text-capitalize">Pay Now <i class="fas fa-lock"></i></a>
                                 <?php } else { ?>
@@ -259,18 +248,21 @@ body {
                                 <?php } ?>
                             </div>
                         </div>
-                        <?php
+                    </div>
+                    <?php
                                 }
                             }else {
                                 echo "<script>alert('You have entered incorrect transaction reference');</script>";
                             }
                         }
                         ?>
-                    </div>
                 </div>
             </div>
         </div>
+        </div>
     </main>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">

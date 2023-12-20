@@ -2,19 +2,19 @@
     <?php include '../portHeader.php';?>
     <title>Degar's Resort | Failed</title>
     <style>
-    html {
-        height: 100%;
-    }
+        html {
+            height: 100%;
+        }
 
-    body {
-        min-height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
+        body {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .bd-footer {
-        margin-top: auto;
-    }
+        .bd-footer {
+            margin-top: auto;
+        }
     </style>
 </header>
 
@@ -24,10 +24,20 @@
     </div>
     <?php 
     $db = mysqli_connect("localhost","root","","capstwo");
-    $customer_id = $_GET['customer_id'];
-    $reservation_id = $_GET['reservation_id'];
-    $f = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `completed_reservation` WHERE customer_id = '$customer_id' "));
-    $refno = $f['transaction_ref'];
+    if(isset($_GET['walkin_id']) && isset($_GET['wcustomer_id'])){
+        $getcustomer = $_GET['wcustomer_id'];
+        $getreservation = $_GET['walkin_id'];
+        $f = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `walkin_transac` WHERE wcustomer_id = '$getcustomer' AND walkin_id = '$getreservation'"));
+        $refno = $f['transaction_ref'];
+    }else {
+        $getcustomer = $_GET['reservation_id'];
+        $getreservation = $_GET['customer_id'];
+        $f = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `completed_reservation` WHERE customer_id = '$getcustomer' AND reservation_id = '$getreservation'"));
+        $refno = $f['transaction_ref'];
+    }
+
+
+
 
     
 

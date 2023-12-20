@@ -11,5 +11,5 @@ if($deleteroom){
 } else {
     echo "<script>alert('Room not deleted');</script>";
 }
-
+$db->close();
 ?>

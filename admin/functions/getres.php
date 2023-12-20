@@ -10,6 +10,7 @@ $fetchex = mysqli_query($db,"
         cr.totalamount,
         cr.checkout_id,
         cr.checkouturl,
+        cr.approvedby,
         cr.dateadded,
         reservation.reservation_id,
         reservation.type,

@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
+if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 ?>
 <?php include_once 'adheader.php'; ?>
 <title>Degars | Add Rooms</title>
@@ -72,7 +72,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header bg-light text-dark">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Cottages</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Room</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
@@ -147,7 +147,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                                                         <button type="submit" name="submit"
                                                             class="btn btn-dark shadow-lg rounded"><i
                                                                 class="fas fa-solid fa-save"></i> Update
-                                                            Cottage</button>
+                                                            Room</button>
                                                     </div>
                                                 </form>
 

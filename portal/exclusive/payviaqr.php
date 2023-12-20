@@ -96,8 +96,8 @@ body {
                                 <div class="form-floating mb-3">
                                     <select class="form-select text-capitalize fw-bold" id="floatingSelect"
                                         aria-label="Floating label select example"
-                                        name="mode_of_payment">
-                                        <option selected>Open this select menu</option>
+                                        name="mode_of_payment" required>
+                                        <option disabled selected>Open this select menu</option>
                                         <option value="50% Downpayment">50% Downpayment</option>
                                         <option value="Fully Payment">Full Payment</option>
                                     </select>
@@ -118,6 +118,7 @@ body {
                             </div>
                             <input type="hidden" name="customer_id" value="<?php echo $customer_id ?>">
                             <input type="hidden" name="reservation_id" value="<?php echo $reservation_id ?>">
+                            <input type="hidden" name="totalamount" value="<?php echo $fetch_res_details['rates'] ?>">
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-dark"><i class="fas fa-paper-plane"></i>
                                     Send Receipt</button>

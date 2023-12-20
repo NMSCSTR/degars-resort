@@ -1,15 +1,15 @@
 <?php 
 session_start();
-if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
+if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 ?>
 <?php include_once 'adheader.php'; ?>
-<title>Degars | Cottages</title>
+<title>Degars | Aminities</title>
 <div id="main">
     <div class="container pt-4">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Manage Cottages</li>
+                <li class="breadcrumb-item active" aria-current="page">Manage Aminities</li>
             </ol>
         </nav>
     </div>
@@ -20,7 +20,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
                 <div class="card-body">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4">
                         <button type="button" class="btn btn-warning shadow rounded me-md-2" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"><i class="fas fa-plus me-2"></i>Add Cottages</button>
+                            data-bs-target="#exampleModal"><i class="fas fa-plus me-2"></i>Add Aminities</button>
                     </div>
                     <!-- Datatables -->
                     <div class="table-responsive">
