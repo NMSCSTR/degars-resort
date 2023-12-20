@@ -41,7 +41,7 @@ curl_setopt_array($curl, [
             'show_description' => true,
             'show_line_items' => false,
             'cancel_url' => 'http://192.168.1.4/degars-resort/portal/exclusive/failed.php?walkin_id=' . $walkin_id . '&wcustomer_id=' . $wcustomer_id,
-            'description' => 'WALKIN TRANSACTION : ' . $transaction_ref,
+            'description' => 'WALKIN TRANSACTION PAYMENT : ' . $transaction_ref,
             'payment_method_types' => [
                 'gcash',
                 'card',

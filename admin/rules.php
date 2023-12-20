@@ -26,9 +26,9 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                         <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th  class="text-center"> Rules</th>
-                                    <th  class="text-center">Operation</th>
+                                    <th class="text-center"> Type</th>
+                                    <th class="text-center"> Rules</th>
+                                    <th class="text-center">Operation</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,9 +37,9 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                 $db = mysqli_connect("localhost","root","","capstwo");
                                 $fetchrules = mysqli_query($db,"SELECT * FROM `rules`");
                                 while ($row = $fetchrules->fetch_array()) { ?>
-                                    <td><?php echo $row['rule_id']; ?></td>
-                                    <td class="text-center"><?php echo $row['rules']; ?></td>
-                                    <td class="text-center">
+                                    <td><?php echo $row['type']; ?></td>
+                                    <td class="text-wrap"><?php echo $row['rules']; ?></td>
+                                    <td>
                                         <a href="functions/deleterule.php?users_id=<?php echo $row['rule_id']; ?>"
                                             onclick="return confirm('Are you sure you want to delete this data?')"
                                             class="btn btn-outline-danger border-0"> <i class="fas fa-trash-alt"></i>
@@ -58,11 +58,23 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
-                                                <form action="functions/edituser.php" method="post">
+                                                <form action="functions/editrule.php" method="post">
                                                     <div class="modal-body">
-                                                        <input type="hidden" name="rules_id" value="<?php echo $row['rule_id'] ?>">
+                                                        <input type="hidden" name="rule_id"
+                                                            value="<?php echo $row['rule_id'] ?>">
+
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" name="rule" value="<?php echo $row['rules'] ?>" name="rule"
+                                                            <select class="form-select" name="type" id="floatingSelect"
+                                                                aria-label="Floating label select example">
+                                                                <option value="Reservation">Reservation Rules</option>
+                                                                <option value="Resort">Resort Rules</option>
+                                                            </select>
+                                                            <label for="floatingSelect">Rules for</label>
+                                                        </div>
+
+                                                        <div class="form-floating mb-3">
+                                                            <input type="text" name="rules"
+                                                                value="<?php echo $row['rules'] ?>" name="rule"
                                                                 class="form-control" id="floatingPassword"
                                                                 placeholder="Rules">
                                                             <label for="floatingPassword">Rules</label>
@@ -72,7 +84,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                                                         <button type="submit" name="editrule"
                                                             class="btn btn-dark shadow-lg rounded"><i
-                                                            class="fas fa-sync-alt"></i> Update Rule</button>
+                                                                class="fas fa-sync-alt"></i> Update Rule</button>
 
                                                     </div>
                                                 </form>
@@ -100,7 +112,14 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             </div>
                             <form action="functions/addrules.php"" method="post">
                                 <div class="modal-body">
-
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" name="type" id="floatingSelect"
+                                            aria-label="Floating label select example">
+                                            <option value="Reservation">Reservation Rules</option>
+                                            <option value="Resort">Resort Rules</option>
+                                        </select>
+                                        <label for="floatingSelect">Rules for</label>
+                                    </div>
                                     <div class="form-floating mb-3">
                                         <input type="text" name="rules" class="form-control" id="floatingPassword"
                                             placeholder="Rules">

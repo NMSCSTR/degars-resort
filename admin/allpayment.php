@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['admin_id']) && isset($_SESSION['admin_username'])) {
+if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 ?>
 <?php include 
 '../config/db_connection.php'; 
@@ -85,35 +85,59 @@ if ($computed_hash === $received_hash) {
 
                             if (isset($data['data']['id'])) {
                                 $db = mysqli_connect("localhost","root","","capstwo");
-                                $c = $_GET['comres_id'];
                                 $checkoutSession = $data['data'];
-                                $payment = $checkoutSession['attributes']['payments'][0]['attributes'];
-                                $payment_id = $checkoutSession['attributes']['payments'][0];
-                                $pay_id = $payment_id['id'];
-                                $formattedAmount = number_format($payment['amount'] / 100, 2);
-                                if ($payment['status'] === "paid") {
-                                    $insertpaymentid = mysqli_query($db,"UPDATE `completed_reservation` SET `payment_id` = '$pay_id' WHERE `comres_id` = '$c'");
+                                
+                                if (isset($checkoutSession['attributes']['payments'][0]['attributes'])) {
+                                    $payment = $checkoutSession['attributes']['payments'][0]['attributes'];
+                                    
+                                    if (isset($checkoutSession['attributes']['payments'][0]['id'])) {
+                                        $payment_id = $checkoutSession['attributes']['payments'][0];
+                                        $pay_id = $payment_id['id'];
+                                        
+                                        $formattedAmount = number_format($payment['amount'] / 100, 2);
+                            
+                                        if (isset($_GET['comres_id'])) {
+                                            $c = $_GET['comres_id'];
+                                            if ($payment['status'] === "paid") {
+                                                $insertpaymentid = mysqli_query($db, "UPDATE `completed_reservation` SET `payment_id` = '$pay_id' WHERE `comres_id` = '$c'");
+                                            } else {
+                                                $insertpaymentid = mysqli_query($db, "UPDATE `completed_reservation` SET `payment_id` = 'No payment id provided status not paid' WHERE `comres_id` = '$c'");
+                                            }
+                                        } elseif (isset($_GET['wtransac_id'])) {
+                                            $c = $_GET['wtransac_id'];
+                                            if ($payment['status'] === "paid") {
+                                                $insertpaymentid = mysqli_query($db, "UPDATE `walkin_transac` SET `payment_id` = '$pay_id' WHERE `wtransac_id` = '$c'");
+                                            } else {
+                                                $insertpaymentid = mysqli_query($db, "UPDATE `walkin_transac` SET `payment_id` = 'No payment id provided status not paid' WHERE `wtransac_id` = '$c'");
+                                            }
+                                        }
+                            
+                                        echo "<tr>
+                                            <td>{$checkoutSession['id']}</td>
+                                            <td>{$payment['source']['type']}</td>
+                                            <td>{$formattedAmount}</td>
+                                            <td>{$payment['status']}</td>
+                                            <td>{$payment['billing']['email']}</td>
+                                            <td>{$payment['billing']['name']}</td>
+                                            <td>{$payment['billing']['phone']}</td>
+                                            <td>{$payment['source']['id']}</td>
+                                            <td>{$payment_id['id']}</td>
+                                            <td>" . date('Y-m-d H:i:s', $payment['paid_at']) . "</td>
+                                            <td>" . date('Y-m-d H:i:s', $payment['updated_at']) . "</td>
+                                            <td>" . date('Y-m-d H:i:s', $payment['created_at']) . "</td>
+                                        </tr>";
+                                    } else {
+                                        echo "<tr><td colspan='12'>STATUS NOT PAID</td></tr>";
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='12'>STATUS NOT PAID</td></tr>";
                                 }
-                                echo "<tr>
-                                        <td>{$checkoutSession['id']}</td>               
-                                        <td>{$payment['source']['type']}</td>
-                                        <td>{$formattedAmount}</td>
-                                        <td>{$payment['status']}</td>
-                                        <td>{$payment['billing']['email']}</td>
-                                        <td>{$payment['billing']['name']}</td>
-                                        <td>{$payment['billing']['phone']}</td>
-                                        <td>{$payment['source']['id']}</td>
-                                        <td>{$payment_id['id']}</td>
-                                        <td>" . date('Y-m-d H:i:s', $payment['paid_at']) . "</td>
-                                        <td>" . date('Y-m-d H:i:s', $payment['updated_at']) . "</td>
-                                        <td>" . date('Y-m-d H:i:s', $payment['created_at']) . "</td>
-                                    </tr>";
                             } else {
-                                echo "<tr><td colspan='12'>No ID provided in the API response.</td></tr>";
+                                echo "<tr><td colspan='12'>STATUS NOT PAIDtd></tr>";
                             }
-                        }
-                        ?>
-                        </tbody>
+                            ?>
+                            </tbody>
+                          <?php } ?>  
                     </table>
                 </div>
 
@@ -188,6 +212,8 @@ if ($computed_hash === $received_hash) {
                 <script src="resources/js/dash.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
                 <script src="resources/js/sweetalert.js"></script>
+
+
             </div>
         </div>
     </div>

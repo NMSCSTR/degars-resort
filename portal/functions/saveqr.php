@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ");
             if ($db->query($sql) === TRUE) {
                 echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded and the record inserted into the database.";
-                header('Location: ../success.php?customer_id='.$customer_id.'&reservation_id='.$reservation_id.'');
+                header('Location: ../qrsuccess.php?customer_id='.$customer_id.'&reservation_id='.$reservation_id.'');
             } else {
                 echo "Error: " . $sql . "<br>" . $db->error;
             }

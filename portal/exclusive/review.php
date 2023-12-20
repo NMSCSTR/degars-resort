@@ -193,11 +193,11 @@
                                 </div>
 
                                 <div class="d-flex justify-content-center gap-2">
-                                    <a href="http://192.168.1.4/degars-resort/portal/quickstart.php"
-                                        onclick="return confirm('Back to reservation page?. Your current reservation will be undone')"
+                                    <a href="../functions/cancel.php?reservation_id=<?php echo $reservation_id; ?>&customer_id=<?php echo $customer_id; ?>"
+                                        onclick="return confirm('Cancel reservation? Your current reservation will be undone')"
                                         class="btn btn-danger">
-                                        <i class="fas fa-undo"></i>
-                                        Back
+                                        <i class="fas fa-times"></i>
+                                        Cancel
                                     </a>
 
                                     <?php 
@@ -207,7 +207,7 @@
                                     ?>
 
                                     <div class="vr"></div>
-                                    <a href="http://192.168.1.4/degars-resort/portal/exclusive/payviaqr.php?customer_id=<?php echo $customer_id ?>&reservation_id=<?php echo $reservation_id ?>&type=<?php echo $_GET['type']; ?>"
+                                    <a href="payviaqr.php?customer_id=<?php echo $customer_id ?>&reservation_id=<?php echo $reservation_id ?>&type=<?php echo $_GET['type']; ?>"
                                         class="btn btn-outline-primary">
                                         <i class="fas fa-qrcode text-dark"></i>
                                         Pay Via QR

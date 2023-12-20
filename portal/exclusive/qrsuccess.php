@@ -1,25 +1,6 @@
 <?php 
 $db = mysqli_connect("localhost", "root", "", "capstwo");
 
-if(isset($_GET['walkin_id']) && isset($_GET['wcustomer_id'])){
-    $getcustomer = $_GET['wcustomer_id'];
-    $getreservation = $_GET['walkin_id'];
-
-    $f_query = mysqli_query($db, "SELECT * FROM `walkin_transac` WHERE wcustomer_id = '$getcustomer' AND walkin_id = '$getreservation'");
-    $w_query = mysqli_query($db, "SELECT * FROM `walkincustomer` WHERE wcustomer_id = '$getcustomer' AND walkin_id = '$getreservation'");
-
-    if ($f_row = mysqli_fetch_assoc($f_query) && $w_row = mysqli_fetch_assoc($w_query)) {
-        $refno = $f_row['transaction_ref'];
-        $phone_number = $w_row['phone_number'];
-
-        // Update completed reservation status to 'Approved'
-        $update_result = mysqli_query($db, "UPDATE `walkin_transac` SET `status` ='Approved' WHERE `wcustomer_id` = '$getcustomer' AND `walkin_id` = '$getreservation'");
-    } else {
-        // Handle the case where no results were found
-        echo "No results found for the given customer and reservation.";
-    }
-}
-
 if (isset($_GET['reservation_id']) && isset($_GET['customer_id'])) {
     $getcustomer = $_GET['customer_id'];
     $getreservation = $_GET['reservation_id'];
@@ -32,7 +13,7 @@ if (isset($_GET['reservation_id']) && isset($_GET['customer_id'])) {
         $phone_number = $w['phone_number'];
 
         // Update completed reservation status to 'Approved'
-        $update_result = mysqli_query($db, "UPDATE `completed_reservation` SET `status` ='Approved' WHERE `customer_id` = '$getcustomer' AND `reservation_id` = '$getreservation' ");
+        // $update_result = mysqli_query($db, "UPDATE `completed_reservation` SET `status` ='Approved' WHERE `customer_id` = '$getcustomer' AND `reservation_id` = '$getreservation' ");
     } else {
         // Handle the case where no results were found
         echo "No results found for the given customer and reservation.";
@@ -42,28 +23,29 @@ if (isset($_GET['reservation_id']) && isset($_GET['customer_id'])) {
 
 
 
-if ($update_result) {
-    // Update successful, proceed with the rest of the code
-    $message_content = "Congratulations! Mr/Ms Rhondel Pagobo your reservation was approved. Copy or save this transaction reference " . $refno . ". Please check your email we have sent a copy of your receipt. If you have any questions about this payment, contact DEGARS RESORT at mariloumercado1955@gmail.com";
+// if ($update_result) {
+//     // Update successful, proceed with the rest of the code
+//     $message_content = "Congratulations! Mr/Ms Rhondel Pagobo your reservation was approved. Copy or save this transaction reference " . $refno . ". Please check your email we have sent a copy of your receipt. If you have any questions about this payment, contact DEGARS RESORT at mariloumercado1955@gmail.com";
     
-    $ch = curl_init();
-    $parameters = array(
-        'apikey' => '71a0b82e7b5fbd2fb958fcf22d844280 99', 
-        'number' => $phone_number,
-        'message' => $message_content,
-        'sendername' => 'SEMAPHORE'
-    );
+//     $ch = curl_init();
+//     $parameters = array(
+//         'apikey' => '71a0b82e7b5fbd2fb958fcf22d844280 99', 
+//         'number' => $phone_number,
+//         'message' => $message_content,
+//         'sendername' => 'SEMAPHORE'
+//     );
 
-    curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//     curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
+//     curl_setopt($ch, CURLOPT_POST, 1);
+//     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+//     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     
-    $output = curl_exec($ch);
-    curl_close($ch);
-    $db->close();
-   }   // Rest of your HTML code here
-?>
+//     $output = curl_exec($ch);
+//     curl_close($ch);
+//     $db->close();
+//    }   // Rest of your HTML code here
+// ?>
+
 <!-- Your HTML code continues... -->
 <header>
     <?php include '../portHeader.php';?>
@@ -107,7 +89,7 @@ if ($update_result) {
         </svg>
     </div>
 <h1 class="text-center fw-bolder">Congratulations!</h1><br>
-    <p class="card-text text-dark text-center h5">Your <span class="text-danger">Degar's Resort Reservation</span>  transaction is successful! Please take a screenshot or copy your transaction reference.</p><br>
+    <p class="card-text text-dark text-center h5">Your <span class="text-danger">Degar's Resort Reservation</span>  transaction is successful! Please take a screenshot or copy your transaction reference. We will further review the submitted receipt.</p><br>
     <p class="card-text text-dark text-center h5">Transaction Reference: <span class="text-danger fw-bold"><?= $refno ?></span></p><br>
     <p><a href="../../index.php" class="d-sm-flex justify-content-center">Back to home page.</a></p>
 

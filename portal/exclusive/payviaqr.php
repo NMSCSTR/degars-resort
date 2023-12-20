@@ -50,7 +50,7 @@ body {
                             </li>
                             <hr>
                             <div class="d-flex justify-content-end gap-2">
-                                <a href="http://192.168.1.4/degars-resort/portal/exclusive/review.php?customer_id=<?php echo $customer_id ?>&reservation_id=<?php echo $reservation_id ?>"
+                                <a href="review.php?customer_id=<?php echo $customer_id ?>&reservation_id=<?php echo $reservation_id ?>"
                                     class="btn btn-outline-danger">
                                     Back
                                 </a>

@@ -23,7 +23,7 @@ body {
 <main>
     <div class="container-sm mt-5">
         <div class="row g-0 position-relative">
-        <div id="image-container" class="image-container"></div>
+            <div id="image-container" class="image-container"></div>
             <div class="container-fluid col-md-6 p-4 ps-md-0">
                 <h4 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> W A L K I N</h4>
                 <hr>
@@ -42,8 +42,7 @@ body {
                     <div class="form-floating mb-3">
                         <select class="form-select" id="floatingSelect" name="aminities_id"
                             aria-label="Floating label select example">
-                            <option selected>Open this select cottages</option>
-                            <option value="0">Not Rent</option>
+                            <option disabled selected>Open this select cottages</option>
                             <?php 
                             $db = mysqli_connect('localhost', 'root', '', 'capstwo');
                             $fetch_all = "SELECT * FROM `aminities`";
@@ -56,30 +55,30 @@ body {
                             <?php 
                             foreach ($options as $option) {
                             ?>
-                                <option value="<?php echo $option['aminities_id']; ?>">
-                                    <?php echo $option['name']; ?> | ₱<?php echo $option['rates']; ?>
-                                </option>
+                            <option value="<?php echo $option['aminities_id']; ?>">
+                                <?php echo $option['name']; ?> | ₱<?php echo $option['rates']; ?>
+                            </option>
                             <?php 
                             }
                             ?>
                         </select>
                         <label for="floatingSelect">Select Aminities</label>
-
-                         </div>
-
-                            <div class="d-flex justify-content-end gap-2">
-                                <a href="../quickstart.php" class="btn btn-outline-danger">
-                                    <i class="fas fa-undo text-dark"></i>
-                                    Back</a>
-                                <div class="vr"></div>
-                                <button type="submit" class="btn btn-dark shadow-lg rounded" id="forDisabled"
-                                    name="addwalkin">Next <i class="fas fa-check-circle"></i>
-                                </button>
-                            </div>
+                    </div>
+                    <div class="d-flex justify-content-end gap-2">
+                        <a href="../quickstart.php" class="btn btn-outline-danger">
+                            <i class="fas fa-undo"></i>
+                            Back</a>
+                        <div class="vr"></div>
+                        <button type="submit" class="btn btn-dark shadow-lg rounded" id="forDisabled"
+                            name="addwalkin">Next <i class="fas fa-check-circle"></i>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
+
+
 </main>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -95,37 +94,42 @@ function validateInput(inputElement) {
     }
 }
 </script>
-    <script>
-        $(document).ready(function () {
-            // Event listener for select change
-            $('#floatingSelect').change(function () {
-                var selectedAminitiesId = $(this).val();
+<script>
+$(document).ready(function() {
+    // Event listener for select change
+    $('#floatingSelect').change(function() {
+        var selectedAminitiesId = $(this).val();
 
-                // Check if an option is selected
-                if (selectedAminitiesId !== "") {
-                    // Make an AJAX request to fetch images based on the selected aminities_id
-                    $.ajax({
-                        type: 'POST',
-                        url: 'showimgs.php', // Replace with the actual PHP script handling the request
-                        data: { aminities_id: selectedAminitiesId },
-                        dataType: 'json', // Assuming the server will return JSON
-                        success: function (response) {
-                            // Update the image container with the fetched images
-                            var imageContainer = $('#image-container');
-                            imageContainer.html(''); // Clear existing content
+        // Check if an option is selected
+        if (selectedAminitiesId !== "") {
+            // Make an AJAX request to fetch images based on the selected aminities_id
+            $.ajax({
+                type: 'POST',
+                url: 'showimgs.php', // Replace with the actual PHP script handling the request
+                data: {
+                    aminities_id: selectedAminitiesId
+                },
+                dataType: 'json', // Assuming the server will return JSON
+                success: function(response) {
+                    // Update the image container with the fetched images
+                    var imageContainer = $('#image-container');
+                    imageContainer.html(''); // Clear existing content
 
-                            // Display the images
-                            imageContainer.append('<img src="' + response.image1 + '" alt="Image 1">');
-                            imageContainer.append('<img src="' + response.image2 + '" alt="Image 2">');
-                            imageContainer.append('<img src="' + response.image3 + '" alt="Image 3">');
-                        },
-                        error: function (error) {
-                            console.log('Error fetching images:', error);
-                        }
-                    });
+                    // Display the images
+                    imageContainer.append('<img src="' + response.image1 +
+                        '" alt="Image 1">');
+                    imageContainer.append('<img src="' + response.image2 +
+                        '" alt="Image 2">');
+                    imageContainer.append('<img src="' + response.image3 +
+                        '" alt="Image 3">');
+                },
+                error: function(error) {
+                    console.log('Error fetching images:', error);
                 }
             });
-        });
-    </script>
+        }
+    });
+});
+</script>
 
 <?php include '../portFooter.php';?>

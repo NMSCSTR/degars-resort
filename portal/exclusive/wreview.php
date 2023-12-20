@@ -84,7 +84,7 @@
                                     <h1><i class="fas fa-campground"></i></h1>
                                     <div class="d-flex flex-column ms-3">
                                         <span class="h5 mb-1">Aminities</span>
-                                        <span class="small text-muted">Rubber Table Umbrella</span>
+                                        <span class="small text-muted"><?php echo $faminities['name'];?></span>
                                     </div>
                                 </div>
                                 <div>
@@ -100,7 +100,14 @@
                                 <input type="hidden" name="wcustomer_id" value="<?php echo $wcustomer_id ?>">
                                 <input type="hidden" name="status" value="Pending">
                                 <input type="hidden" name="totalamount" value="<?php echo $gettotalamount ?>">
-                                <div class="mt-3  d-flex justify-content-end">
+                                <div class="mt-3 d-flex justify-content-end gap-2">
+                                <a href="../functions/cancel.php?reservation_id=<?php echo $reservation_id; ?>&customer_id=<?php echo $customer_id; ?>"
+                                        onclick="return confirm('Cancel reservation? Your current reservation will be undone')"
+                                        class="btn btn-danger">
+                                        <i class="fas fa-times"></i>
+                                        Cancel
+                                    </a>
+                                    <div class="vr"> </div>
                                     <button type="submit" name="savewtransaction"
                                         onclick="return confirm('Make sure to have remaining balance before proceeding')"
                                         class="btn btn-primary btn-block btn-lg">

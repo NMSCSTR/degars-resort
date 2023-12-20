@@ -44,7 +44,10 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                         <?php 
                             include_once 'functions/getwalk.php';
                             while ($row = $fetch->fetch_array()) { ?>
-
+                            <?php 
+                                $checkout_id = $row['checkout_id'];
+                                $hash = hash('sha256', $checkout_id);
+                            ?>
                             <td><?php echo $row['wtransac_id']; ?></td>
                             <td><?php echo $row['transaction_ref']; ?></td>
                             <td><span
@@ -65,6 +68,11 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                 <a class="btn btn-outline-success btn-sm border-0" title="Mark as done"
                                     href="functions/markasdonewalkin.php?walkin_id=<?php echo $row['walkin_id']; ?>&wcustomer_id=<?php echo $row['wcustomer_id']; ?>&approvedby=<?php echo $_SESSION['users_username'];?>"><i
                                         class="fas fa-check-circle"></i> Mark As Done
+                                </a>
+
+                                <a class="btn btn-outline-warning btn-sm border-0" title="Check Reservation"
+                                    href="allpayment.php?checkout_id=<?php echo $checkout_id; ?>&hash=<?php echo $hash; ?>&wtransac_id=<?php echo $row['wtransac_id'] ?>">
+                                    <i class="far fa-calendar-check"></i> Check
                                 </a>
                             </td>
 

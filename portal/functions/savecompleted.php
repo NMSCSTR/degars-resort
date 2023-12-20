@@ -70,12 +70,12 @@ curl_setopt_array($curl, [
                 [
                     'currency' => 'PHP',
                     'amount' => $totalamount,
-                    'description' => 'RESORT RESERVATION',
+                    'description' => 'RESORT RESERVATION : ' . $transaction_ref,
                     'name' => 'RESERVATION',
                     'quantity' => 1
                 ]
             ]
-        ]
+        ] 
     ]
     ]),
     CURLOPT_HTTPHEADER => [

@@ -57,7 +57,7 @@ $getRates = $_GET['rates'];
                         <label for="floatingInput"><i class="fas fa-dollar-sign"></i> Rates</label>
                     </div>  
                     <div class="d-flex justify-content-end gap-2">
-                        <a href="http://192.168.1.4/degars-resort/portal/quickstart.php" class="btn btn-outline-danger">
+                        <a href="../quickstart.php" class="btn btn-outline-danger">
                         <i class="fas fa-undo text-dark"></i>
                             Back</a>
                         <div class="vr"></div>

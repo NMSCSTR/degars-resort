@@ -41,7 +41,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                 <tr>
                                     <?php 
                                         $db = mysqli_connect("localhost","root","","capstwo");
-                                        $fetchcottages = mysqli_query($db,"SELECT * FROM `aminities`");
+                                        $fetchcottages = mysqli_query($db,"SELECT * FROM `aminities` WHERE `rates` != 0");
                                         while ($row = $fetchcottages->fetch_array()) { ?>
                                     <?php 
                                         $imagePath1 = $row["image1"];
