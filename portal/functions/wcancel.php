@@ -1,12 +1,12 @@
 <?php 
 $db = mysqli_connect("localhost","root","","capstwo");
 
-if(isset($_GET['reservation_id']) && isset($_GET['customer_id'])){
-    $r = $_GET['reservation_id'];
-    $c = $_GET['customer_id'];
+if(isset($_GET['walkin_id']) && isset($_GET['wcustomer_id'])){
+    $r = $_GET['walkin_id'];
+    $c = $_GET['wcustomer_id'];
 
-    $dr =mysqli_query($db, "DELETE FROM `reservation` WHERE `reservation_id` = '$r'");
-    $cr =mysqli_query($db, "DELETE FROM `customer` WHERE `customer_id` = '$c'");
+    $dr =mysqli_query($db, "DELETE FROM `walkin` WHERE `walkin_id` = '$r'");
+    $cr =mysqli_query($db, "DELETE FROM `walkincustomer` WHERE `wcustomer_id` = '$c'");
 
     if ($dr && $cr) {
         echo "<script>

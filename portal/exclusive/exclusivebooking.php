@@ -1,9 +1,18 @@
 <?php
 session_start();
 error_reporting(E_ALL);
-
+$db = mysqli_connect('localhost', 'root', '', 'capstwo');
 $getType = $_GET['type'];
-$getRates = $_GET['rates'];
+$fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
+if ($getType == "Package1") {
+    $getRates = $fetchcp['package1_rate'];
+}elseif ($getType == "Package2") {
+    $getRates = $fetchcp['package2_rate'];
+}elseif ($getType == "Exclusive") {
+    $getRates = $fetchcp['exclusiverate'];
+}
+
+
 ?>
 <style>
     html {
@@ -53,7 +62,7 @@ $getRates = $_GET['rates'];
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control text-capitalize fw-bold" name="rates" id="floatingInput"
-                            value="<?= $getRates ?>" placeholder="rates" required>
+                            value="<?php echo $getRates ?>" placeholder="rates" required>
                         <label for="floatingInput"><i class="fas fa-dollar-sign"></i> Rates</label>
                     </div>  
                     <div class="d-flex justify-content-end gap-2">

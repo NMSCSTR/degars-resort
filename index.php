@@ -71,7 +71,7 @@ header,
         <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light shadow shadow-lg">
             <div class="container-fluid">
                 <!-- Navbar brand -->
-                <a class="navbar-brand fw-bold" href="#">
+                <a class="navbar-brand fw-bolder" href="#">
                     <img src="https://img.icons8.com/external-others-inmotus-design/67/external-D-qwerty-keypad-others-inmotus-design.png"
                         alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
                     Degars Resort
@@ -101,8 +101,13 @@ header,
                             <a class="nav-link" href="#contact">Contact</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" data-toggle="modal"
+                                data-target="#exampleModal">Events & Announcements</a>
+                        </li>
+                        <li class="nav-item">
                             <!-- Button trigger modal -->
-                            <a class="nav-link text-primary" data-toggle="modal" data-target="#exampleModalCenter">Check Reservation</a>
+                            <a class="nav-link text-primary" data-toggle="modal" data-target="#exampleModalCenter">Check
+                                Reservation</a>
                         </li>
                     </ul>
                     <!-- Links -->
@@ -124,7 +129,7 @@ header,
         </nav>
         <!--/.Navbar-->
         <!--Mask-->
-        <!-- Modal -->
+        <!-- Search Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -138,10 +143,35 @@ header,
                     <div class="modal-body">
                         <form action="portal/functions/searchref.php" method="post">
                             <input type="text" name="transaction_ref" class="dropdown-item form-control mb-2"
-                                style="border: 1px solid #ced4da;" placeholder="Your transaction reference here" maxlength="10" minlength="9" required>
+                                style="border: 1px solid #ced4da;" placeholder="Your transaction reference here"
+                                maxlength="10" minlength="9" required>
                             <button type="submit" name="searchref"
                                 class="btn btn-primary btn-block btn-sm">Search</button>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Search Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Events & Announcements</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <?php 
+                            $db = mysqli_connect('localhost', 'root', '', 'capstwo');
+                            $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
+                        ?>
+                        <label for="">Events</label>
+                        <img src="<?php echo $fetchcp['eventimage'] ?>" class="img-fluid" alt=""><hr>
+                        <label for="">Announcements</label>
+                        <img src="<?php echo $fetchcp['announcementimage'] ?>" class="img-fluid" alt="">
                     </div>
                 </div>
             </div>
@@ -231,7 +261,7 @@ header,
 
             <section id="packages" class="text-center">
                 <h2 class="mb-5 font-weight-bold"> Affordable Packages</h2>
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row mb-3 text-center">
                         <div class="col-sm-6">
                             <div class="card mb-4 rounded-3 shadow shadow-md">
@@ -241,7 +271,7 @@ header,
                                 <div class="card-body">
                                     <img src="portal/exclusive/imgs/pkg1.jpg" class="card-img-top mb-2"
                                         alt="Package 1 Image">
-                                    <a href="../exclusive/exclusivebooking.php?type=Package1&rates=5500"
+                                    <a href="portal/exclusive/exclusivebooking.php?type=Package1"
                                         class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book
                                         Now</a>
                                 </div>
@@ -256,7 +286,7 @@ header,
                                 <div class="card-body">
                                     <img src="portal/exclusive/imgs/pkg2.jpg" class="card-img-top mb-2"
                                         alt="Package 2 Image">
-                                    <a href="../exclusive/exclusivebooking.php?type=Package2&rates=8500"
+                                    <a href="portal/exclusive/exclusivebooking.php?type=Package2"
                                         class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book
                                         Now</a>
                                 </div>

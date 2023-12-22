@@ -1,6 +1,8 @@
 <?php
 session_start();
 error_reporting(E_ALL);
+$db = mysqli_connect('localhost', 'root', '', 'capstwo');
+$fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
 
 ?>
 <style>
@@ -30,7 +32,7 @@ body {
                 <form action="../functions/savewalkin.php" method="post">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control text-capitalize fw-bold" name="entrancefee"
-                            id="floatingInput" value="60" placeholder="entrancefee" required readonly>
+                            id="floatingInput" value="<?php echo $fetchcp['entrancefee']; ?>" placeholder="entrancefee" required readonly>
                         <label for="floatingInput"><i class="fas fa-dollar-sign"></i> Entrance fee</label>
                     </div>
                     <div class="form-floating mb-3">

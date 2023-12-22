@@ -101,7 +101,7 @@
                                 <input type="hidden" name="status" value="Pending">
                                 <input type="hidden" name="totalamount" value="<?php echo $gettotalamount ?>">
                                 <div class="mt-3 d-flex justify-content-end gap-2">
-                                <a href="../functions/cancel.php?reservation_id=<?php echo $reservation_id; ?>&customer_id=<?php echo $customer_id; ?>"
+                                <a href="../functions/wcancel.php?walkin_id=<?php echo $walkin_id; ?>&wcustomer_id=<?php echo $wcustomer_id; ?>"
                                         onclick="return confirm('Cancel reservation? Your current reservation will be undone')"
                                         class="btn btn-danger">
                                         <i class="fas fa-times"></i>

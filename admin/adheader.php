@@ -174,6 +174,7 @@ body {
             </ul>
         </div>
 
+        <a href="controls.php" style="font-size: 18px;"><i class="fas fa-sliders-h"></i> Control Panel</a>
         <a href="users.php" style="font-size: 18px;"><i class="fas fa-users"></i> Users</a>
         <?php
     }

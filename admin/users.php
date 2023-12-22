@@ -38,25 +38,25 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <?php 
-                                        $db = mysqli_connect("localhost","root","","capstwo");
-                                        $fetchcottages = mysqli_query($db,"SELECT * FROM `admin`");
-                                        while ($row = $fetchcottages->fetch_array()) { ?>
-                                    <td><?php echo $row['users_id']; ?></td>
-                                    <td><?php echo $row['users_firstname']; ?></td>
-                                    <td><?php echo $row['users_lastname']; ?></td>
-                                    <td><?php echo $row['users_role']; ?></td>
-                                    <td><?php echo $row['users_username']; ?></td>
-                                    <!-- <td><?php echo $row['users_password']; ?></td> -->
-                                    <td>
-                                        <a href="functions/deleteuser.php?users_id=<?php echo $row['users_id']; ?>"
-                                            onclick="return confirm('Are you sure you want to delete this data?')"
-                                            class="btn btn-outline-danger border-0"> <i class="fas fa-trash-alt"></i>
-                                            Delete</a>
-                                        <a href="" class="btn btn-outline-primary border-0" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal<?php echo $row['users_id']; ?>"><i
-                                                class="fas fa-sync-alt"></i> Update</a>
-                                    </td>
+                                <?php 
+                                    $db = mysqli_connect("localhost","root","","capstwo");
+                                    $fetchcottages = mysqli_query($db,"SELECT * FROM `admin`");
+                                    while ($row = $fetchcottages->fetch_array()) { ?>
+                                        <td><?php echo $row['users_id']; ?></td>
+                                        <td><?php echo $row['users_firstname']; ?></td>
+                                        <td><?php echo $row['users_lastname']; ?></td>
+                                        <td><?php echo $row['users_role']; ?></td>
+                                        <td class="text-primary"><?php echo $row['users_username']; ?></td>
+                                        <!-- <td><?php echo $row['users_password']; ?></td> -->
+                                        <td>
+                                            <a href="functions/deleteuser.php?users_id=<?php echo $row['users_id']; ?>"
+                                                onclick="return confirm('Are you sure you want to delete this data?')"
+                                                class="btn btn-outline-danger border-0"> <i class="fas fa-trash-alt"></i>
+                                                Delete</a>
+                                            <a href="" class="btn btn-outline-primary border-0" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal<?php echo $row['users_id']; ?>"><i
+                                                    class="fas fa-sync-alt"></i> Update</a>
+                                        </td>
 
                                     <!-- Edit Cottages Modal -->
                                     <div class="modal fade" id="exampleModal<?php echo $row['users_id']; ?>"

@@ -1,4 +1,10 @@
 <?php include '../portHeader.php'; ?>
+
+<?php 
+$db = mysqli_connect('localhost', 'root', '', 'capstwo');
+$fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
+
+?>
 <title>Package Booking</title>
 <style>
     .pkg {
@@ -25,8 +31,8 @@
                         <h4 class="my-0 fw-normal">Package 1</h4>
                     </div>
                     <div class="card-body">
-                        <img src="../exclusive/imgs/pkg1.jpg" class="img-fluid mb-2" style="height: 500px;">
-                        <a href="../exclusive/exclusivebooking.php?type=Package1&rates=5500"class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book Now</a>
+                        <img src="<?php echo $fetchcp['package1_imagelink']?>" class="img-fluid mb-2" style="height: 500px;">
+                        <a href="../exclusive/exclusivebooking.php?type=Package1"class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book Now</a>
                     </div>
                 </div>
             </div>
@@ -38,8 +44,8 @@
                     </div>
                     <div class="card-body">
                         <!-- <h1 class="card-title pricing-card-title"><span>&#8369</span>8,500.00</h1> -->
-                        <img src="../exclusive/imgs/pkg2.jpg" class="img-fluid mb-2" style="height: 500px;">
-                        <a href="../exclusive/exclusivebooking.php?type=Package2&rates=8500"class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book Now</a>
+                        <img src="<?php echo $fetchcp['package2_imagelink']?>" class="img-fluid mb-2" style="height: 500px;">
+                        <a href="../exclusive/exclusivebooking.php?type=Package2"class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book Now</a>
                     </div>
                 </div>
             </div>

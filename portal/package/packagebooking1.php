@@ -21,6 +21,8 @@
                                     </a>
                                 </div>
                             </div>
+                            <?php
+
                             <div class="col-md-6 col-lg-6 col-xl-6">
                                 <h2 class="text-danger">Package 1</h2>
                                 <hr>
