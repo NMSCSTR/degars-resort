@@ -109,7 +109,7 @@ body {
     <nav class="navbar navbar-light bg-light shadow">
         <div class="container">
             <div class="btn btn-light">
-                <span id="openNav" style="font-size:20px;cursor:pointer;" onclick="openNav()">&#9776; Degars
+                <span id="openNav" title="Open Sidebar" style="font-size:20px;cursor:pointer;" onclick="openNav()">&#9776; Degars
                     Resort</span>
             </div>
 
@@ -129,7 +129,7 @@ body {
 
 
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="javascript:void(0)" class="closebtn text-danger" title="Hide Sidebar" onclick="closeNav()">&times;</a>
         <a href="dashboard.php" style="font-size: 18px;"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
         <a href="#inventory-collapse" data-bs-toggle="collapse" class="collapsed" style="font-size: 18px;">
             <i class="fas fa-calendar-plus"></i> Reservation <span class="toggle-icon fw-bolder">&#60;</span>

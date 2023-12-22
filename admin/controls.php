@@ -18,7 +18,7 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                 </ol>
             </nav>
         </div>
-        <main>
+        <main style="font-size: 15px;">
             <div class="container">
                 <div class="card shadow bg-body rounded">
                     <div class="card-body">

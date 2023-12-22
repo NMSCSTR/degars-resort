@@ -19,7 +19,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
         <div class="card border-0 p-4 shadow">
             <div class="table-responsive">
                 <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">
-                    <thead>
+                    <thead style="font-size: 15px;">
                         <tr>
                             <th>Ref#</th>
                             <th>Status</th>
@@ -40,7 +40,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="font-size: 15px;">
                         <tr>
                             <?php 
                                 include_once 'functions/getres.php';
@@ -71,7 +71,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                 <?php
                             }
                             ?>
-                            <td><a href="<?php echo $row['checkouturl']; ?>"> <?php echo $row['checkouturl']; ?></a></td>
+                            <td><a style="font-size: 15px;" href="<?php echo $row['checkouturl']; ?>"> <?php echo $row['checkouturl']; ?></a></td>
         
                             <td>
                                 <a class="btn btn-outline-success btn-sm border-0" title="Mark as done"

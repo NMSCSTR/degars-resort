@@ -19,7 +19,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
         <div class="card p-4 shadow">
         <div class="table-responsive">
                 <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">
-                    <thead>
+                    <thead style="font-size: 15px;">
                         <tr>
                             <th>Transac Id</th>
                             <th>Ref #</th>
@@ -39,7 +39,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             <th>Operation</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="font-size: 15px;">
                         <tr>
                         <?php 
                             include_once 'functions/getwalk.php';

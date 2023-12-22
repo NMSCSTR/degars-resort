@@ -14,7 +14,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
         </nav>
     </div>
 
-    <main>
+    <main style="font-size: 15px;">
         <div class="container">
             <div class="card shadow bg-body rounded">
                 <div class="card-body">
