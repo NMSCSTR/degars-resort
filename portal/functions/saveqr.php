@@ -55,11 +55,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $checkout_url ="Via Qr";
             
 
-            if ($_POST['mode_of_payment'] == 'Full Payment') {
-                $modeofpayment = $_POST['mode_of_payment'];
+            if ($_POST['modeofpayment'] === "Full Payment") {
+                $modeofpayment = $_POST['modeofpayment'];
                 $totalamount = $_POST['totalamount'] * 100;
             } else {
-                $modeofpayment = $_POST['mode_of_payment'];
+                $modeofpayment = $_POST['modeofpayment'];
                 $totalamount = ($_POST['totalamount'] * 100) / 2;
             }
 
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ");
             if ($db->query($sql) === TRUE) {
                 echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded and the record inserted into the database.";
-                header('Location: ../qrsuccess.php?customer_id='.$customer_id.'&reservation_id='.$reservation_id.'');
+                header('Location: ../exclusive/qrsuccess.php?customer_id='.$customer_id.'&reservation_id='.$reservation_id.'');
             } else {
                 echo "Error: " . $sql . "<br>" . $db->error;
             }

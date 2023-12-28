@@ -34,6 +34,7 @@ body {
 }
 </style>
 
+
 <body>
     <header>
         <nav class="navbar navbar-expand-xl bg-light bg-gradient navbar-light shadow">
@@ -117,12 +118,12 @@ body {
             if ($fetch) {
                 while ($row = mysqli_fetch_assoc($fetch)) { 
                     $number = $row['totalamount'];
-                    $totalamount = number_format($number / 100, 2);
+                    $totalamount = $number / 100;
 
                     if ($row['modeofpayment'] === "50% Downpayment") {
                         $balance = $row['rates'] / 2;
                     } else {
-                        $balance = $row['rates'] - $totalamount;
+                        $balance = $totalamount;
                     }
                     
             ?>
@@ -137,7 +138,7 @@ body {
                         </div>
                         <div class="col-xl-3 float-end">
                             <?php 
-                                if ($row['status'] ===  "Pending" || $row['status'] === "Refunded" || $row['status'] === "Declined") { ?>
+                                if ($row['status'] ===  "Pending" || $row['status'] === "Refunded" || $row['status'] === "Declined" || $row['status'] === "Done") { ?>
                                 <a hidden class="btn btn-light text-capitalize border-0"
                                 onclick="return confirm('8% of the total amount will be deducted for transaction refund. Are you sure you want to cancel your reservation and request refund?');"
                                 data-mdb-ripple-color="dark"
@@ -193,7 +194,7 @@ body {
                                         </span><?php echo date('F d, Y', strtotime($row['paymentduedate'])); ?></li>
                                     <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                                             class="me-1 fw-bold">Status:</span><span
-                                            class="badge badge <?php echo $row['status'] === 'Approved' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?> fw-bold">
+                                            class="badge badge <?php echo $row['status'] === 'Approved' || $row['status'] === 'Approved:QR' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?> fw-bold">
                                             <?php echo $row['status']; ?></span></li>
                                 </ul>
                             </div>
@@ -207,8 +208,7 @@ body {
                                         <th scope="col">Type</th>
                                         <th scope="col">Mode of payment</th>
                                         <th scope="col">Rates</th>
-                                        <th scope="col">Receive Amount</th>
-                                        <th scope="col">Balance</th>
+                                        <th scope="col">Payment</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -218,11 +218,8 @@ body {
                                         <td><?php echo $row['modeofpayment']; ?></td>
                                         <td><?php echo number_format($row['rates'], 2); ?></td>
                                         <td><?php echo number_format($totalamount, 2); ?></td>
-                                        <td><?php echo number_format($balance, 2); ?></td>
                                     </tr>
-
                                 </tbody>
-
                             </table>
                         </div>
                         <div class="row">
@@ -240,7 +237,17 @@ body {
                                 </ul>
                                 <p class="text-black float-start"><span class="text-black me-3"> Remaining
                                         Balance</span><span
-                                        style="font-size: 25px;"><?php echo number_format($balance, 2); ?></span></p>
+                                        style="font-size: 25px;">
+                                        <?php 
+                                        if ($row['status'] === "Done" || $row['status'] === "Approved:QR") { ?>
+                                            <?php echo number_format(0, 2); ?>
+                                        <?php } elseif ($row['modeofpayment'] === "50% Downpayment") { ?>
+                                            <?php echo number_format($balance, 2); ?>
+                                        <?php } else { ?>
+                                            <?php echo number_format($totalamount, 2); ?>
+                                        <?php }?>
+                                        
+                                    </span></p>
                             </div>
                         </div>
                         <hr>
@@ -250,7 +257,7 @@ body {
                             </div>
                             <div class="col-xl-2">
                                 <?php 
-                                    if ($row['status'] === "Approved" || $row['status'] === "Declined" || $row['status'] === "Refunded") { ?>
+                                    if ($row['status'] === "Approved" || $row['status'] === "Declined" || $row['status'] === "Refunded" || $row['status'] === "Done" || $row['status'] === "Pending" || $row['status'] === "Approved:QR") { ?>
                                 <a hidden href="<?php echo $row['checkouturl']; ?>" id="payNowBtn"
                                     class="btn btn-primary text-capitalize">Pay Now <i class="fas fa-lock"></i></a>
                                 <?php } else { ?>

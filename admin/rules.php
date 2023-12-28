@@ -26,8 +26,8 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                         <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th class="text-center"> Type</th>
-                                    <th class="text-center"> Rules</th>
+                                    <th class="text-center">Type</th>
+                                    <th class="text-center">Rules</th>
                                     <th class="text-center">Operation</th>
                                 </tr>
                             </thead>
@@ -40,7 +40,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                     <td><?php echo $row['type']; ?></td>
                                     <td class="text-wrap"><?php echo $row['rules']; ?></td>
                                     <td>
-                                        <a href="functions/deleterule.php?users_id=<?php echo $row['rule_id']; ?>"
+                                        <a href="functions/deleterule.php?rule_id=<?php echo $row['rule_id']; ?>"
                                             onclick="return confirm('Are you sure you want to delete this data?')"
                                             class="btn btn-outline-danger border-0"> <i class="fas fa-trash-alt"></i>
                                             Delete</a>

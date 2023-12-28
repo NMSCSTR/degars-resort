@@ -1,4 +1,5 @@
 <?php
+session_start();
 $db = mysqli_connect("localhost","root","","capstwo");
 
 if(isset($_POST['savewcustomer'])){
@@ -13,6 +14,8 @@ if(isset($_POST['savewcustomer'])){
     //$getdetails = mysqli_fetch_assoc(mysqli_query($db,"SELECT * FROM walkin WHERE `walkin_id` = '$walkin_id'"));
 
     if ($savecustomer) {
+        $_SESSION['status'] = "Inserted Successfully";
+        $_SESSION['code'] = "success";
         $getwcus_id = mysqli_query($db, "SELECT * FROM `walkincustomer` ORDER BY `datetimeadded` DESC LIMIT 1");
         $fwcus = mysqli_fetch_array($getwcus_id);
         $wcustomer_id = $fwcus['wcustomer_id'];

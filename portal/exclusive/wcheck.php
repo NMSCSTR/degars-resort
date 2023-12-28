@@ -129,7 +129,7 @@ body {
                         </div>
                         <div class="col-xl-3 float-end">
                             <?php 
-                                if ($row['status'] ===  "Pending" || $row['status'] === "Refunded" ||$row['status'] === "Declined") { ?>
+                                if ($row['status'] ===  "Pending" || $row['status'] === "Refunded" ||$row['status'] === "Declined" || $row['status'] === "Done") { ?>
                             <a hidden class="btn btn-light text-capitalize border-0"
                                 onclick="return confirm('8% of the total amount will be deducted for transaction refund. Are you sure you want to cancel your reservation and request refund?');"
                                 data-mdb-ripple-color="dark" 
@@ -239,7 +239,7 @@ body {
                             </div>
                             <div class="col-xl-2">
                                 <?php 
-                                    if ($row['status'] === "Approved" || $row['status'] === "Refunded" || $row['status'] === "Declined") { ?>
+                                    if ($row['status'] === "Approved" || $row['status'] === "Refunded" || $row['status'] === "Declined" || $row['status'] === "Done") { ?>
                                 <a hidden href="<?php echo $row['checkouturl']; ?>" id="payNowBtn"
                                     class="btn btn-primary text-capitalize">Pay Now <i class="fas fa-lock"></i></a>
                                 <?php } else { ?>

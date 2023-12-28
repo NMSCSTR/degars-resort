@@ -117,6 +117,7 @@
 </script>
 <script src="sweetalert.js"></script>
 <?php 
+
     if (isset($_SESSION['status']) && $_SESSION['status'] != '') 
     { ?>
         <script>
@@ -127,7 +128,7 @@
             showConfirmButton: false,
             timer: 2500
         })
-             // html: '<?php echo $_SESSION['code'];?>',
+             
     </script>
 
         <?php 

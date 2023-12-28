@@ -34,7 +34,8 @@ if (isset($_POST['addwalkin'])) {
     $addreservation = mysqli_query($db, "INSERT INTO `walkin` (`entrancefee`, `numberofheads`, `aminities_id`) VALUES ('$entrancefee', '$numberofheads', '$aminities_id')");
     
     if ($addreservation) {
-        
+        $_SESSION['status'] = "Inserted Successfully";
+        $_SESSION['code'] = "success";
         $get_last_id = mysqli_query($db, "SELECT * FROM `walkin` ORDER BY `dateadded` DESC LIMIT 1");
         $fetchrow = mysqli_fetch_array($get_last_id);
         $_SESSION['walkin_id'] = $fetchrow['walkin_id'];

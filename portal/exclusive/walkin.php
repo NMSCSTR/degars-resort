@@ -21,18 +21,21 @@ body {
 }
 </style>
 <?php include '../portHeader.php'; ?>
-<title>Degars | Walkin</title>
+<title>Degars | Walk-In</title>
 <main>
     <div class="container-sm mt-5">
         <div class="row g-0 position-relative">
             <div id="image-container" class="image-container"></div>
-            <div class="container-fluid col-md-6 p-4 ps-md-0">
-                <h4 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> W A L K I N</h4>
+            <div class="container-fluid col-md-8 p-4 ps-md-0">
+                <h4 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> W A L K - I N</h4>
                 <hr>
                 <form action="../functions/savewalkin.php" method="post">
+                    <a href="" class="d-flex justify-content-end" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">View Aminities</a>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control text-capitalize fw-bold" name="entrancefee"
-                            id="floatingInput" value="<?php echo $fetchcp['entrancefee']; ?>" placeholder="entrancefee" required readonly>
+                            id="floatingInput" value="<?php echo $fetchcp['entrancefee']; ?>" placeholder="entrancefee"
+                            required readonly>
                         <label for="floatingInput"><i class="fas fa-dollar-sign"></i> Entrance fee</label>
                     </div>
                     <div class="form-floating mb-3">
@@ -43,8 +46,8 @@ body {
                     </div>
                     <div class="form-floating mb-3">
                         <select class="form-select" id="floatingSelect" name="aminities_id"
-                            aria-label="Floating label select example">
-                            <option disabled selected>Open this select cottages</option>
+                            aria-label="Floating label select example" required>
+                            <option value="8" selected>Open this select cottages</option>
                             <?php 
                             $db = mysqli_connect('localhost', 'root', '', 'capstwo');
                             $fetch_all = "SELECT * FROM `aminities`";
@@ -58,13 +61,14 @@ body {
                             foreach ($options as $option) {
                             ?>
                             <option value="<?php echo $option['aminities_id']; ?>">
-                                <?php echo $option['name']; ?> | ₱<?php echo $option['rates']; ?>
+                                <?php echo $option['name']; ?>(₱<?php echo $option['rates']; ?>)
                             </option>
                             <?php 
                             }
                             ?>
+
                         </select>
-                        <label for="floatingSelect">Select Aminities</label>
+                        <label for="floatingSelect">Select Aminities </label>
                     </div>
                     <div class="d-flex justify-content-end gap-2">
                         <a href="../quickstart.php" class="btn btn-outline-danger">
@@ -76,6 +80,84 @@ body {
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Aminities</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+    <?php
+    $db = mysqli_connect("localhost", "root", "", "capstwo");
+    $fetchcottages = mysqli_query($db, "SELECT * FROM `aminities` WHERE `rates` != 0");
+
+    if ($fetchcottages->num_rows > 0) {
+    ?>
+        <div id="carouselExampleDark" class="carousel carousel-dark slide">
+            <div class="carousel-indicators">
+                <?php
+                $indicatorIndex = 0;
+                while ($row = $fetchcottages->fetch_array()) {
+                    ?>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="<?= $indicatorIndex ?>" <?php if ($indicatorIndex == 0) echo 'class="active"'; ?> aria-label="Slide <?= $indicatorIndex + 1 ?>"></button>
+                    <?php
+                    $indicatorIndex++;
+                }
+                ?>
+            </div>
+            <div class="carousel-inner">
+                <?php
+                // Reset the indicator index
+                $indicatorIndex = 0;
+                // Rewind the result set
+                $fetchcottages->data_seek(0);
+                while ($row = $fetchcottages->fetch_array()) {
+                    $imagePath1 = '../../admin/cottageimgs/' . $row["image1"];
+                    $imagePath2 = '../../admin/cottageimgs/' . $row["image2"];
+                    $imagePath3 = '../../admin/cottageimgs/' . $row["image3"];
+                    ?>
+                    <div class="carousel-item <?php if ($indicatorIndex == 0) echo 'active'; ?>">
+                    <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                        <img src="<?= $imagePath1 ?>" class="img-fluid d-block" style="width: 400px; height: 300px;" alt="Image 1">
+                        <img src="<?= $imagePath2 ?>" class="mg-fluid d-block" style="width: 400px; height: 300px;" alt="Image 2">
+                        <img src="<?= $imagePath3 ?>" class="mg-fluid d-block" style="width: 400px; height: 300px;" alt="Image 3">
+                    </div>
+                        
+                        <div class="carousel-caption d-none d-md-block d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                            <h5><?= $row['name'] ?></h5>
+                            <p class="text-dark"><?= $row['description'] ?></p>
+                        </div>
+                    </div>
+                    <?php
+                    $indicatorIndex++;
+                }
+                ?>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    <?php
+    } else {
+        echo "No data found in the database.";
+    }
+
+    // Close the database connection
+    mysqli_close($db);
+    ?>
+</div>
+
             </div>
         </div>
     </div>

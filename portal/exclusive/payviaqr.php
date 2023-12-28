@@ -72,7 +72,7 @@ body {
             <div class="modal fade shadow" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <form action="../functions/saveqr.php" method="post" enctype="multipart/form-data">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-md">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel"><i
@@ -85,7 +85,8 @@ body {
                                     We will
                                     review submitted
                                     receipt before approval.</p>
-                                <div class="container mb-2"><img class="img-fluid" id="viewImg" src="" height="500"
+                                <div class="container mb-2 d-flex justify-content-center">
+                                    <img class="img-fluid" id="viewImg" src=""
                                         alt="">
                                 </div>
                                 <div class="form-floating mb-3">
@@ -96,10 +97,10 @@ body {
                                 <div class="form-floating mb-3">
                                     <select class="form-select text-capitalize fw-bold" id="floatingSelect"
                                         aria-label="Floating label select example"
-                                        name="mode_of_payment" required>
+                                        name="modeofpayment" required>
                                         <option disabled selected>Open this select menu</option>
                                         <option value="50% Downpayment">50% Downpayment</option>
-                                        <option value="Fully Payment">Full Payment</option>
+                                        <option value="Full Payment">Full Payment</option>
                                     </select>
                                     <label for="floatingSelect"> Select Payment</label>
                                 </div>

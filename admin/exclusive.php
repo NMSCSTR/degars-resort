@@ -86,10 +86,18 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                     href="">
                                     <i class="fas fa-times-circle"></i>
                                 </a> -->
+                                <?php if ($row['checkouturl'] === "Via Qr") { ?>
+                                <a hidden class="btn btn-outline-dark btn-sm border-0" title="Check Reservation"
+                                    href="allpayment.php?checkout_id=<?php echo $checkout_id; ?>&hash=<?php echo $hash; ?>&comres_id=<?php echo $row['comres_id'] ?>">
+                                    <i class="far fa-calendar-check"></i> Check
+                                </a>
+                                <?php } else { ?>
                                 <a class="btn btn-outline-dark btn-sm border-0" title="Check Reservation"
                                     href="allpayment.php?checkout_id=<?php echo $checkout_id; ?>&hash=<?php echo $hash; ?>&comres_id=<?php echo $row['comres_id'] ?>">
                                     <i class="far fa-calendar-check"></i> Check
                                 </a>
+                                <?php } ?>
+                                
                             </td>
                         </tr>
                         <?php } ?>

@@ -101,8 +101,8 @@ header,
                             <a class="nav-link" href="#contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="modal"
-                                data-target="#exampleModal">Events & Announcements</a>
+                            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">Events &
+                                Announcements</a>
                         </li>
                         <li class="nav-item">
                             <!-- Button trigger modal -->
@@ -155,26 +155,20 @@ header,
         <!-- Search Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Events & Announcements</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <?php 
-                            $db = mysqli_connect('localhost', 'root', '', 'capstwo');
-                            $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
-                        ?>
-                        <label for="">Events</label>
-                        <img src="<?php echo $fetchcp['eventimage'] ?>" class="img-fluid" alt=""><hr>
-                        <label for="">Announcements</label>
+                    <?php 
+                        $db = mysqli_connect('localhost', 'root', '', 'capstwo');
+                        $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
+                    ?>
+                    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center">
+                        <img src="<?php echo $fetchcp['eventimage'] ?>" class="img-fluid" alt="">
                         <img src="<?php echo $fetchcp['announcementimage'] ?>" class="img-fluid" alt="">
                     </div>
                 </div>
+
             </div>
+        </div>
         </div>
 
         <div id="intro" class="view">

@@ -13,7 +13,7 @@
     <div class="container-sm mt-5">
         <div class="row g-0 position-relative">
             </div>
-            <div class="container-fluid col-md-6 p-4 ps-md-0">
+            <div class="container-fluid col-md-8 p-4 ps-md-0">
                 <h4 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> Walkin Customer Form</h4>
                 <hr>
                 <form action="../functions/savewcustomer.php" method="post">

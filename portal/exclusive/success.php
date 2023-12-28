@@ -109,6 +109,65 @@ if ($update_result) {
 <h1 class="text-center fw-bolder">Congratulations!</h1><br>
     <p class="card-text text-dark text-center h5">Your <span class="text-danger">Degar's Resort Reservation</span>  transaction is successful! Please take a screenshot or copy your transaction reference.</p><br>
     <p class="card-text text-dark text-center h5">Transaction Reference: <span class="text-danger fw-bold"><?= $refno ?></span></p><br>
+    <div class="container">
+        <?php 
+    // Include the QR Code library
+require "phpqrcode/qrlib.php";
+
+// Function to generate and display QR code
+function generateQRCode($data) {
+    // Set the QR code filename
+    $filename = "qrcodes/qrcode.png";
+
+    // Create the directory if it doesn't exist
+    $dir = dirname($filename);
+    if (!file_exists($dir)) {
+        if (!mkdir($dir, 0777, true) && !is_dir($dir)) {
+            die('Failed to create directory: ' . $dir);
+        }
+    }
+
+    // Create a QR code
+    QRcode::png($data, $filename, QR_ECLEVEL_L, 5);
+
+    // Check if the image was successfully created
+    if (!file_exists($filename)) {
+        die('Failed to create QR code image.');
+    }
+
+    // Display the QR code image
+    echo '<img src="' . $filename . '" alt="QR Code">';
+
+    // Display the value of the reference below the QR code
+    // Add a button to download the QR code image
+    echo '<button class="btn btn-success" onclick="downloadQR()">Download QR Code</button>';
+
+    // Add JavaScript function to handle the download
+    echo '<script>';
+    echo 'function downloadQR() {';
+    echo '  var link = document.createElement("a");';
+    echo '  link.href = "' . $filename . '";';
+    echo '  link.download = "qrcode.png";';
+    echo '  document.body.appendChild(link);';
+    echo '  link.click();';
+    echo '  document.body.removeChild(link);';
+    echo '}';
+    echo '</script>';
+}
+
+if ($f_row) {
+    $data = "http://192.168.1.4/degars-resort/portal/exclusive/wcheck.php?transaction_ref=wref82878c";
+}
+else {
+    $data = "http://192.168.1.4/degars-resort/portal/exclusive/check.php?transaction_ref=wref82878c";
+}
+// Example data (replace this with your actual data)
+
+
+// Call the function to generate and display the QR code
+generateQRCode($data);
+?>
+    </div>
     <p><a href="../../index.php" class="d-sm-flex justify-content-center">Back to home page.</a></p>
 
 </section>

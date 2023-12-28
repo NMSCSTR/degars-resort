@@ -1,4 +1,5 @@
 <?php include 'portHeader.php';?>
+
 <title>Quickstart</title>
 <main>
     <div class="container">
@@ -19,11 +20,12 @@
                 <option selected>Select an option</option>
                 <option value="package/packagebooking.php?type=Package">Package Reservation</option>
                 <option value="exclusive/exclusivebooking.php?type=Exclusive">Exclusive Reservation</option>
-                <option value="exclusive/walkin.php?type=Walkin">Walkin</option>
+                <option value="exclusive/walkin.php?type=Walkin">WALK-IN</option>
             </select>
             <label for="chooseReservation">Choose Reservation</label>
         </div>
     </div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="resortrules" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

@@ -15,6 +15,7 @@
         </script>
         <?php 
         unset ($_SESSION['status']); 
+        unset ($_SESSION['code']); 
     }
 ?>
 
