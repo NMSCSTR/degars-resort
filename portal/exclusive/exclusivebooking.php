@@ -67,7 +67,7 @@ if ($getType == "Package1") {
                     </div>  
                     <div class="d-flex justify-content-end gap-2">
                         <a href="../quickstart.php" class="btn btn-outline-danger">
-                        <i class="fas fa-undo text-dark"></i>
+                        <i class="fas fa-undo"></i>
                             Back</a>
                         <div class="vr"></div>
                         <button type="submit" class="btn btn-dark shadow-lg rounded" id="forDisabled" name="addReservation">Submit <i class="fas fa-check-circle"></i>

@@ -28,7 +28,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th> Cottage Name</th>
+                                    <th> Name</th>
                                     <th> Rates</th>
                                     <th> Description</th>
                                     <th> Image 1</th>
@@ -77,88 +77,82 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                     </td>
 
                                     <!-- Edit Cottages Modal -->
-                                    <div class="modal fade" id="exampleModal<?php echo $row['aminities_id']; ?>" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal<?php echo $row['aminities_id']; ?>"
+                                        tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header bg-light text-dark">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Cottages</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Aminities</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <form action="functions/editcottages.php" method="post"
                                                     enctype="multipart/form-data">
                                                     <div class="modal-body">
+                                                    <label for="">CURRENT IMAGES:</label><br>
+                                                        <!-- Display current images -->
+                                                        <div class="d-flex justify-content-between mb-3">
+
+                                                            <img src="<?php echo $imagePath1; ?>" alt="Current Image 1"
+                                                                width="100">
+                                                            <img src="<?php echo $imagePath3; ?>" alt="Current Image 3"
+                                                                width="100">
+                                                            <img src="<?php echo $imagePath2; ?>" alt="Current Image 2"
+                                                                width="100">
+                                                        </div>
+
                                                         <input type="hidden" name="aminities_id"
                                                             value="<?php echo $row['aminities_id']; ?>">
-                                                        <div class="mb-3">
-                                                            <label for="exampleFormControlInput1"
-                                                                class="form-label">Cottage Name</label>
+                                                        <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" name="name"
                                                                 value="<?php echo $row['name']; ?>"
                                                                 id="exampleFormControlInput1"
                                                                 placeholder="Cottage name">
+                                                            <label for="exampleFormControlInput1" class="form-label">
+                                                                Name</label>
                                                         </div>
 
-                                                        <div class="mb-3">
-                                                            <label for="exampleFormControlInput1"
-                                                                class="form-label">Rates</label>
+                                                        <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" name="rates"
                                                                 value="<?php echo $row['rates']; ?>"
                                                                 id="exampleFormControlInput1"
                                                                 placeholder="Cottage rates">
+                                                            <label for="exampleFormControlInput1"
+                                                                class="form-label">Rates</label>
                                                         </div>
 
-                                                        <div class="mb-3">
-                                                            <label for="exampleFormControlTextarea1"
-                                                                class="form-label">Description</label>
+                                                        <div class="form-floating mb-3">
                                                             <textarea class="form-control" name="description"
                                                                 id="exampleFormControlTextarea1"
                                                                 rows="4"><?php echo $row['description']; ?></textarea>
-                                                        </div>
-
-                                                        <!-- Display current images -->
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Current Image 1</label>
-                                                            <img src="<?php echo $imagePath1; ?>" alt="Current Image 1"
-                                                                width="100">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Current Image 2</label>
-                                                            <img src="<?php echo $imagePath2; ?>" alt="Current Image 2"
-                                                                width="100">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Current Image 3</label>
-                                                            <img src="<?php echo $imagePath3; ?>" alt="Current Image 3"
-                                                                width="100">
-                                                        </div>
-
-                                                        <!-- Allow user to upload new images -->
-                                                        <div class="mb-3">
                                                             <label for="exampleFormControlTextarea1"
-                                                                class="form-label">New Image 1</label>
+                                                                class="form-label">Description</label>
+                                                        </div>
+                                                        <!-- Allow user to upload new images -->
+                                                        <div class="form-floating mb-3">
                                                             <input type="file" class="form-control" name="image1"
                                                                 accept="image/*">
-                                                        </div>
-                                                        <div class="mb-3">
                                                             <label for="exampleFormControlTextarea1"
-                                                                class="form-label">New Image 2</label>
+                                                                class="form-label">New Image 1</label>
+                                                        </div>
+                                                        <div class="form-floating mb-3">
                                                             <input type="file" class="form-control" name="image2"
                                                                 accept="image/*">
-                                                        </div>
-                                                        <div class="mb-3">
                                                             <label for="exampleFormControlTextarea1"
-                                                                class="form-label">New Image 3</label>
+                                                                class="form-label">New Image 2</label>
+                                                        </div>
+                                                        <div class="form-floating mb-3">
                                                             <input type="file" class="form-control" name="image3"
                                                                 accept="image/*">
+                                                            <label for="exampleFormControlTextarea1"
+                                                                class="form-label">New Image 3</label>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit" name="submit"
                                                             class="btn btn-dark shadow-lg rounded"><i
                                                                 class="fas fa-solid fa-save"></i> Update
-                                                            Cottage</button>
+                                                            Aminities</button>
                                                     </div>
                                                 </form>
 
@@ -180,47 +174,47 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header bg-light text-dark">
-                                <h5 class="modal-title" id="exampleModalLabel">Add Cottages</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Add Aminities</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <form action="functions/savecottages.php" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Cottage Name</label>
+                                    <div class="form-floating mb-3">
                                         <input type="text" class="form-control" name="name"
-                                            id="exampleFormControlInput1" placeholder="Cottage name">
+                                            id="exampleFormControlInput1" placeholder="">
+                                        <label for="exampleFormControlInput1" class="form-label">Name</label>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Rates</label>
+                                    <div class="form-floating mb-3">
                                         <input type="text" class="form-control" name="rates"
                                             id="exampleFormControlInput1" placeholder="Cottage rates">
+                                        <label for="exampleFormControlInput1" class="form-label">Rates</label>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                                    <div class="form-floating mb-3">
                                         <textarea class="form-control" name="description"
                                             id="exampleFormControlTextarea1" rows="4"></textarea>
+                                        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Image 1</label>
+                                    <div class="form-floating mb-3">
                                         <input type="file" class="form-control" name="image1" accept="image/*" required>
+                                        <label for="exampleFormControlTextarea1" class="form-label">Image 1</label>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Image 2</label>
+                                    <div class="form-floating mb-3">
                                         <input type="file" class="form-control" name="image2" accept="image/*" required>
+                                        <label for="exampleFormControlTextarea1" class="form-label">Image 2</label>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Images 3</label>
+                                    <div class="form-floating mb-3">
                                         <input type="file" class="form-control" name="image3" accept="image/*" required>
+                                        <label for="exampleFormControlTextarea1" class="form-label">Images 3</label>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                                     <button type="submit" name="submit" class="btn btn-dark shadow-lg rounded"><i
-                                            class="fas fa-solid fa-save"></i> Add cottage</button>
+                                            class="fas fa-solid fa-save"></i> Add Aminities</button>
 
                                 </div>
                             </form>

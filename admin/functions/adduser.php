@@ -1,4 +1,5 @@
 <?php
+session_start();
 $db = mysqli_connect('localhost', 'root', '', 'capstwo');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['users_username'];
@@ -15,7 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$username', '$hashedPassword', '$firstname', '$lastname', '$role')";
 
     if ($db->query($sql) === TRUE) {
-        echo "<script>alert('User added successfully'); window.location.href = '../users.php';</script>";
+        $_SESSION['status'] = "User Added";
+        $_SESSION['code'] = "success";
+        header("Location: ../users.php");
+        // echo "<script>alert('User added successfully'); window.location.href = '../users.php';</script>";
     } else {
         echo "<script>alert('Error: " . $db->error . "');</script>";
     }

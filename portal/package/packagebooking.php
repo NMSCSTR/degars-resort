@@ -4,6 +4,9 @@
 $db = mysqli_connect('localhost', 'root', '', 'capstwo');
 $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
 
+$package1ImageUrl = $fetchcp['package1_imagelink'];
+$package2ImageUrl = $fetchcp['package2_imagelink'];
+
 ?>
 <title>Package Booking</title>
 <style>
@@ -31,7 +34,7 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                         <h4 class="my-0 fw-normal">Package 1</h4>
                     </div>
                     <div class="card-body">
-                        <img src="<?php echo $fetchcp['package1_imagelink']?>" class="img-fluid mb-2" style="height: 500px;">
+                    <img src="<?php echo urldecode($package1ImageUrl); ?>" class="img-fluid mb-2" style="height: 500px;" alt="Package 1 Image">
                         <a href="../exclusive/exclusivebooking.php?type=Package1"class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book Now</a>
                     </div>
                 </div>
@@ -44,7 +47,7 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                     </div>
                     <div class="card-body">
                         <!-- <h1 class="card-title pricing-card-title"><span>&#8369</span>8,500.00</h1> -->
-                        <img src="<?php echo $fetchcp['package2_imagelink']?>" class="img-fluid mb-2" style="height: 500px;">
+                        <img src="<?php echo urldecode($package2ImageUrl); ?>" class="img-fluid mb-2" style="height: 500px;" alt="Package 1 Image">
                         <a href="../exclusive/exclusivebooking.php?type=Package2"class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book Now</a>
                     </div>
                 </div>
@@ -52,7 +55,7 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
         </div>
     </main>
     <div class="pt-2 d-flex justify-content-center">
-        <a href="http://192.168.1.4/degars-resort/portal/quickstart.php" class="btn btn-light btn-lg shadow"><i class="fas fa-undo"></i> Back</a>
+        <a href="../quickstart.php" class="btn btn-light btn-lg shadow"><i class="fas fa-undo"></i> Back</a>
     </div>
 </div>
 <?php include '../portFooter.php'; ?>

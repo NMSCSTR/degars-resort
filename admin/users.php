@@ -38,25 +38,25 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             </thead>
                             <tbody>
                                 <tr>
-                                <?php 
+                                    <?php 
                                     $db = mysqli_connect("localhost","root","","capstwo");
                                     $fetchcottages = mysqli_query($db,"SELECT * FROM `admin`");
                                     while ($row = $fetchcottages->fetch_array()) { ?>
-                                        <td><?php echo $row['users_id']; ?></td>
-                                        <td><?php echo $row['users_firstname']; ?></td>
-                                        <td><?php echo $row['users_lastname']; ?></td>
-                                        <td><?php echo $row['users_role']; ?></td>
-                                        <td class="text-primary"><?php echo $row['users_username']; ?></td>
-                                        <!-- <td><?php echo $row['users_password']; ?></td> -->
-                                        <td>
-                                            <a href="functions/deleteuser.php?users_id=<?php echo $row['users_id']; ?>"
-                                                onclick="return confirm('Are you sure you want to delete this data?')"
-                                                class="btn btn-outline-danger border-0"> <i class="fas fa-trash-alt"></i>
-                                                Delete</a>
-                                            <a href="" class="btn btn-outline-primary border-0" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal<?php echo $row['users_id']; ?>"><i
-                                                    class="fas fa-sync-alt"></i> Update</a>
-                                        </td>
+                                    <td><?php echo $row['users_id']; ?></td>
+                                    <td><?php echo $row['users_firstname']; ?></td>
+                                    <td><?php echo $row['users_lastname']; ?></td>
+                                    <td><?php echo $row['users_role']; ?></td>
+                                    <td class="text-primary"><?php echo $row['users_username']; ?></td>
+                                    <!-- <td><?php echo $row['users_password']; ?></td> -->
+                                    <td>
+                                        <a href="functions/deleteuser.php?users_id=<?php echo $row['users_id']; ?>"
+                                        onclick="showSweetAlert(event, '<?php echo $row['users_id']; ?>')" class="btn btn-outline-danger border-0"> <i
+                                                class="fas fa-trash-alt"></i>
+                                            Delete</a>
+                                        <a href="" class="btn btn-outline-primary border-0" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal<?php echo $row['users_id']; ?>"><i
+                                                class="fas fa-sync-alt"></i> Update</a>
+                                    </td>
 
                                     <!-- Edit Cottages Modal -->
                                     <div class="modal fade" id="exampleModal<?php echo $row['users_id']; ?>"
@@ -70,11 +70,13 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                                 </div>
                                                 <form action="functions/edituser.php" method="post">
                                                     <div class="modal-body">
-                                                        <input type="hidden" name="users_id" value="<?php echo $row['users_id'] ?>">
+                                                        <input type="hidden" name="users_id"
+                                                            value="<?php echo $row['users_id'] ?>">
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" value="<?php echo $row['users_username'] ?>" name="users_username"
-                                                                class="form-control" id="floatingPassword"
-                                                                placeholder="Username">
+                                                            <input type="text"
+                                                                value="<?php echo $row['users_username'] ?>"
+                                                                name="users_username" class="form-control"
+                                                                id="floatingPassword" placeholder="Username">
                                                             <label for="floatingPassword">Username</label>
                                                         </div>
 
@@ -86,16 +88,18 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                                         </div>
 
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" value="<?php echo $row['users_firstname'] ?>" name="users_firstname"
-                                                                class="form-control" id="floatingPassword"
-                                                                placeholder="Firstname">
+                                                            <input type="text"
+                                                                value="<?php echo $row['users_firstname'] ?>"
+                                                                name="users_firstname" class="form-control"
+                                                                id="floatingPassword" placeholder="Firstname">
                                                             <label for="floatingPassword">Firstname</label>
                                                         </div>
 
                                                         <div class="form-floating mb-3">
-                                                            <input type="text" value="<?php echo $row['users_lastname'] ?>" name="users_lastname"
-                                                                class="form-control" id="floatingPassword"
-                                                                placeholder="Lastname">
+                                                            <input type="text"
+                                                                value="<?php echo $row['users_lastname'] ?>"
+                                                                name="users_lastname" class="form-control"
+                                                                id="floatingPassword" placeholder="Lastname">
                                                             <label for="floatingPassword">Lastname</label>
                                                         </div>
 
@@ -115,7 +119,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                                                         <button type="submit" name="edituser"
                                                             class="btn btn-dark shadow-lg rounded"><i
-                                                            class="fas fa-sync-alt"></i> Update User</button>
+                                                                class="fas fa-sync-alt"></i> Update User</button>
 
                                                     </div>
                                                 </form>
@@ -130,7 +134,6 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                     <!-- <button id="printButton" class="btn btn-success mt-2 mb-2 shadow" onclick="printTable()"><i
                         class="fas fa-solid fa-print"></i> Print</button> -->
                 </div>
-
                 <!-- Add Cottages Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -203,8 +206,35 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
             </div>
         </div>
     </main>
+    <script>
+        function showSweetAlert(event, userId) {
+            event.preventDefault(); 
 
+            const href = `functions/deleteuser.php?users_id=${userId}`;
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "User has been deleted.",
+                        icon: "success"
+                    }).then(() => {
+                        document.location.href = href;
+                    });
+                }
+            });
+        }
+    </script>
 </div>
+
 <?php include_once 'adfooter.php'; ?>
 <?php 
 }else{

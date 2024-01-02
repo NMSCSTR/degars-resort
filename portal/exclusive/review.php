@@ -114,7 +114,7 @@
                                             <span>&#8369; 1,300.00</span>
                                         </li> -->
                                     <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                        Gcash Service Fee (2.5%)
+                                        Service Fee (2.5%)
                                         <?php
                                             $resfee = $fetch_res_details['rates'];
                                             $percentage = 0; // 2.5

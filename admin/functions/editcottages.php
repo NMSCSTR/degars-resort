@@ -1,4 +1,5 @@
 <?php
+session_start();
 $db = mysqli_connect("localhost","root","","capstwo");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $target_dir = "../cottageimgs/";
@@ -90,7 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sqlUpdate = "UPDATE `aminities` SET `name`='$name', `rates`='$rates', `description`='$description', `image1`='$image1', `image2`='$image2', `image3`='$image3' WHERE `aminities_id`=$id";
 
             if ($db->query($sqlUpdate) === TRUE) {
-                echo "Record updated successfully.";
+                $_SESSION['status'] = "updated successfullyn";
+                $_SESSION['code'] = "success";
                 header('Location: ../cottages.php');
             } else {
                 echo "Error updating record: " . $db->error;

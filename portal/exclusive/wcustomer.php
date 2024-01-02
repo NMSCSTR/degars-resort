@@ -45,7 +45,7 @@
                     </div>
                     <div class="d-flex justify-content-end gap-2">
                         <a href="../exclusive/walkin.php"
-                            class="btn btn-outline-danger"><i class="fas fa-undo text-dark"></i> Back</a>
+                            class="btn btn-outline-danger"><i class="fas fa-undo"></i> Back</a>
                         <div class="vr"></div>
                         <button type="submit" class="btn btn-dark" name="savewcustomer">Submit <i
                                 class="fas fa-check-circle"></i></button>

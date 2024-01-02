@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $db = mysqli_connect("localhost","root","","capstwo");
 if (isset($_POST['edituser'])) {
     $users_id = $_POST['users_id'];

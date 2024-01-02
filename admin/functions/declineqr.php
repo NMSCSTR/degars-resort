@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $db = mysqli_connect('localhost', 'root', '', 'capstwo');
 $pvq_id = $_GET['payviaqr_id'];
 $pvq_id = $_GET['payviaqr_id'];
@@ -9,7 +10,9 @@ $declinestatus = mysqli_query($db, "UPDATE `payviaqr` SET `status` ='Declined', 
 $approvedcrstatus = mysqli_query($db, "UPDATE `completed_reservation` SET `status` ='Declined', `approvedby` = '$approvedby' WHERE `reservation_id` = $reservation_id AND customer_id = $customer_id ");
 
 if ($declinestatus && $approvedcrstatus) {
-    header('Location: ../qrpayments.php');
+    $_SESSION['status'] = "Declined Transaction";
+    $_SESSION['code'] = "success";
+    header("Location: ../qrpayments.php");
 }
 $db->close();
 ?>

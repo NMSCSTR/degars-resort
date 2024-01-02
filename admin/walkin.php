@@ -70,12 +70,11 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                         class="fas fa-check-circle"></i> Mark As Done
                                 </a>
 
-                                <a class="btn btn-outline-warning btn-sm border-0" title="Check Reservation"
+                                <a class="btn btn-outline-dark btn-sm border-0" title="Check Reservation"
                                     href="allpayment.php?checkout_id=<?php echo $checkout_id; ?>&hash=<?php echo $hash; ?>&wtransac_id=<?php echo $row['wtransac_id'] ?>">
                                     <i class="far fa-calendar-check"></i> Check
                                 </a>
                             </td>
-
                         </tr>
                         <?php } ?>
                     </tbody>

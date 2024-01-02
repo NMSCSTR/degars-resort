@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $conn = mysqli_connect('localhost', 'root', '', 'capstwo');
 $productid = $_GET['productid'];
 $deleteproduct = mysqli_query($conn,"DELETE FROM `product` WHERE productid = '$productid'");

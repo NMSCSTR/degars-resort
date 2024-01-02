@@ -1,4 +1,5 @@
 <?php
+session_start();
 $db = mysqli_connect("localhost", "root", "", "capstwo");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -62,7 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO `aminities` (`name`, `rates`, `description`, `image1`, `image2`, `image3`) VALUES ('$name', '$rates', '$description', '$image1', '$image2', '$image3')";
 
         if ($db->query($sql) === TRUE) {
-            echo "The files have been uploaded and the record inserted into the database.";
+
+            $_SESSION['status'] = "Inserted successfully";
+            $_SESSION['code'] = "success";
             header('Location: ../cottages.php');
         } else {
             echo "Error: " . $sql . "<br>" . $db->error;

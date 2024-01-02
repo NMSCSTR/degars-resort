@@ -1,4 +1,5 @@
 <?php
+session_start();
 $db = mysqli_connect("localhost","root","","capstwo");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $target_dir = "../roomimgs/";

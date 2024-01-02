@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 $db = mysqli_connect("localhost","root","","capstwo");
 
 $payment_id = $_GET['payment_id'];
@@ -63,6 +64,8 @@ if ($err) {
     $updaterefund = mysqli_query($db,"UPDATE `refund` SET `status` ='Refunded', `approvedby` = '$approvedby' WHERE `refund_id` = $refund_id");
 
     if ($insert && $updatecr && $updaterefund) {
+      $_SESSION['status'] = "Refunded successfullyn";
+      $_SESSION['code'] = "success";
         header("Location: ../refund.php?message=Refund Successful!");
     } else {
         echo "eddf";

@@ -22,7 +22,7 @@ if ($computed_hash === $received_hash) {
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Checkout Transaction</li>
+                <li class="breadcrumb-item active" aria-current="page">Checkout Transaction History</li>
             </ol>
         </nav>
     </div>
@@ -137,7 +137,7 @@ if ($computed_hash === $received_hash) {
                             }
                             ?>
                             </tbody>
-                          <?php } ?>  
+                        <?php } ?>  
                     </table>
                 </div>
 

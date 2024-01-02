@@ -1,5 +1,16 @@
+<!doctype html>
+<html lang="en">
 
-<?php 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CHECKOUT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <?php 
 $db = mysqli_connect("localhost","root","","capstwo");
 
 if (isset($_POST['savewtransaction'])) {
@@ -85,13 +96,15 @@ if ($err) {
         $checkout_id =  $data['data']['id'];
         
         // Saving the checkout URL to database for later use
-        $savewtransac= mysqli_query($db, "INSERT INTO `walkin_transac` (`transaction_ref`, `walkin_id`, `wcustomer_id`, `aminities_id`, `totalentrancefee`, `totalamount`, `status`, `checkout_id`, `checkouturl`) VALUES ('$transaction_ref', '$walkin_id', '$wcustomer_id', '$aminities_id', '$totalentrancefee', '$totalamount', '$status', '$checkout_id', '$checkout_url')
-        ");
+        // $savewtransac= mysqli_query($db, "INSERT INTO `walkin_transac` (`transaction_ref`, `walkin_id`, `wcustomer_id`, `aminities_id`, `totalentrancefee`, `totalamount`, `status`, `checkout_id`, `checkouturl`) VALUES ('$transaction_ref', '$walkin_id', '$wcustomer_id', '$aminities_id', '$totalentrancefee', '$totalamount', '$status', '$checkout_id', '$checkout_url')
+        // ");
 
-        // echo 
+        echo 
         '<h3 style="text-align:center; margin-top: 10em;">
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden"></span>
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
             Redirecting please wait..
         </h3>';
@@ -108,19 +121,9 @@ if ($err) {
 }
 $db->close();
 ?>
-
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-<body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
 </body>
-</html>
 
+</html>

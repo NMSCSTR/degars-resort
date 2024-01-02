@@ -161,10 +161,8 @@ header,
                         $db = mysqli_connect('localhost', 'root', '', 'capstwo');
                         $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
                     ?>
-                    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center">
                         <img src="<?php echo $fetchcp['eventimage'] ?>" class="img-fluid" alt="">
                         <img src="<?php echo $fetchcp['announcementimage'] ?>" class="img-fluid" alt="">
-                    </div>
                 </div>
 
             </div>
@@ -329,7 +327,7 @@ header,
                         <a href="" class="teal-text">
                             <h6 class="pb-1"><i class="fa fa-heart"></i><strong> Gallery </strong></h6>
                         </a>
-                        <h4 class="mb-3"><strong>Degars Manor History</strong></h4>
+                        <h4 class="mb-3"><strong>Degars Resort History</strong></h4>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia iure vitae enim debitis
                             adipisci veritatis, mollitia ad repellendus, fugit pariatur consequatur libero quae dolore

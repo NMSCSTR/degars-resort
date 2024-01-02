@@ -43,8 +43,8 @@
                             <div>
                                 <h4>Walk-In Reservation</h4>
                                 <p class="text-muted pb-2">
-                                    Please make payment via e-wallets without worrying additional charges. Before you
-                                    proceed make sure to have enough balance on you e-wallet.
+                                    Please make payment via e-wallets without worrying service fee. Before you
+                                    proceed make sure to have enough balance on your e-wallet/e-cards.
                                 </p>
                             </div>
                             <div

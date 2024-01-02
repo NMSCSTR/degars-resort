@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $db = mysqli_connect('localhost', 'root', '', 'capstwo');
 $id = $_GET['id'];
 $deleteroom = mysqli_query($db,"DELETE FROM `room_aminities` WHERE id = '$id'");

@@ -5,10 +5,10 @@
     { ?>
         <script>
             Swal.fire({
-            position: 'top-end',
+            position: 'top-center',
             icon: '<?php echo $_SESSION['code'];?>',
             title: '<?php echo $_SESSION['status'];?>',
-            // html: '<?php echo $_SESSION['code'];?>',
+            html: '<?php echo $_SESSION['code'];?>',
             showConfirmButton: false,
             timer: 2500
         })
@@ -39,6 +39,7 @@
 
     })
 </script>
+
 
 <!-- <footer class="footer py-3 bg-light">
         <div class="container">

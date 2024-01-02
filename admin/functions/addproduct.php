@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include 'manorsdb.php';
 if (isset($_POST['submit'])) {
     $productname = $_POST['productname'];

@@ -1,6 +1,5 @@
 <?php 
 $is_admin = ($_SESSION['users_role'] == "Admin");
-
 ?>
 
 <!doctype html>
@@ -26,8 +25,13 @@ $is_admin = ($_SESSION['users_role'] == "Admin");
     <!-- Include DataTables Responsive CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
     <!-- Include DataTables Buttons CSS -->
+    
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 </head>
 <style>
 * {
@@ -114,7 +118,7 @@ body {
             </div>
 
             <div class="dropdown">
-                <a href="" class="btn btn-light btn-md dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                <a  class="btn btn-light btn-md dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                     data-bs-toggle="dropdown" aria-expanded="false">Welcome <span
                         class="text-primary text-capitalize"><?php echo $_SESSION['users_username'];?></span></a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">

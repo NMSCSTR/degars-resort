@@ -1,3 +1,4 @@
+<?php 
 private $servername = "localhost";
     private $username = "root";
     private $password = "";
@@ -20,6 +21,5 @@ private $servername = "localhost";
         $this->conn->close();
     }
 
-    <?php 
     
     ?>
