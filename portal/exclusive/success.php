@@ -1,5 +1,8 @@
 <?php 
 $db = mysqli_connect("localhost", "root", "", "capstwo");
+$getControls = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
+
+$f_row = null; // Initialize $f_row
 
 if(isset($_GET['walkin_id']) && isset($_GET['wcustomer_id'])){
     $getcustomer = $_GET['wcustomer_id'];
@@ -8,7 +11,10 @@ if(isset($_GET['walkin_id']) && isset($_GET['wcustomer_id'])){
     $f_query = mysqli_query($db, "SELECT * FROM `walkin_transac` WHERE wcustomer_id = '$getcustomer' AND walkin_id = '$getreservation'");
     $w_query = mysqli_query($db, "SELECT * FROM `walkincustomer` WHERE wcustomer_id = '$getcustomer' AND walkin_id = '$getreservation'");
 
-    if ($f_row = mysqli_fetch_assoc($f_query) && $w_row = mysqli_fetch_assoc($w_query)) {
+    $f_row = mysqli_fetch_assoc($f_query);
+    $w_row = mysqli_fetch_assoc($w_query);
+
+    if ($f_row && $w_row) {
         $refno = $f_row['transaction_ref'];
         $phone_number = $w_row['phone_number'];
 
@@ -19,6 +25,7 @@ if(isset($_GET['walkin_id']) && isset($_GET['wcustomer_id'])){
         echo "No results found for the given customer and reservation.";
     }
 }
+
 
 if (isset($_GET['reservation_id']) && isset($_GET['customer_id'])) {
     $getcustomer = $_GET['customer_id'];
@@ -44,11 +51,11 @@ if (isset($_GET['reservation_id']) && isset($_GET['customer_id'])) {
 
 if ($update_result) {
     // Update successful, proceed with the rest of the code
-    $message_content = "Congratulations! Mr/Ms Rhondel Pagobo your reservation was approved. Copy or save this transaction reference " . $refno . ". Please check your email we have sent a copy of your receipt. If you have any questions about this payment, contact DEGARS RESORT at mariloumercado1955@gmail.com";
+    $message_content = "Congratulations, your reservation was approved successfully. Please remember or save the transaction reference: {$refno}. A copy of your receipt has been emailed to you. If you have any questions about this payment, please contact DEGARS RESORT at mariloumercado1955@gmail.com. Thank you for making your reservation!";
     
     $ch = curl_init();
     $parameters = array(
-        'apikey' => '71a0b82e7b5fbd2fb958fcf22d844280 99', 
+        'apikey' => $getControls['smsapi'], 
         'number' => $phone_number,
         'message' => $message_content,
         'sendername' => 'SEMAPHORE'
@@ -134,32 +141,34 @@ function generateQRCode($data) {
     if (!file_exists($filename)) {
         die('Failed to create QR code image.');
     }
+    ?>
 
-    // Display the QR code image
-    echo '<img src="' . $filename . '" alt="QR Code">';
+    <!-- JavaScript function to handle the download -->
+    <script>
+            function downloadQR() {
+                var link = document.createElement("a");
+                link.href = "<?= $filename ?>";
+                link.download = "qrcode.png";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        </script>
 
-    // Display the value of the reference below the QR code
-    // Add a button to download the QR code image
-    echo '<button class="btn btn-success" onclick="downloadQR()">Download QR Code</button>';
+    <div class="container-fluid d-flex justify-content-center align-items-center">
+    <!-- Display the value of the reference below the QR code -->
+    <img src="<?= $filename ?>" alt="QR Code">
+    <button class="btn btn-success" onclick="downloadQR()">Download QR Code</button>  
+    </div>
 
-    // Add JavaScript function to handle the download
-    echo '<script>';
-    echo 'function downloadQR() {';
-    echo '  var link = document.createElement("a");';
-    echo '  link.href = "' . $filename . '";';
-    echo '  link.download = "qrcode.png";';
-    echo '  document.body.appendChild(link);';
-    echo '  link.click();';
-    echo '  document.body.removeChild(link);';
-    echo '}';
-    echo '</script>';
+<?php 
 }
 
 if ($f_row) {
-    $data = "http://192.168.1.4/degars-resort/portal/exclusive/wcheck.php?transaction_ref=wref82878c";
+    $data = "http://192.168.16.152/degars-resort/portal/exclusive/wcheck.php?transaction_ref={$refno}";
 }
 else {
-    $data = "http://192.168.1.4/degars-resort/portal/exclusive/check.php?transaction_ref=wref82878c";
+    $data = "http://192.168.16.152/degars-resort/portal/exclusive/check.php?transaction_ref={$refno}";
 }
 // Example data (replace this with your actual data)
 

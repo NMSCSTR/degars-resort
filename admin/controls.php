@@ -220,6 +220,10 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                         </div>
                         <form action="functions/editcontrols.php" method="post">
                             <div class="container-fluid mb-3">
+                                <div class="mb-3">
+                                    <label for="">SMS API KEY</label>
+                                    <input type="text" name="smsapi" value="<?php echo $fetchcp['smsapi'] ?>" class="form-control" id="">
+                                </div>
                                 <div class="row g-2 mb-3">
                                     <div class="col-sm">
                                         <label for="">Event Image Address</label>

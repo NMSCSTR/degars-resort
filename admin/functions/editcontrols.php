@@ -25,8 +25,9 @@ if (isset($_POST['reservationPanel'])) {
 }elseif (isset($_POST['otherPanel'])) {
     $eventimage = $_POST['eventimage'];
     $announcementimage = $_POST['announcementimage'];
+    $smsapi = $_POST['smsapi'];
 
-    $updateOtherPanel = mysqli_query($db, "UPDATE `control` SET `eventimage`='$eventimage',`announcementimage`='$announcementimage' WHERE `control_id` = 1");
+    $updateOtherPanel = mysqli_query($db, "UPDATE `control` SET `eventimage`='$eventimage',`announcementimage`='$announcementimage', `smsapi` = '$smsapi' WHERE `control_id` = 1");
 }
 
 if ($updateReservationPanel || $updateSociaMediaPanel || $updateOtherPanel) {

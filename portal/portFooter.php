@@ -122,19 +122,20 @@
     { ?>
         <script>
             Swal.fire({
-            position: 'top-end',
+            position: 'top-center',
             icon: '<?php echo $_SESSION['code'];?>',
             title: '<?php echo $_SESSION['status'];?>',
+            html: '<?php echo $_SESSION['code'];?>',
             showConfirmButton: false,
             timer: 2500
         })
-             
-    </script>
-
+        </script>
         <?php 
         unset ($_SESSION['status']); 
+        unset ($_SESSION['code']); 
     }
 ?>
+
 
 </body>
 </html>

@@ -58,7 +58,7 @@ curl_setopt_array($curl, [
             'send_email_receipt' => true,
             'show_description' => true,
             'show_line_items' => false,
-            'cancel_url' => 'http://192.168.1.4/degars-resort/portal/exclusive/failed.php?reservation_id=' . $reservation_id . '&customer_id=' . $customer_id,
+            'cancel_url' => 'http://192.168.16.152/degars-resort/portal/exclusive/failed.php?reservation_id=' . $reservation_id . '&customer_id=' . $customer_id,
             'description' => 'EXCLUSIVE TRANSACTION PAYMENT : ' . $transaction_ref,
             'payment_method_types' => [
                 'gcash',
@@ -67,7 +67,7 @@ curl_setopt_array($curl, [
                 'dob_ubp',
                 'paymaya'
             ],
-            'success_url' => 'http://192.168.1.4/degars-resort/portal/exclusive/success.php?reservation_id=' . $reservation_id . '&customer_id=' . $customer_id,
+            'success_url' => 'http://192.168.16.152/degars-resort/portal/exclusive/success.php?reservation_id=' . $reservation_id . '&customer_id=' . $customer_id,
             'line_items' => [
                 [
                     'currency' => 'PHP',
@@ -103,17 +103,17 @@ if ($err) {
         $checkout_id =  $data['data']['id'];
         
         // Saving the checkout URL to database for later use
-        // $savecompleted = mysqli_query($db, "INSERT INTO `completed_reservation` (`reservation_id`, `customer_id`, `transaction_ref`, `modeofpayment`, `status`, `servicefee`, `totalamount`,`checkout_id`, `checkouturl`) VALUES ('$reservation_id', '$customer_id','$transaction_ref','$modeofpayment', '$status', '$servicefee', '$totalamount', '$checkout_id','$checkout_url')
-        // ");
+        $savecompleted = mysqli_query($db, "INSERT INTO `completed_reservation` (`reservation_id`, `customer_id`, `transaction_ref`, `modeofpayment`, `status`, `servicefee`, `totalamount`,`checkout_id`, `checkouturl`) VALUES ('$reservation_id', '$customer_id','$transaction_ref','$modeofpayment', '$status', '$servicefee', '$totalamount', '$checkout_id','$checkout_url')
+        ");
 
         echo 
         '<h3 style="text-align:center; margin-top: 10em;">
             <div class="d-flex justify-content-center">
-            <div class="spinner-border text-warning" role="status">
-              <span class="visually-hidden">Loading...</span>
+                <div class="spinner-border text-warning" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
-          </div>
-            Redirecting please wait..
+            REDIRECTING TO CHECKOUT PAGE
         </h3>';
         
 

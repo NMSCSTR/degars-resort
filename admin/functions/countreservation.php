@@ -2,13 +2,12 @@
 $db = mysqli_connect('localhost', 'root', '', 'capstwo');
 
 $countcr = mysqli_num_rows(mysqli_query($db,"SELECT * FROM `completed_reservation`"));
-$countqr = mysqli_num_rows(mysqli_query($db,"SELECT * FROM `payviaqr`"));
-$allreservation = $countcr + $countqr;
-$countref = mysqli_num_rows(mysqli_query($db,"SELECT * FROM `refund`"));
-$sum = mysqli_fetch_assoc(mysqli_query($db,"SELECT SUM(totalamount) AS total FROM `completed_reservation` WHERE `status` = 'Approved'"));
+$countw = mysqli_num_rows(mysqli_query($db,"SELECT * FROM `walkin_transac`"));
 
-$productMaxCount = 500;
-$reservationPercentage = ($sum['total'] / $productMaxCount) * 100;
+$all = $countcr + $countw;
+$reservationMaxCount = 1000;
+$reservationPercentage = ($all / $reservationMaxCount) * 100;
 $reservationPercentage = round($reservationPercentage, 2);
-$reservationProgressWidth = $reservationPercentage > 1000 ? 1000 : $reservationPercentage;
+$reservationProgressWidth = $reservationPercentage > 100 ? 100 : $reservationPercentage;
+
 ?>

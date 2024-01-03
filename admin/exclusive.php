@@ -4,7 +4,9 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 ?>
 <?php include '../config/db_connection.php'?>
 <?php include_once 'adheader.php'; ?>
+
 <title>Degars | Exclusive</title>
+
 <main id="main">
     <div class="container pt-4">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -56,7 +58,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             ?>
                             <td><?php echo $row['transaction_ref']; ?></td>
                             <td><span
-                                    class="badge <?php echo $row['status'] === 'Approved' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?>"><?php echo $row['status']; ?></span>
+                                    class="badge <?php echo ($row['status'] === 'Approved' ||  $row['status'] === 'Approved:QR'||  $row['status'] === 'Done') ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?>"><?php echo $row['status']; ?></span>
                             </td>
                             <td><?php echo $row['type']; ?></td>
                             <td><?php echo date('F d, Y', strtotime($row['reservationdate'])) ?></td>
@@ -72,7 +74,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             }
                             ?>
                             <td><a style="font-size: 15px;" href="<?php echo $row['checkouturl']; ?>"> <?php echo $row['checkouturl']; ?></a></td>
-        
+
                             <td>
                                 <a class="btn btn-outline-success btn-sm border-0" title="Mark as done"
                                     href="functions/markasdone.php?reservation_id=<?php echo $row['reservation_id']; ?>&customer_id=<?php echo $row['customer_id']; ?>&approvedby=<?php echo $_SESSION['users_username'];?>"><i

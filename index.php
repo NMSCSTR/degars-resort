@@ -339,7 +339,7 @@ header,
                             consectetur aut aperiam impedit officia cupiditate et?
                         </p>
                         <p>- <a><strong>Tim Gorgonio Morales</strong></a></p>
-                        <a class="btn btn-primary btn-md">Read more</a>
+                        <!-- <a class="btn btn-primary btn-md">Read more</a> -->
                     </div>
                 </div>
             </section>
@@ -463,7 +463,7 @@ header,
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                     <h6 class="text-uppercase font-weight-bold"><strong>Social Media links</strong></h6>
                     <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                    <p><a href="#!">Facebook</a></p>
+                    <p><a href="https://web.facebook.com/DegarsResort/">Facebook</a></p>
                     <p><a href="#!">Email</a></p>
                     <p><a href="#!">Twitter</a></p>
                     <p><a href="#!">Instagram</a></p>
@@ -472,9 +472,8 @@ header,
                     <h6 class="text-uppercase font-weight-bold"><strong>Contact</strong></h6>
                     <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                     <p><i class="fas fa-home"></i></i> Silanga, Tangub City</p>
-                    <p><i class="fa fa-envelope mr-3"></i> degarsmanor@email.com</p>
-                    <p><i class="fa fa-phone mr-3"></i> +639 508 297 97</p>
-                    <p><i class="fa fa-print mr-3"></i> +639 262 713 257</p>
+                    <p><i class="fa fa-envelope mr-3"></i> <?php echo $fetchcp['email'] ?></p>
+                    <p><i class="fa fa-phone mr-3"></i> <?php echo $fetchcp['phone'] ?></p>
                 </div>
             </div>
         </div>

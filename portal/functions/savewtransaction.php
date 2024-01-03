@@ -51,7 +51,7 @@ curl_setopt_array($curl, [
             'send_email_receipt' => true,
             'show_description' => true,
             'show_line_items' => false,
-            'cancel_url' => 'http://192.168.1.4/degars-resort/portal/exclusive/failed.php?walkin_id=' . $walkin_id . '&wcustomer_id=' . $wcustomer_id,
+            'cancel_url' => 'http://192.168.16.152/degars-resort/portal/exclusive/failed.php?walkin_id=' . $walkin_id . '&wcustomer_id=' . $wcustomer_id,
             'description' => 'WALKIN TRANSACTION PAYMENT : ' . $transaction_ref,
             'payment_method_types' => [
                 'gcash',
@@ -60,7 +60,7 @@ curl_setopt_array($curl, [
                 'dob_ubp',
                 'paymaya'
             ],
-            'success_url' => 'http://192.168.1.4/degars-resort/portal/exclusive/success.php?walkin_id=' . $walkin_id . '&wcustomer_id=' . $wcustomer_id,
+            'success_url' => 'http://192.168.16.152/degars-resort/portal/exclusive/success.php?walkin_id=' . $walkin_id . '&wcustomer_id=' . $wcustomer_id,
             'line_items' => [
                 [
                     'currency' => 'PHP',
@@ -96,8 +96,8 @@ if ($err) {
         $checkout_id =  $data['data']['id'];
         
         // Saving the checkout URL to database for later use
-        // $savewtransac= mysqli_query($db, "INSERT INTO `walkin_transac` (`transaction_ref`, `walkin_id`, `wcustomer_id`, `aminities_id`, `totalentrancefee`, `totalamount`, `status`, `checkout_id`, `checkouturl`) VALUES ('$transaction_ref', '$walkin_id', '$wcustomer_id', '$aminities_id', '$totalentrancefee', '$totalamount', '$status', '$checkout_id', '$checkout_url')
-        // ");
+        $savewtransac= mysqli_query($db, "INSERT INTO `walkin_transac` (`transaction_ref`, `walkin_id`, `wcustomer_id`, `aminities_id`, `totalentrancefee`, `totalamount`, `status`, `checkout_id`, `checkouturl`) VALUES ('$transaction_ref', '$walkin_id', '$wcustomer_id', '$aminities_id', '$totalentrancefee', '$totalamount', '$status', '$checkout_id', '$checkout_url')
+        ");
 
         echo 
         '<h3 style="text-align:center; margin-top: 10em;">
@@ -106,7 +106,7 @@ if ($err) {
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
-            Redirecting please wait..
+            REDIRECTING TO CHECKOUT PAGE
         </h3>';
 
 

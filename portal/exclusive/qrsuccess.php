@@ -1,5 +1,6 @@
 <?php 
 $db = mysqli_connect("localhost", "root", "", "capstwo");
+$getControls = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
 
 if (isset($_GET['reservation_id']) && isset($_GET['customer_id'])) {
     $getcustomer = $_GET['customer_id'];
@@ -138,7 +139,7 @@ if (isset($_GET['reservation_id']) && isset($_GET['customer_id'])) {
     <?php
         }
 
-        $data = "http://192.168.1.4/degars-resort/portal/exclusive/check.php?transaction_ref={$refno}";
+        $data = "http://192.168.16.152/degars-resort/portal/exclusive/check.php?transaction_ref={$refno}";
 
         // Call the function to generate and display the QR code
         generateQRCode($data);

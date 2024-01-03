@@ -5,10 +5,44 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 <?php 
 include 'adheader.php'; 
 
-require_once 'functions/countproducts.php';
-require_once 'functions/visitorscount.php'; 
-require_once 'functions/countreservation.php'; 
+// require_once 'functions/countproducts.php';
+// require_once 'functions/visitorscount.php'; 
+// require_once 'functions/countreservation.php'; 
+// require_once 'functions/countrevenue.php'; 
 
+?>
+<?php
+$db = mysqli_connect('localhost', 'root', '', 'capstwo');
+
+// Function to get reservation count
+function getReservationCount($db) {
+    $countcr = mysqli_num_rows(mysqli_query($db, "SELECT * FROM `completed_reservation`"));
+    $countw = mysqli_num_rows(mysqli_query($db, "SELECT * FROM `walkin_transac`"));
+    return $countcr + $countw;
+}
+
+// Function to calculate percentage and progress width
+function calculateProgress($current, $max) {
+    $percentage = ($current / $max) * 100;
+    return [
+        'percentage' => round($percentage, 2),
+        'progressWidth' => min($percentage, 100)
+    ];
+}
+
+// Get counts and totals
+$countref = mysqli_num_rows(mysqli_query($db, "SELECT * FROM `refund`"));
+$currentCount = (int) file_get_contents('../visitor_count.txt');
+$all = getReservationCount($db);
+
+$sum = mysqli_fetch_assoc(mysqli_query($db, "SELECT SUM(totalamount) AS total FROM `completed_reservation` WHERE `status` IN ('Approved', 'Approved:QR')"));
+$total = $sum['total'];
+
+// Calculate percentages and progress widths
+$refundData = calculateProgress($countref, 100);  // Assuming a maximum of 100 for products
+$visitorData = calculateProgress($currentCount, 10000);  // Assuming a maximum of 10000 for visitors
+$reservationData = calculateProgress($all, 1000);  // Assuming a maximum of 1000 for reservations
+$revenueData = calculateProgress($total, 100000);  // Assuming a maximum of 100000 for revenue
 ?>
 <title>Dashboard</title>
 <div id="main">
@@ -25,105 +59,124 @@ require_once 'functions/countreservation.php';
     <div class="container">
         <div class="col-md-12">
             <div class="row">
+                <!-- Refund Section -->
                 <div class="col-xl-3 col-lg-6">
-                    <a href="product.php" style="text-decoration: none;"">
+                    <a href="product.php" style="text-decoration: none;">
                         <div class=" card l-bg-cherry">
+                            <div class="card-statistic-3 p-4">
+                                <div class="card-icon card-icon-large"><i class="fas fa-undo"></i></div>
+                                <div class="mb-4">
+                                    <h5 class="card-title mb-0">Refund</h5>
+                                </div>
+                                <div class="row align-items-center mb-2 d-flex">
+                                    <div class="col-8">
+                                        <h2 class="d-flex align-items-center mb-0">
+                                            <?php echo $countref ?>
+                                        </h2>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <span><?php echo $refundData['percentage'] ?>% <i
+                                                class="fa fa-arrow-up"></i></span>
+                                    </div>
+                                </div>
+                                <div class="progress mt-1" data-height="8" style="height: 8px;">
+                                    <div class="progress-bar l-bg-cyan" role="progressbar"
+                                        data-width="<?php echo $refundData['progressWidth']; ?>%"
+                                        aria-valuenow="<?php echo $refundData['progressWidth']; ?>%" aria-valuemin="0"
+                                        aria-valuemax="100"
+                                        style="width: <?php echo $refundData['progressWidth']; ?>%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Visitors Section -->
+                <div class="col-xl-3 col-lg-6">
+                    <div class="card l-bg-blue-dark">
                         <div class="card-statistic-3 p-4">
-                            <div class="card-icon card-icon-large"><i class="fas fa-undo"></i></div>
+                            <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
                             <div class="mb-4">
-                                <h5 class="card-title mb-0">Refund</h5>
+                                <h5 class="card-title mb-0">Visitors</h5>
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-8">
                                     <h2 class="d-flex align-items-center mb-0">
-                                        <?php echo $countref?>
+                                        <?php echo $currentCount; ?>
                                     </h2>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <span><?php echo $productPercentage?>% <i class="fa fa-arrow-up"></i></span>
+                                    <span><?php echo $visitorData['percentage']; ?>% <i
+                                            class="fa fa-arrow-up"></i></span>
                                 </div>
                             </div>
-                            <div class="progress mt-1 " data-height="8" style="height: 8px;">
-                                <div class="progress-bar l-bg-cyan" role="progressbar"
-                                    data-width="<?php echo $productProgressWidth; ?>%"
-                                    aria-valuenow="<?php echo $productProgressWidth; ?>%" aria-valuemin="0"
-                                    aria-valuemax="100" style="width: <?php echo $productProgressWidth; ?>%;"></div>
+                            <div class="progress mt-1" data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-green" role="progressbar"
+                                    data-width="<?php echo $visitorData['progressWidth']; ?>%"
+                                    aria-valuenow="<?php echo $visitorData['progressWidth']; ?>%" aria-valuemin="0"
+                                    aria-valuemax="100" style="width: <?php echo $visitorData['progressWidth']; ?>%;">
+                                </div>
                             </div>
                         </div>
+                    </div>
                 </div>
-                </a>
 
-            </div>
-            <div class="col-xl-3 col-lg-6">
-                <div class="card l-bg-blue-dark">
-                    <div class="card-statistic-3 p-4">
-                        <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
-                        <div class="mb-4">
-                            <h5 class="card-title mb-0">Visitors</h5>
-                        </div>
-                        <div class="row align-items-center mb-2 d-flex">
-                            <div class="col-8">
-                                <h2 class="d-flex align-items-center mb-0">
-                                    <?php echo  $currentCount; ?>
-                                </h2>
+                <!-- Reservations Section -->
+                <div class="col-xl-3 col-lg-6">
+                    <div class="card l-bg-green-dark">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Reservations</h5>
                             </div>
-                            <div class="col-4 text-right">
-                                <span><?php echo $percentage;?>% <i class="fa fa-arrow-up"></i></span>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                        <?php echo $all; ?>
+                                    </h2>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <span><?php echo $reservationData['percentage']; ?>% <i
+                                            class="fa fa-arrow-up"></i></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="progress mt-1 " data-height="8" style="height: 8px;">
-                            <div class="progress-bar l-bg-green" role="progressbar"
-                                data-width="<?php echo $progressWidth; ?>% "
-                                aria-valuenow="<?php echo $progressWidth; ?>%" aria-valuemin="0" aria-valuemax="100"
-                                style="width: <?php echo $progressWidth; ?>%;"></div>
+                            <div class="progress mt-1" data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-orange" role="progressbar"
+                                    data-width="<?php echo $reservationData['progressWidth']; ?>%"
+                                    aria-valuenow="<?php echo $reservationData['progressWidth']; ?>%" aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    style="width: <?php echo $reservationData['progressWidth'] ?>%;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-lg-6">
-                <div class="card l-bg-green-dark">
-                    <div class="card-statistic-3 p-4">
-                        <div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
-                        <div class="mb-4">
-                            <h5 class="card-title mb-0">Reservations</h5>
-                        </div>
-                        <div class="row align-items-center mb-2 d-flex">
-                            <div class="col-8">
-                                <h2 class="d-flex align-items-center mb-0">
-                                    <?php echo $allreservation; ?>
-                                </h2>
+
+                <!-- Total Revenue Section -->
+                <div class="col-xl-3 col-lg-6">
+                    <div class="card l-bg-orange-darka">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Total Revenue</h5>
                             </div>
-                            <div class="col-4 text-right">
-                                <span>10% <i class="fa fa-arrow-up"></i></span>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                        <?php echo $sum['total'] / 100; ?>
+                                    </h2>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <span><?php echo ($revenueData['percentage'] / 100); ?>% <i
+                                            class="fa fa-arrow-up"></i></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="progress mt-1 " data-height="8" style="height: 8px;">
-                            <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25"
-                                aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6">
-                <div class="card l-bg-orange-darka">
-                    <div class="card-statistic-3 p-4">
-                        <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
-                        <div class="mb-4">
-                            <h5 class="card-title mb-0">Total Revenue</h5>
-                        </div>
-                        <div class="row align-items-center mb-2 d-flex">
-                            <div class="col-8">
-                                <h2 class="d-flex align-items-center mb-0">
-                                    <?php echo number_format($sum['total'] / 100 ,2); ?>
-                                </h2>
+                            <div class="progress mt-1" data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" role="progressbar"
+                                    data-width="<?php echo $revenueData['progressWidth'] / 100; ?>%"
+                                    aria-valuenow="<?php echo $revenueData['progressWidth'] / 100; ?>%" aria-valuemin="0"
+                                    aria-valuemax="100" style="width: <?php echo $revenueData['progressWidth'] / 100; ?>%;">
+                                </div>
                             </div>
-                            <div class="col-4 text-right">
-                                <span><?php echo $reservationProgressWidth / 100 ?>% <i class="fa fa-arrow-up"></i></span>
-                            </div>
-                        </div>
-                        <div class="progress mt-1 " data-height="8" style="height: 8px;">
-                            <div class="progress-bar l-bg-cyan" role="progressbar" data-width="<?php echo $reservationProgressWidth / 100 ?>" aria-valuenow="<?php echo $reservationProgressWidth ?>"
-                                aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $reservationProgressWidth / 100 ?>;"></div>
                         </div>
                     </div>
                 </div>
@@ -158,8 +211,8 @@ require_once 'functions/countreservation.php';
 
                             <?php 
                             include_once 'functions/getres.php';
-                            while ($row = $fetchex->fetch_array()) { ?>   
-                                <tr>
+                            while ($row = $fetchex->fetch_array()) { ?>
+                            <tr>
                                 <?php 
                                 $number = $row['totalamount'];;
                                 $totalamount = number_format($number / 100, 2);
@@ -171,7 +224,7 @@ require_once 'functions/countreservation.php';
                                 ?>
                                 <td><?php echo $row['transaction_ref']; ?></td>
                                 <td><span
-                                        class="badge <?php echo $row['status'] === 'Approved' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?>"><?php echo $row['status']; ?></span>
+                                        class="badge <?php echo ($row['status'] === 'Approved' ||  $row['status'] === 'Approved:QR'||  $row['status'] === 'Done') ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?>"><?php echo $row['status']; ?></span>
                                 </td>
                                 <td><?php echo $row['type']; ?></td>
                                 <td><?php echo date('F d, Y', strtotime($row['reservationdate'])) ?></td>
