@@ -111,7 +111,7 @@ if ($computed_hash === $received_hash) {
                                                 $insertpaymentid = mysqli_query($db, "UPDATE `walkin_transac` SET `payment_id` = 'No payment id provided status not paid' WHERE `wtransac_id` = '$c'");
                                             }
                                         }
-                            
+
                                         echo "<tr>
                                             <td>{$checkoutSession['id']}</td>
                                             <td>{$payment['source']['type']}</td>
@@ -133,7 +133,7 @@ if ($computed_hash === $received_hash) {
                                     echo "<tr><td colspan='12'>STATUS NOT PAID</td></tr>";
                                 }
                             } else {
-                                echo "<tr><td colspan='12'>STATUS NOT PAIDtd></tr>";
+                                echo "<tr><td colspan='12'>STATUS NOT PAID<td></tr>";
                             }
                             ?>
                             </tbody>

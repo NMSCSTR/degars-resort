@@ -28,38 +28,30 @@ $package2ImageUrl = $fetchcp['package2_imagelink'];
     </div>
     <main>
         <div class="row mb-3 text-center">
-        <?php 
-        $conn = mysqli_connect('localhost', 'root', '', 'capstwo');
-        // SQL query to retrieve packages from the database
-        $sql = "SELECT * FROM packages";
-        $result = $conn->query($sql);
-
-        // Display packages using Bootstrap cards
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $imagePath = '../../admin/packages/' . $row["image_name"];
-                ?>
             <div class="col-sm-6">
                 <div class="card mb-4 rounded-3 shadow shadow-md">
                     <div class="card-header bg-dark text-white py-3">
-                        <h4 class="my-0 fw-normal"><?php echo $row['package_name']; ?></h4>
+                        <h4 class="my-0 fw-normal">Package 1</h4>
                     </div>
                     <div class="card-body">
-                    <h1 class="card-title pricing-card-title"><span>&#8369</span><?php echo $row['package_rate']; ?></h1>
-                    <img src="<?php echo $imagePath; ?>" class="img-fluid mb-2" style="height: 500px;" alt="Package 1 Image">
-                        <a href="../exclusive/exclusivebooking.php?id=<?php echo $row['id']; ?>&type=<?php echo $row['package_name']; ?>"class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book Now</a>
+                    <img src="<?php echo urldecode($package1ImageUrl); ?>" class="img-fluid mb-2" style="height: 500px;" alt="Package 1 Image">
+                        <a href="../exclusive/exclusivebooking.php?type=Package1"class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book Now</a>
                     </div>
                 </div>
             </div>
-            <?php
-                }
-            } else {
-                echo "No packages found.";
-            }
 
-            // Close the database connection
-            $conn->close();
-            ?>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow shadow-md">
+                    <div class="card-header bg-primary text-white py-3">
+                        <h4 class="my-0 fw-normal">Package 2</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- <h1 class="card-title pricing-card-title"><span>&#8369</span>8,500.00</h1> -->
+                        <img src="<?php echo urldecode($package2ImageUrl); ?>" class="img-fluid mb-2" style="height: 500px;" alt="Package 1 Image">
+                        <a href="../exclusive/exclusivebooking.php?type=Package2"class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book Now</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <div class="pt-2 d-flex justify-content-center">

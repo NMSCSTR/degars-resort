@@ -72,8 +72,8 @@ if ($update_result) {
    }   // Rest of your HTML code here
 ?>
 <!-- Your HTML code continues... -->
+<?php include '../portHeader.php';?>
 <header>
-    <?php include '../portHeader.php';?>
     <title>Success</title>
     <style>
     html {
@@ -113,9 +113,12 @@ if ($update_result) {
             </path>
         </svg>
     </div>
-<h1 class="text-center fw-bolder">Congratulations!</h1><br>
-    <p class="card-text text-dark text-center h5">Your <span class="text-danger">Degar's Resort Reservation</span>  transaction is successful! Please take a screenshot or copy your transaction reference.</p><br>
-    <p class="card-text text-dark text-center h5">Transaction Reference: <span class="text-danger fw-bold"><?= $refno ?></span></p><br>
+    <h1 class="text-center fw-bolder">Congratulations!</h1><br>
+    <div class="container">
+        <p class="card-text text-dark text-center h5">Your <span class="text-danger">Degar's Resort Reservation</span>  transaction is successful! Please take a screenshot or copy your transaction reference.</p><br>
+    <p class="card-text text-dark text-center h5">Transaction Reference: <span class="text-danger fw-bold"><?= $refno ?></span></p>
+    </div>
+    <br>
     <div class="container">
         <?php 
     // Include the QR Code library
@@ -165,10 +168,10 @@ function generateQRCode($data) {
 }
 
 if ($f_row) {
-    $data = "http://192.168.16.152/degars-resort/portal/exclusive/wcheck.php?transaction_ref={$refno}";
+    $data = "http://192.168.1.4/degars-resort/portal/exclusive/wcheck.php?transaction_ref={$refno}";
 }
 else {
-    $data = "http://192.168.16.152/degars-resort/portal/exclusive/check.php?transaction_ref={$refno}";
+    $data = "http://192.168.1.4/degars-resort/portal/exclusive/check.php?transaction_ref={$refno}";
 }
 // Example data (replace this with your actual data)
 

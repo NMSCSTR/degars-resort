@@ -1,6 +1,7 @@
 <?php 
-error_reporting(E_ALL);
+error_reporting(0);
 ini_set('display_errors', 0);
+
 
 session_start();
 if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
@@ -169,7 +170,7 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                 <div class="card shadow bg-body rounded">
                     <div class="card-body">
                         <div class="d-grid gap-2">
-                            <h6>SOCIAL MEDIA ACCOUNT CONTROL PANEL</h6>
+                            <h6>SOCIAL MEDIA ACCOUNT</h6>
                             <hr>
                         </div>
                         <form action="functions/editcontrols.php" method="post">

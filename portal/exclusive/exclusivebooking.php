@@ -2,15 +2,18 @@
 session_start();
 error_reporting(E_ALL);
 $db = mysqli_connect('localhost', 'root', '', 'capstwo');
+$getId = $_GET['id'];
 $getType = $_GET['type'];
-$fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
-if ($getType == "Package1") {
-    $getRates = $fetchcp['package1_rate'];
-}elseif ($getType == "Package2") {
-    $getRates = $fetchcp['package2_rate'];
-}elseif ($getType == "Exclusive") {
-    $getRates = $fetchcp['exclusiverate'];
-}
+$fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `packages` WHERE `id` = '$getId'"));
+$getRates = $fetchcp['package_rate'];
+// $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
+// if ($getType == "Package1") {
+//     $getRates = $fetchcp['package1_rate'];
+// }elseif ($getType == "Package2") {
+//     $getRates = $fetchcp['package2_rate'];
+// }elseif ($getType == "Exclusive") {
+//     $getRates = $fetchcp['exclusiverate'];
+// }
 
 
 ?>

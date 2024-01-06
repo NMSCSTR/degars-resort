@@ -25,7 +25,7 @@ $is_admin = ($_SESSION['users_role'] == "Admin");
     <!-- Include DataTables Responsive CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
     <!-- Include DataTables Buttons CSS -->
-    
+
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
@@ -113,23 +113,74 @@ body {
     <nav class="navbar navbar-light bg-light shadow">
         <div class="container">
             <div class="btn btn-light">
-                <span id="openNav" title="Open Sidebar" style="font-size:20px;cursor:pointer;" onclick="openNav()">&#9776; Degars
+                <span id="openNav" title="Open Sidebar" style="font-size:20px;cursor:pointer;"
+                    onclick="openNav()">&#9776; Degars
                     Resort</span>
             </div>
 
             <div class="dropdown">
-                <a  class="btn btn-light btn-md dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                <a class="btn btn-light btn-md dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                     data-bs-toggle="dropdown" aria-expanded="false">Welcome <span
                         class="text-primary text-capitalize"><?php echo $_SESSION['users_username'];?></span></a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
                     <!-- <li><a class="dropdown-item" onclick="return confirm('Are you sure you want to change password?');"
                             href=""><i class="fas fa-edit me-2"></i>Change password</a></li> -->
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal4"><i class="far fa-question-circle"></i> Inquiries</a></li>
                     <li><a class="dropdown-item" id="logout-btn" href="logout.php"><i
                                 class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">MESSAGES/INQUIRIES</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <?php 
+                    $db = mysqli_connect("localhost","root","","capstwo");
+                    $sql = "SELECT id, name, email, message FROM inquiries";
+                    $result = $db->query($sql);
+                    
+                    if ($result->num_rows > 0) {
+                        // Output data for each row
+                        while ($row = $result->fetch_assoc()) {
+                            $id = $row["id"];
+                            $name = $row["name"];
+                            $email = $row["email"];
+                            $message = $row["message"];
+                    
+                            // Generate Bootstrap 5 collapsible elements for each message
+                            echo '<p>';
+                            echo '  <button class="btn btn-dark btn-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' . $id . '" aria-expanded="false" aria-controls="collapse' . $id . '">';
+                            echo '    ' . $name . ' (' . $email . ')';
+                            echo '  </button>';
+                            echo '</p>';
+                            echo '<div>';
+                            echo '  <div class="collapse" id="collapse' . $id . '">';
+                            echo '    <div class="card card-body">';
+                            echo '      ' . $message;
+                            echo '    </div>';
+                            echo '  </div>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo "No messages found.";
+                    }
+                    
+                    // Close the database connection
+                    $db->close();
+                    ?>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div id="mySidenav" class="sidenav">
@@ -160,21 +211,20 @@ body {
         </ul>
     </div> -->
         <a href="rules.php" style="font-size: 18px;"><i class="fas fa-book"></i> Rules</a>
-        <!-- <a href="rooms.php" style="font-size: 18px;"><i class="fas fa-bed"></i> Rooms</a> -->
+        <a href="package.php" style="font-size: 18px;"><i class="fas fa-box"></i> Packages</a>
         <a href="cottages.php" style="font-size: 18px;"><i class="fas fa-home"></i> Aminities</a>
         <?php 
         if ($is_admin) {
         ?>
         <a href="#inventory-collapse1" data-bs-toggle="collapse" class="collapsed" style="font-size: 18px;">
-        <i class="fas fa-briefcase"></i> Paymongo <span class="toggle-icon fw-bolder">&#60;</span>
+            <i class="fas fa-briefcase"></i> Paymongo <span class="toggle-icon fw-bolder">&#60;</span>
         </a>
 
         <div class="collapse" id="inventory-collapse1">
             <ul class="btn-toggle-nav list-unstyled fw-normal small m-4 mt-0 mb-0">
-                <li><a href="https://dashboard.paymongo.com/payments/all" class="rounded" style="font-size: 18px;"><i class="far fa-credit-card"></i>
-                        Payments</a></li>
-                <li><a href="https://dashboard.paymongo.com/payouts-v2" class="rounded" style="font-size: 18px;"><i class="fas fa-money-check"></i>
-                        Payout</a></li>
+                <li><a href="payments.php" class="rounded" style="font-size: 18px;"><i
+                            class="far fa-credit-card"></i>
+                        Payments & Payouts</a></li>
             </ul>
         </div>
 

@@ -22,6 +22,8 @@ file_put_contents($counterFile, $newCount);
         href="https://img.icons8.com/external-others-inmotus-design/67/external-D-qwerty-keypad-others-inmotus-design.png"
         type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -101,6 +103,9 @@ header,
                             <a class="nav-link" href="#contact">Contact</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" data-toggle="modal" data-target="#viewPoolImages">Resort View</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" data-toggle="modal" data-target="#exampleModal">Events &
                                 Announcements</a>
                         </li>
@@ -161,12 +166,30 @@ header,
                         $db = mysqli_connect('localhost', 'root', '', 'capstwo');
                         $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
                     ?>
-                        <img src="<?php echo $fetchcp['eventimage'] ?>" class="img-fluid" alt="">
-                        <img src="<?php echo $fetchcp['announcementimage'] ?>" class="img-fluid" alt="">
+                    <img src="<?php echo $fetchcp['eventimage'] ?>" class="img-fluid" alt="">
+                    <img src="<?php echo $fetchcp['announcementimage'] ?>" class="img-fluid" alt="">
                 </div>
 
             </div>
         </div>
+        </div>
+
+        <!--Pool Images Modal -->
+        <div class="modal fade" id="viewPoolImages" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Resort View</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <?php include_once 'includes/poolimgs.php';?>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="intro" class="view">
@@ -253,39 +276,40 @@ header,
 
             <section id="packages" class="text-center">
                 <h2 class="mb-5 font-weight-bold"> Affordable Packages</h2>
-                <div class="container-fluid">
-                    <div class="row mb-3 text-center">
-                        <div class="col-sm-6">
-                            <div class="card mb-4 rounded-3 shadow shadow-md">
-                                <div class="card-header bg-dark text-white py-3">
-                                    <h4 class="my-0 fw-normal">Package 1</h4>
-                                </div>
-                                <div class="card-body">
-                                    <img src="portal/exclusive/imgs/pkg1.jpg" class="card-img-top mb-2"
-                                        alt="Package 1 Image">
-                                    <a href="portal/exclusive/exclusivebooking.php?type=Package1"
-                                        class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book
-                                        Now</a>
-                                </div>
-                            </div>
-                        </div>
+                <div class="row mb-3 text-center">
+        <?php 
+        $conn = mysqli_connect('localhost', 'root', '', 'capstwo');
+        // SQL query to retrieve packages from the database
+        $sql = "SELECT * FROM packages";
+        $result = $conn->query($sql);
 
-                        <div class="col">
-                            <div class="card mb-4 rounded-3 shadow shadow-md">
-                                <div class="card-header bg-dark text-white py-3">
-                                    <h4 class="my-0 fw-normal">Package 2</h4>
-                                </div>
-                                <div class="card-body">
-                                    <img src="portal/exclusive/imgs/pkg2.jpg" class="card-img-top mb-2"
-                                        alt="Package 2 Image">
-                                    <a href="portal/exclusive/exclusivebooking.php?type=Package2"
-                                        class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book
-                                        Now</a>
-                                </div>
-                            </div>
-                        </div>
+        // Display packages using Bootstrap cards
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $imagePath = 'admin/packages/' . $row["image_name"];
+                ?>
+            <div class="col-sm-6">
+                <div class="card mb-4 rounded-3 shadow shadow-md">
+                    <div class="card-header bg-dark text-white py-3">
+                        <h4 class="my-0 fw-normal"><?php echo $row['package_name']; ?></h4>
+                    </div>
+                    <div class="card-body">
+                    <h1 class="card-title pricing-card-title"><span>&#8369</span><?php echo $row['package_rate']; ?></h1>
+                    <img src="<?php echo $imagePath; ?>" class="img-fluid mb-2" style="height: 500px;" alt="Package 1 Image">
+                        <a href="portal/exclusive/exclusivebooking.php?id=<?php echo $row['id']; ?>&type=<?php echo $row['package_name']; ?>"class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book Now</a>
                     </div>
                 </div>
+            </div>
+            <?php
+                }
+            } else {
+                echo "No packages found.";
+            }
+
+            // Close the database connection
+            $conn->close();
+            ?>
+        </div>
 
             </section>
             <!--Section: Gallery-->
@@ -351,20 +375,20 @@ header,
                 <h2 class="mb-5 font-weight-bold text-center">Message Us</h2>
                 <div class="container py-4">
                     <!-- Bootstrap 5 starter form -->
-                    <form id="contactForm">
+                    <form action="functions/sendInquires.php" method="post" id="contactForm">
                         <!-- Name input -->
                         <div class="mb-3">
                             <label class="form-label" for="name">Name</label>
-                            <input class="form-control" id="name" type="text" placeholder="Name"
+                            <input class="form-control" id="name" type="text" placeholder="Name" name="name"
                                 data-sb-validations="required" />
                             <div class="invalid-feedback" data-sb-feedback="name:required">Name is required.</div>
                         </div>
 
                         <!-- Email address input -->
                         <div class="mb-3">
-                            <label class="form-label" for="emailAddress">Email Address Or Phone Number</label>
-                            <input class="form-control" id="emailAddress" type="email"
-                                placeholder="Email Address/phone number" data-sb-validations="required, email" />
+                            <label class="form-label" for="emailAddress">Email Address</label>
+                            <input class="form-control" id="emailAddress" type="email" name="email"
+                                placeholder="Email Address" data-sb-validations="required, email" />
                             <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is
                                 required.</div>
                             <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is
@@ -375,19 +399,9 @@ header,
                         <!-- Message input -->
                         <div class="mb-3">
                             <label class="form-label" for="message">Message</label>
-                            <textarea class="form-control" id="message" type="text" placeholder="Message"
+                            <textarea class="form-control" id="message" name="message" type="text" placeholder="Message"
                                 style="height: 10rem;" data-sb-validations="required"></textarea>
                             <div class="invalid-feedback" data-sb-feedback="message:required">Message is required.</div>
-                        </div>
-
-                        <!-- Form submissions success message -->
-                        <div class="d-none" id="submitSuccessMessage">
-                            <div class="text-center mb-3">Form submission successful!</div>
-                        </div>
-
-                        <!-- Form submissions error message -->
-                        <div class="d-none" id="submitErrorMessage">
-                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
 
                         <!-- Form submit button -->
@@ -517,6 +531,26 @@ header,
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
+
+<?php 
+
+if (isset($_SESSION['status']) && $_SESSION['status'] != '') 
+{ ?>
+    <script>
+        Swal.fire({
+        position: 'top-center',
+        icon: '<?php echo $_SESSION['code'];?>',
+        title: '<?php echo $_SESSION['status'];?>',
+        html: '<?php echo $_SESSION['code'];?>',
+        showConfirmButton: false,
+        timer: 2500
+    })
+    </script>
+    <?php 
+    unset ($_SESSION['status']); 
+    unset ($_SESSION['code']); 
+}
+?>
 </body>
 
 </html>

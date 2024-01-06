@@ -14,7 +14,9 @@ if (isset($_POST['edituser'])) {
     $edituser = mysqli_query($db, "UPDATE `admin` SET `users_username` = '$users_username', `users_password` = '$hashedPassword', `users_firstname` = '$users_firstname', `users_lastname` = '$users_lastname', `users_role` = '$users_role' WHERE `users_id` = '$users_id' ");
 
     if ($edituser) {
-        echo "<script>alert('User updated successfully'); window.location.href = '../users.php';</script>";
+        $_SESSION['status'] = "User Updated Successfully";
+        $_SESSION['code'] = "success";
+        header("Location: ../users.php");
     }else {
         echo "<script>alert('Error'); window.location.href = '../users.php';</script>";
     }

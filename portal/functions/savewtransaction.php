@@ -51,7 +51,7 @@ curl_setopt_array($curl, [
             'send_email_receipt' => true,
             'show_description' => true,
             'show_line_items' => false,
-            'cancel_url' => 'http://192.168.16.152/degars-resort/portal/exclusive/failed.php?walkin_id=' . $walkin_id . '&wcustomer_id=' . $wcustomer_id,
+            'cancel_url' => 'http://192.168.1.4/degars-resort/portal/exclusive/failed.php?walkin_id=' . $walkin_id . '&wcustomer_id=' . $wcustomer_id,
             'description' => 'WALKIN TRANSACTION PAYMENT : ' . $transaction_ref,
             'payment_method_types' => [
                 'gcash',
@@ -60,7 +60,7 @@ curl_setopt_array($curl, [
                 'dob_ubp',
                 'paymaya'
             ],
-            'success_url' => 'http://192.168.16.152/degars-resort/portal/exclusive/success.php?walkin_id=' . $walkin_id . '&wcustomer_id=' . $wcustomer_id,
+            'success_url' => 'http://192.168.1.4/degars-resort/portal/exclusive/success.php?walkin_id=' . $walkin_id . '&wcustomer_id=' . $wcustomer_id,
             'line_items' => [
                 [
                     'currency' => 'PHP',

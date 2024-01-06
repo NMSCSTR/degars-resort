@@ -183,7 +183,8 @@ $revenueData = calculateProgress($total, 100000);  // Assuming a maximum of 1000
             </div>
         </div>
     </div>
-</div>
+   
+
 
 <!-- <div class="container">
         <div class="row">
@@ -240,6 +241,7 @@ $revenueData = calculateProgress($total, 100000);  // Assuming a maximum of 1000
 
         </div>
     </div>
+</div>
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

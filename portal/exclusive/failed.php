@@ -1,5 +1,5 @@
+<?php include '../portHeader.php';?>
 <header>
-    <?php include '../portHeader.php';?>
     <title>Degar's Resort | Failed</title>
     <style>
     html {
@@ -19,8 +19,8 @@
 </header>
 
 <section class="py-5">
-    <div class="img-fluid mx-auto d-block d-flex justify-content-center align-items-center py-5">
-        <i class="fas fa-times-circle text-danger" style="font-size: 100px;"></i>
+    <div class="img-fluid mx-auto d-block d-flex justify-content-center align-items-center py-3">
+        <i class="fas fa-times-circle text-danger" style="font-size: 80px;"></i>
     </div>
     <?php 
 $db = mysqli_connect("localhost", "root", "", "capstwo");
@@ -96,10 +96,13 @@ if ($update_result) {
 
     
     <h1 class="text-center fw-bolder">Reservation Failed</h1><br>
-    <p class="card-text text-dark text-center h5">Your Degar's Resort Reservation
-        transaction was unsuccessful! Copy or take a screenshot your transaction reference and use it next time when you pay. </p><br>
+    <div class="container">
+        <p class="card-text text-dark text-center h5">Your Degar's Resort Reservation
+        transaction was place! Copy or take a screenshot your transaction reference and use it next time when you pay for successful reservation.</p><br>
     <p class="card-text text-dark text-center h5">Transaction Reference: <span
             class="text-danger fw-bold"><?= $refno ?></span></p>
+    </div>
+    
         <?php 
         // Include the QR Code library
         require "phpqrcode/qrlib.php";
@@ -147,17 +150,17 @@ if ($update_result) {
         }
 
         if ($f_row) {
-            $data = "http://192.168.16.152/degars-resort/portal/exclusive/wcheck.php?transaction_ref={$refno}";
+            $data = "http://192.168.1.4/degars-resort/portal/exclusive/wcheck.php?transaction_ref={$refno}";
         }
         else {
-            $data = "http://192.168.16.152/degars-resort/portal/exclusive/check.php?transaction_ref={$refno}";
+            $data = "http://192.168.1.4/degars-resort/portal/exclusive/check.php?transaction_ref={$refno}";
         }
         // Call the function to generate and display the QR code
         generateQRCode($data);
     ?>
     <div class="container d-flex justify-content-center">
         <div class="container-fluid col-lg-10 d-md-flex justify-content-center"><br><br>
-            <p><a href="#">Back to home page.</a></p>
+            <p><a href="../../index.php">Back to home page</a></p>
         </div>
 </section>
 
