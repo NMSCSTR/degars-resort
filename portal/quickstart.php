@@ -1,12 +1,14 @@
-<?php include 'portHeader.php';?>
+<?php 
+include 'portHeader.php';
+?>
 
 <title>Quickstart</title>
 <main>
     <div class="container">
         <div class="row d-flex justify-content-center mt-4">
             <div class="col-sm-12">
-                <p class="h6 d-flex justify-content-center text-center text-wrap">Please take a moment to review our
-                    resort rules before making a reservation. Thank you</p>
+                <p class="h6 d-flex justify-content-center text-center text-wrap">Please take a moment on viewing our
+                    resort rules before making a reservation. Thank you!</p>
                 <a class="d-flex justify-content-center" href="" data-bs-toggle="modal" data-bs-target="#resortrules">
                     View Resort Rules</a>
                 <a class="d-flex justify-content-center" href="" data-bs-toggle="modal"
@@ -20,10 +22,14 @@
                 <option selected>Select an option</option>
                 <option value="package/packagebooking.php?type=Package">Package Reservation</option>
                 <option value="exclusive/exclusivebooking.php?type=Exclusive">Exclusive Reservation</option>
-                <option value="exclusive/walkin.php?type=Walkin">WALK-IN</option>
+                <option value="exclusive/walkin.php?type=Walkin">Walk-In</option>
             </select>
             <label for="chooseReservation">Choose Reservation</label>
         </div>
+        <div class="text-center py-5">
+            <a href="../index.php" class="btn btn-dark">Back to Homepage</a>
+        </div>
+        
     </div>
 
 

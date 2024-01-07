@@ -2,10 +2,17 @@
 session_start();
 error_reporting(E_ALL);
 $db = mysqli_connect('localhost', 'root', '', 'capstwo');
-$getId = $_GET['id'];
 $getType = $_GET['type'];
+if (isset($_GET['id'])) {
+    $getId = $_GET['id'];
 $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `packages` WHERE `id` = '$getId'"));
 $getRates = $fetchcp['package_rate'];
+} elseif ($getType == "Exclusive") {
+    $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
+    $getRates = $fetchcp['exclusiverate'];
+}
+
+
 // $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
 // if ($getType == "Package1") {
 //     $getRates = $fetchcp['package1_rate'];
@@ -41,7 +48,7 @@ $getRates = $fetchcp['package_rate'];
                 <?php include_once 'svgbg.php'?>
             </div>
             <div class="container-fluid col-md-6 p-4 ps-md-0">
-                <h4 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> Exclusive Reservation</h4>
+                <h4 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> <?php echo $_GET['type']; ?> Reservation</h4>
                 <hr>
                 <form action="../functions/savereservation.php" method="post">
                     <div class="form-floating mb-3">
@@ -65,8 +72,8 @@ $getRates = $fetchcp['package_rate'];
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control text-capitalize fw-bold" name="rates" id="floatingInput"
-                            value="<?php echo $getRates ?>" placeholder="rates" required>
-                        <label for="floatingInput"><i class="fas fa-dollar-sign"></i> Rates</label>
+                            value="<?php echo $getRates ?>" placeholder="rates" required  readonly>
+                        <label for="floatingInput">₱ Rates</label>
                     </div>  
                     <div class="d-flex justify-content-end gap-2">
                         <a href="../quickstart.php" class="btn btn-outline-danger">
