@@ -21,7 +21,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                 <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">
                     <thead style="font-size: 15px;">
                         <tr>
-                            <th>Transac Id</th>
+                            <th hidden>Transac Id</th>
                             <th>Ref #</th>
                             <th>Status</th>
                             <th>Aminities</th>
@@ -48,8 +48,8 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                 $checkout_id = $row['checkout_id'];
                                 $hash = hash('sha256', $checkout_id);
                             ?>
-                            <td><?php echo $row['wtransac_id']; ?></td>
-                            <td><?php echo $row['transaction_ref']; ?></td>
+                            <td hidden><?php echo $row['wtransac_id']; ?></td>
+                            <td><a href="../portal/exclusive/wcheck.php?transaction_ref=<?php echo $row['transaction_ref']; ?>"><?php echo $row['transaction_ref']; ?></a></td>
                             <td><span
                                     class="badge <?php echo $row['status'] === 'Approved' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?>"><?php echo $row['status']; ?></span>
                             <td><?php echo $row['name']; ?></td> 

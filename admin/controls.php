@@ -2,7 +2,6 @@
 error_reporting(0);
 ini_set('display_errors', 0);
 
-
 session_start();
 if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 ?>
@@ -99,7 +98,7 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                 <div class="card shadow bg-body rounded">
                     <div class="card-body">
                         <div>
-                            <h6>RESERVATION CONTROL PANEL </h6>
+                            <h6>RESERVATION CONTROL</h6>
                             <hr>
                         </div>
                         <form method="post" action="">
@@ -116,19 +115,19 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                         <form action="functions/editcontrols.php" method="post">
                             <div class="container-fluid mb-3">
                                 <div class="row g-3 mb-3">
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-7" hidden>
                                         <label for="">Package 1 Image Address</label>
                                         <input type="text" name="package1_imagelink" class="form-control form-cotrol-sm"
                                             value="<?php echo urldecode($fetchcp['package1_imagelink']) ?>"
                                             placeholder="Package 1 Image Link" aria-label="City">
                                     </div>
-                                    <div class="col-sm">
+                                    <div class="col-sm" hidden>
                                         <label for="">Package 1 Rate</label>
                                         <input type="text" class="form-control form-cotrol-sm" name="package1_rate"
                                             id="package1RateInput" value="<?php echo $fetchcp['package1_rate'] ?>"
                                             placeholder="P1 Rate" aria-label="P1Rate">
                                     </div>
-                                    <div class="col-sm">
+                                    <div class="col-sm" hidden>
                                         <label for="">Package 2 Rate</label>
                                         <input type="text" class="form-control form-cotrol-sm" id="package2RateInput"
                                             name="package2_rate" value="<?php echo $fetchcp['package2_rate'] ?>"
@@ -136,7 +135,7 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                                     </div>
                                 </div>
                                 <div class="row g-3">
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-7" hidden>
                                         <label for="">Package 2 Image Address</label>
                                         <input type="text" class="form-control form-cotrol-sm" name="package2_imagelink"
                                             value="<?php echo urldecode($fetchcp['package2_imagelink']) ?>"

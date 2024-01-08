@@ -1,3 +1,7 @@
+<?php 
+$conn = mysqli_connect('localhost', 'root', '', 'capstwo');
+$socmed = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM `control` WHERE control_id = 1"));
+?>
 <!doctype html>
 <html lang="en">
 
@@ -61,7 +65,8 @@ body {
                 <span class="navbar-text">
                     <ul class="nav justify-content-center">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">
+                            <a class="nav-link active" aria-current="page" href="<?= $socmed['facebook'] ?>" target="_blank"
+                            onclick="return openLink(this.href)">
                                 <i class="fab fa-facebook"></i> Facebook
                             </a>
                         </li>

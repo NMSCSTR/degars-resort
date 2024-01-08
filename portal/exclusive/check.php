@@ -200,7 +200,7 @@ body {
                                         </span><?php echo date('F d, Y', strtotime($row['paymentduedate'])); ?></li>
                                     <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                                             class="me-1 fw-bold">Status:</span><span
-                                            class="badge badge <?php echo $row['status'] === 'Approved' || $row['status'] === 'Approved:QR' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?> fw-bold">
+                                            class="badge badge <?php echo $row['status'] === 'Approved' || $row['status'] === 'Done' || $row['status'] === 'Approved:QR' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?> fw-bold">
                                             <?php echo $row['status']; ?></span></li>
                                 </ul>
                             </div>

@@ -60,7 +60,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             $hash = hash('sha256', $checkout_id);
 
                             ?>
-                            <td><?php echo $row['transaction_ref']; ?></td>
+                            <td><a href="../portal/exclusive/check.php?transaction_ref=<?php echo $row['transaction_ref']; ?>"><?php echo $row['transaction_ref']; ?></a></td>
                             <td><span
                                     class="badge <?php echo ($row['status'] === 'Approved' ||  $row['status'] === 'Approved:QR'||  $row['status'] === 'Done') ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?>"><?php echo $row['status']; ?></span>
                             </td>

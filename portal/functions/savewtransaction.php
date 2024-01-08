@@ -106,7 +106,7 @@ if ($err) {
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
-            REDIRECTING TO CHECKOUT PAGE
+            Redirecting to checkout page. Please wait!
         </h3>';
 
 

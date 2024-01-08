@@ -118,12 +118,12 @@ body {
     <nav class="navbar navbar-light bg-light shadow">
         <div class="container">
             <div class="btn btn-light">
-                <span id="openNav" title="Open Sidebar" style="font-size:20px;cursor:pointer;"
+                <h5 id="openNav" title="Open Sidebar" class="fw-bolder" style="font-size:20px;cursor:pointer;"
                     onclick="openNav()">&#9776; Degars
-                    Resort</span>
+                    Resort</h5>
             </div>
 
-            <div class="dropdown">
+            <div class="dropdown fw-bolder">
                 <a class="btn btn-light btn-md dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                     data-bs-toggle="dropdown" aria-expanded="false">Welcome <span
                         class="text-primary text-capitalize"><?php echo $_SESSION['users_username'];?></span></a>

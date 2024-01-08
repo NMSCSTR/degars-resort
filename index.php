@@ -4,6 +4,9 @@ $currentCount = (int) file_get_contents($counterFile);
 
 $newCount = $currentCount + 1;
 file_put_contents($counterFile, $newCount);
+
+$conn = mysqli_connect('localhost', 'root', '', 'capstwo');
+$socmed = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM `control` WHERE control_id = 1"));
 ?>
 
 <!DOCTYPE html>
@@ -73,10 +76,10 @@ header,
         <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light shadow shadow-lg">
             <div class="container-fluid">
                 <!-- Navbar brand -->
-                <a class="navbar-brand fw-bolder" href="#">
+                <a class="navbar-brand" href="#">
                     <img src="https://img.icons8.com/external-others-inmotus-design/67/external-D-qwerty-keypad-others-inmotus-design.png"
                         alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-                    Degars Resort
+                    <strong>Degars Resort</strong>
                 </a>
                 <!-- Collapse button -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -119,7 +122,8 @@ header,
                     <!-- Social Icon  -->
                     <ul class="navbar-nav nav-flex-icons">
                         <li class="nav-item">
-                            <a class="nav-link">
+                            <a href="<?= $socmed['facebook'] ?>" target="_blank"
+                            onclick="return openLink(this.href)" class="nav-link">
                                 <i class="fab fa-facebook"></i>
                             </a>
                         </li>

@@ -28,7 +28,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                 <hr>
                 <section>
                     <div class="container">
-                        <h2>List of payments</h2>
+                        <h2>List of Payments</h2>
                         <!-- Datatables -->
                         <div class="table-responsive text-start">
                             <table id="dataTable" class="table table-sm table-hover table-lg"

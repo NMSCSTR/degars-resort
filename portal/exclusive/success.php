@@ -180,7 +180,7 @@ else {
 generateQRCode($data);
 ?>
     </div>
-    <p><a href="../../index.php" class="d-sm-flex justify-content-center">Back to home page.</a></p>
+    <p><a href="../../index.php" class="d-lg-flex justify-content-center">Back to home page.</a></p>
 
 </section>
 

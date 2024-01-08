@@ -133,25 +133,25 @@ body {
             <div class="card-body">
                 <div class="container mb-5 mt-3">
                     <div class="row d-flex align-items-baseline">
-                        <div class="col-xl-8">
+                        <div class="col-xl-9">
                             <p style="color: #7e8d9f;font-size: 20px;">Transac Ref. >> <strong class="text-danger">
                                     <?php echo $row['transaction_ref']; ?></strong></p>
                         </div>
-                        <div class="col-xl-4 float-end">
-                            <?php 
+                        <div class="col-xl-3 float-end">
+                            <!-- <?php 
                                 if ($row['status'] ===  "Pending" || $row['status'] === "Refunded" ||$row['status'] === "Declined" || $row['status'] === "Done") { ?>
-                            <button id="forDisabled" class="btn btn-light text-capitalize border-0"><i class="fas fa-hand-paper"></i> Request refund</button>
+                                <button id="forDisabled" class="btn btn-light text-capitalize border-0"><i class="fas fa-hand-paper"></i> Request refund</button>
 
-                            <?php } else { ?>
-                            <a class="btn btn-light text-capitalize border-0"
-                                onclick="return confirm('8% of the total amount will be deducted for transaction refund. Are you sure you want to cancel your reservation and request refund?');"
-                                data-mdb-ripple-color="dark" href="requestrefund.php?"><i class="fas fa-hand-paper"></i>
-                                Request refund</a>
-                            <?php } ?>
-                            <a href="../../index.php" class="btn btn-light text-capitalize hide-on-print"
-                                data-mdb-ripple-color="dark"><i class="fas fa-undo text-dark"></i> Back</a>
-                            <button id="printButton" class="btn btn-primary text-capitalize hide-on-print"><i
-                                    class="fas fa-print"></i> Print</button>
+                                <?php } else { ?>
+                                <a class="btn btn-light text-capitalize border-0"
+                                    onclick="return confirm('8% of the total amount will be deducted for transaction refund. Are you sure you want to cancel your reservation and request refund?');"
+                                    data-mdb-ripple-color="dark" href="requestrefund.php?"><i class="fas fa-hand-paper"></i>
+                                    Request refund</a>
+                                <?php } ?> -->
+                                <a href="../../index.php" class="btn btn-light text-capitalize hide-on-print"
+                                    data-mdb-ripple-color="dark"><i class="fas fa-undo text-dark"></i> Back</a>
+                                <button id="printButton" class="btn btn-dark text-capitalize hide-on-print"><i
+                                        class="fas fa-print"></i> Print</button>
                         </div>
                         <hr>
                     </div>
