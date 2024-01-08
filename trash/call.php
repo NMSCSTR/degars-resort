@@ -10,10 +10,10 @@
     <?php 
         $ch = curl_init();
         $parameters = array(
-            'Destination' => '09950076122',
+            'Destination' => '09709154709',
 
         );
-        curl_setopt( $ch, CURLOPT_URL,'http://192.168.1.78:1688/services/api/call');
+        curl_setopt( $ch, CURLOPT_URL,'http://192.168.1.3:1688/services/api/call');
         curl_setopt( $ch, CURLOPT_POST, 1 );
         
         //Send the parameters set above with the request

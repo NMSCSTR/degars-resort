@@ -4,9 +4,6 @@ $currentCount = (int) file_get_contents($counterFile);
 
 $newCount = $currentCount + 1;
 file_put_contents($counterFile, $newCount);
-
-$conn = mysqli_connect('localhost', 'root', '', 'capstwo');
-$socmed = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM `control` WHERE control_id = 1"));
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +22,6 @@ $socmed = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM `control` WHERE c
         href="https://img.icons8.com/external-others-inmotus-design/67/external-D-qwerty-keypad-others-inmotus-design.png"
         type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -109,7 +104,7 @@ header,
                             <a class="nav-link" data-toggle="modal" data-target="#viewPoolImages">Resort View</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">Events &
+                            <a class="nav-link" data-toggle="modal" data-target="#exampleModalCenter2">Events &
                                 Announcements</a>
                         </li>
                         <li class="nav-item">
@@ -122,8 +117,7 @@ header,
                     <!-- Social Icon  -->
                     <ul class="navbar-nav nav-flex-icons">
                         <li class="nav-item">
-                            <a href="<?= $socmed['facebook'] ?>" target="_blank"
-                            onclick="return openLink(this.href)" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="fab fa-facebook"></i>
                             </a>
                         </li>
@@ -163,22 +157,39 @@ header,
                 </div>
             </div>
         </div>
-        <!-- Search Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
                     <?php 
                         $db = mysqli_connect('localhost', 'root', '', 'capstwo');
                         $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
                     ?>
-                    <img src="<?php echo $fetchcp['eventimage'] ?>" class="img-fluid" alt="">
-                    <img src="<?php echo $fetchcp['announcementimage'] ?>" class="img-fluid" alt="">
+                    <img src="<?php echo urldecode($fetchcp['eventimage']) ?>" class="img-fluid" alt="">
+                    <img src="<?php echo urldecode($fetchcp['announcementimage']) ?>" class="img-fluid" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Search Modal -->
+        <!-- <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+
                 </div>
 
             </div>
         </div>
-        </div>
+        </div> -->
 
         <!--Pool Images Modal -->
         <div class="modal fade" id="viewPoolImages" tabindex="-1" role="dialog"
@@ -192,7 +203,7 @@ header,
                         </button>
                     </div>
                     <div class="modal-body">
-                        <?php include_once 'includes/poolimgs.php';?>
+                        <?php require_once 'includes/poolimgs.php';?>
                     </div>
                 </div>
             </div>
@@ -300,7 +311,8 @@ header,
                             </div>
                             <div class="card-body">
                                 <h1 class="card-title pricing-card-title">
-                                    <span>&#8369</span><?php echo $row['package_rate']; ?></h1>
+                                    <span>&#8369</span><?php echo $row['package_rate']; ?>
+                                </h1>
                                 <img src="<?php echo $imagePath; ?>" class="img-fluid mb-2" style="height: 500px;"
                                     alt="Package 1 Image">
                                 <a href="portal/exclusive/exclusivebooking.php?id=<?php echo $row['id']; ?>&type=<?php echo $row['package_name']; ?>"
@@ -532,32 +544,7 @@ header,
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-    </script>
 
-    <?php 
-
-if (isset($_SESSION['status']) && $_SESSION['status'] != '') 
-{ ?>
-    <script>
-    Swal.fire({
-        position: 'top-center',
-        icon: '<?php echo $_SESSION['code'];?>',
-        title: '<?php echo $_SESSION['status'];?>',
-        html: '<?php echo $_SESSION['code'];?>',
-        showConfirmButton: false,
-        timer: 2500
-    })
-    </script>
-    <?php 
-    unset ($_SESSION['status']); 
-    unset ($_SESSION['code']); 
-}
-?>
 </body>
 
 </html>

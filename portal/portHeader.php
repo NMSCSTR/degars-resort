@@ -29,7 +29,7 @@ $socmed = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM `control` WHERE c
 
 </head>
 <style>
-    * {
+* {
     padding: 0;
     margin: 0;
 }
@@ -37,57 +37,60 @@ $socmed = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM `control` WHERE c
 body {
     font-family: 'Poppins', sans-serif;
     transition: background-color .5s;
-    
-}
-.card {
-        transition: transform 0.3s;
-    }
 
-    /* .card:hover {
+}
+
+.card {
+    transition: transform 0.3s;
+}
+
+/* .card:hover {
         transform: scale(1.05);
     } */
 </style>
 
 <body>
-<header>
-    <nav class="navbar navbar-expand-xl bg-light bg-gradient navbar-light shadow">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
-                <img src="https://img.icons8.com/external-others-inmotus-design/67/external-D-qwerty-keypad-others-inmotus-design.png"
-                    alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-                Degars Resort
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarText">
-                <span class="navbar-text">
-                    <ul class="nav justify-content-center">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="<?= $socmed['facebook'] ?>" target="_blank"
-                            onclick="return openLink(this.href)">
-                                <i class="fab fa-facebook"></i> Facebook
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                            <i class="fab fa-instagram-square"></i> Instagram
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fab fa-twitter"></i> Twitter
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link">
-                                <i class="fas fa-envelope"></i> Gmail
-                            </a>
-                        </li>
-                    </ul>
-                </span>
+    <header>
+        <nav class="navbar navbar-expand-xl bg-light bg-gradient navbar-light shadow">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="#">
+                    <img src="https://img.icons8.com/external-others-inmotus-design/67/external-D-qwerty-keypad-others-inmotus-design.png"
+                        alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                    Degars Resort
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarText">
+                    <span class="navbar-text">
+                        <ul class="nav justify-content-center">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="<?= $socmed['facebook'] ?>"
+                                    target="_blank" onclick="return openLink(this.href)">
+                                    <i class="fab fa-facebook"></i> Facebook
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://www.instagram.com/<?= $socmed['instagram'] ?>" onclick="return openLink(this.href)" target="_blank">
+                                    <i class="fab fa-instagram-square"></i> Instagram
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://mail.google.com/mail/?view=cm&to=<?= $socmed['email'] ?>" class="nav-link"
+                                    onclick="return openLink(this.href)" target="_blank">
+                                    <i class="fas fa-envelope"></i> Gmail
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://compose.mail.yahoo.com/?to=degars@yahoo.com" class="nav-link"
+                                    onclick="return openLink(this.href)" target="_blank">
+                                    <i class="fas fa-envelope"></i> Yahoo Mail
+                                </a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>

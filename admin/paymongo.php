@@ -13,7 +13,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
         display: inline-block;
     }
     </style>
-    <div class="container-fluid p-2">
+    <div class="container p-2">
         <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5 shadow">
             <img class="img-fluid"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PayMongo_Logo.svg/2560px-PayMongo_Logo.svg.png"
@@ -31,8 +31,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                         <h2>List of Payments</h2>
                         <!-- Datatables -->
                         <div class="table-responsive text-start">
-                            <table id="dataTable" class="table table-sm table-hover table-lg"
-                                style="width:100%">
+                            <table id="dataTable" class="table table-sm table-hover table-lg" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -75,33 +74,33 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                     } else {
                                         $data = json_decode($response, true);
                                     }
-
                                     foreach ($data['data'] as $payment) {
                                         $formattedAmount = number_format($payment['attributes']['amount'] / 100, 2);
                                         echo "<tr>
-                                        <td class='text-primary'>{$payment['id']}</td>
-                                        <td>{$payment['attributes']['source']['type']}</td>
-                                        <td>{$formattedAmount}</td>
-                                        <td>{$payment['attributes']['status']}</td>
-                                        <td>{$payment['attributes']['billing']['email']}</td>
-                                        <td>{$payment['attributes']['billing']['name']}</td>
-                                        <td>{$payment['attributes']['billing']['phone']}</td>
-                                        <td>{$payment['attributes']['source']['id']}</td>
-                                        <td>" . date('Y-m-d H:i:s', $payment['attributes']['paid_at']) . "</td>
-                                        <td>" . date('Y-m-d H:i:s', $payment['attributes']['updated_at']) . "</td>
-                                        <td>" . date('Y-m-d H:i:s', $payment['attributes']['created_at']) . "</td>
-                                            </tr>";
+                                            <td class='text-primary'>{$payment['id']}</td>
+                                            <td onclick=\"window.open('https://dashboard.paymongo.com/payments/{$payment['id']}', '_blank');\">{$payment['attributes']['source']['type']}</td>
+                                            <td onclick=\"window.open('https://dashboard.paymongo.com/payments/{$payment['id']}', '_blank');\">{$formattedAmount}</td>
+                                            <td onclick=\"window.open('https://dashboard.paymongo.com/payments/{$payment['id']}', '_blank');\">{$payment['attributes']['status']}</td>
+                                            <td onclick=\"window.open('https://dashboard.paymongo.com/payments/{$payment['id']}', '_blank');\">{$payment['attributes']['billing']['email']}</td>
+                                            <td onclick=\"window.open('https://dashboard.paymongo.com/payments/{$payment['id']}', '_blank');\">{$payment['attributes']['billing']['name']}</td>
+                                            <td onclick=\"window.open('https://dashboard.paymongo.com/payments/{$payment['id']}', '_blank');\">{$payment['attributes']['billing']['phone']}</td>
+                                            <td onclick=\"window.open('https://dashboard.paymongo.com/payments/{$payment['id']}', '_blank');\">{$payment['attributes']['source']['id']}</td>
+                                            <td onclick=\"window.open('https://dashboard.paymongo.com/payments/{$payment['id']}', '_blank');\">" . date('Y-m-d H:i:s', $payment['attributes']['paid_at']) . "</td>
+                                            <td onclick=\"window.open('https://dashboard.paymongo.com/payments/{$payment['id']}', '_blank');\">" . date('Y-m-d H:i:s', $payment['attributes']['updated_at']) . "</td>
+                                            <td onclick=\"window.open('https://dashboard.paymongo.com/payments/{$payment['id']}', '_blank');\">" . date('Y-m-d H:i:s', $payment['attributes']['created_at']) . "</td>
+                                        </tr>";
                                     }
                                     ?>
+                                    
                                 </tbody>
                             </table>
                         </div>
                     </div>
-        </div>
+                </div>
+            </div>
         </section>
+        </div>
     </div>
-    </div>
-
 </main>
 
 

@@ -93,26 +93,29 @@ body {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-    <?php
-    $db = mysqli_connect("localhost", "root", "", "capstwo");
-    $fetchcottages = mysqli_query($db, "SELECT * FROM `aminities` WHERE `rates` != 0");
+                    <?php
+                $db = mysqli_connect("localhost", "root", "", "capstwo");
+                $fetchcottages = mysqli_query($db, "SELECT * FROM `aminities` WHERE `rates` != 0 ORDER BY aminities_id DESC" );
 
-    if ($fetchcottages->num_rows > 0) {
-    ?>
-        <div id="carouselExampleDark" class="carousel carousel-dark slide">
-            <div class="carousel-indicators">
-                <?php
+                if ($fetchcottages->num_rows > 0) {
+                ?>
+                    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+                        <div class="carousel-indicators">
+                            <?php
                 $indicatorIndex = 0;
                 while ($row = $fetchcottages->fetch_array()) {
                     ?>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="<?= $indicatorIndex ?>" <?php if ($indicatorIndex == 0) echo 'class="active"'; ?> aria-label="Slide <?= $indicatorIndex + 1 ?>"></button>
-                    <?php
+                            <button type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide-to="<?= $indicatorIndex ?>"
+                                <?php if ($indicatorIndex == 0) echo 'class="active"'; ?>
+                                aria-label="Slide <?= $indicatorIndex + 1 ?>"></button>
+                            <?php
                     $indicatorIndex++;
                 }
                 ?>
-            </div>
-            <div class="carousel-inner">
-                <?php
+                        </div>
+                        <div class="carousel-inner">
+                            <?php
                 // Reset the indicator index
                 $indicatorIndex = 0;
                 // Rewind the result set
@@ -122,33 +125,40 @@ body {
                     $imagePath2 = '../../admin/cottageimgs/' . $row["image2"];
                     $imagePath3 = '../../admin/cottageimgs/' . $row["image3"];
                     ?>
-                    <div class="carousel-item <?php if ($indicatorIndex == 0) echo 'active'; ?>">
-                    <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
-                        <img src="<?= $imagePath1 ?>" class="img-fluid d-block" style="width: 400px; height: 300px;" alt="Image 1">
-                        <img src="<?= $imagePath2 ?>" class="mg-fluid d-block" style="width: 400px; height: 300px;" alt="Image 2">
-                        <img src="<?= $imagePath3 ?>" class="mg-fluid d-block" style="width: 400px; height: 300px;" alt="Image 3">
-                    </div>
-                        
-                        <div class="carousel-caption d-none d-md-block d-flex align-items-center justify-content-center flex-column flex-sm-row">
-                            <h5><?= $row['name'] ?></h5>
-                            <p class="text-dark"><?= $row['description'] ?></p>
-                        </div>
-                    </div>
-                    <?php
+                            <div class="carousel-item <?php if ($indicatorIndex == 0) echo 'active'; ?>">
+                                <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                                    <img src="<?= $imagePath1 ?>" class="img-fluid d-block"
+                                        style="width: 400px; height: 300px;" alt="Image 1">
+                                    <img src="<?= $imagePath2 ?>" class="mg-fluid d-block"
+                                        style="width: 400px; height: 300px;" alt="Image 2">
+                                    <img src="<?= $imagePath3 ?>" class="mg-fluid d-block"
+                                        style="width: 400px; height: 300px;" alt="Image 3">
+                                </div>
+
+                                <div
+                                    class="carousel-caption d-none d-md-block d-flex align-items-center justify-content-center flex-column flex-sm-row">
+                                    <h5 style="color: #000;"><?= $row['name'] ?></h5>
+                                    <p class="text-dark" style="color: #333;"><?= $row['description'] ?></p>
+                                </div>
+
+                            </div>
+                            <?php
                     $indicatorIndex++;
                 }
                 ?>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    <?php
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <?php
     } else {
         echo "No data found in the database.";
     }
@@ -156,7 +166,7 @@ body {
     // Close the database connection
     mysqli_close($db);
     ?>
-</div>
+                </div>
 
             </div>
         </div>

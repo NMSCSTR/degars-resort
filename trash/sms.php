@@ -2,17 +2,16 @@
     <?php 
 
         $phone_number = '09506587329';
-        $message_content = "Congratulations! Mr. Rhondel Pagobo your reservation was approved copy or save this transaction reference <span style='color: red;'>ref3457gf</span>. Please check your email we have sent a copy of your receipt. If you have any questions about this payment, contact DEGARS RESORT at mariloumercado1955@gmail.com";
+        $message_content = "Congratulations, your reservation was approved successfully. Please remember or save the transaction reference: ref54b7. A copy of your receipt has been emailed to you. If you have any questions about this payment, please contact DEGARS RESORT at mariloumercado1955@gmail.com. Thank you for making your reservation!";
 
 
         $ch = curl_init();
         $parameters = array(
-            'apikey' => '71a0b82e7b5fbd2fb958fcf22d844280', 
-            'number' => $phone_number,
-            'message' => $message_content,
-            'sendername' => 'SEMAPHORE'
+            'To' => $phone_number,
+            'Message' => $message_content
+
         );
-        curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
+        curl_setopt( $ch, CURLOPT_URL,'http://192.168.1.3:1688/services/api/messaging/' );
         curl_setopt( $ch, CURLOPT_POST, 1 );
         
         //Send the parameters set above with the request
@@ -22,5 +21,7 @@
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
         $output = curl_exec( $ch );
         curl_close ($ch);
+        
         //Show the server response
+        echo $output;
     ?>

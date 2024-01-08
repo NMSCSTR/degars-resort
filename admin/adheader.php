@@ -140,13 +140,13 @@ body {
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">MESSAGES/INQUIRIES</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body text-center">
+                <div class="modal-body">
                     <?php 
                     $db = mysqli_connect("localhost","root","","capstwo");
                     $sql = "SELECT id, name, email, message FROM inquiries";
@@ -162,13 +162,13 @@ body {
                     
                             // Generate Bootstrap 5 collapsible elements for each message
                             echo '<p>';
-                            echo '  <button class="btn btn-dark btn-block" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' . $id . '" aria-expanded="false" aria-controls="collapse' . $id . '">';
+                            echo '  <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' . $id . '" aria-expanded="false" aria-controls="collapse' . $id . '">';
                             echo '    ' . $name . ' (' . $email . ')';
                             echo '  </button>';
                             echo '</p>';
                             echo '<div>';
                             echo '  <div class="collapse" id="collapse' . $id . '">';
-                            echo '    <div class="card card-body">';
+                            echo '    <div class="card card-body mb-3">';
                             echo '      ' . $message;
                             echo '    </div>';
                             echo '  </div>';
@@ -227,7 +227,7 @@ body {
 
         <div class="collapse" id="inventory-collapse1">
             <ul class="btn-toggle-nav list-unstyled fw-normal small m-4 mt-0 mb-0">
-                <li><a href="payments.php" class="rounded" style="font-size: 18px;"><i
+                <li><a href="paymongo.php" class="rounded" style="font-size: 18px;"><i
                             class="far fa-credit-card"></i>
                         Payments & Payouts</a></li>
             </ul>

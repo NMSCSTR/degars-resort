@@ -228,13 +228,13 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                                     <div class="col-sm">
                                         <label for="">Event Image Address</label>
                                         <input type="text" name="eventimage" class="form-control form-cotrol-sm"
-                                            value="<?php echo $fetchcp['eventimage'] ?>" placeholder=""
+                                            value="<?php echo urldecode($fetchcp['eventimage']) ?>" placeholder=""
                                             aria-label="P1Rate">
                                     </div>
                                     <div class="col-sm">
                                         <label for="">Announcement Image Address</label>
                                         <input type="text" name="announcementimage" class="form-control form-cotrol-sm"
-                                            value="<?php echo $fetchcp['announcementimage'] ?>" placeholder=""
+                                            value="<?php echo urldecode($fetchcp['announcementimage']) ?>" placeholder=""
                                             aria-label="P2Rate">
                                     </div>
                                 </div>
