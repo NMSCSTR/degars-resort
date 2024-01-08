@@ -119,7 +119,9 @@ header,
                     <!-- Social Icon  -->
                     <ul class="navbar-nav nav-flex-icons">
                         <li class="nav-item">
-                            <a class="nav-link"><i class="fab fa-facebook"></i></a>
+                            <a class="nav-link">
+                                <i class="fab fa-facebook"></i>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"><i class="fab fa-twitter"></i></a>
@@ -273,43 +275,44 @@ header,
             </section>
 
             <hr class="my-5">
-
             <section id="packages" class="text-center">
                 <h2 class="mb-5 font-weight-bold"> Affordable Packages</h2>
                 <div class="row mb-3 text-center">
-        <?php 
-        $conn = mysqli_connect('localhost', 'root', '', 'capstwo');
-        // SQL query to retrieve packages from the database
-        $sql = "SELECT * FROM packages";
-        $result = $conn->query($sql);
+                    <?php 
+                    $conn = mysqli_connect('localhost', 'root', '', 'capstwo');
+                    // SQL query to retrieve packages from the database
+                    $sql = "SELECT * FROM packages";
+                    $result = $conn->query($sql);
 
-        // Display packages using Bootstrap cards
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $imagePath = 'admin/packages/' . $row["image_name"];
-                ?>
-            <div class="col-sm-6">
-                <div class="card mb-4 rounded-3 shadow shadow-md">
-                    <div class="card-header bg-dark text-white py-3">
-                        <h4 class="my-0 fw-normal"><?php echo $row['package_name']; ?></h4>
+                    // Display packages using Bootstrap cards
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $imagePath = 'admin/packages/' . $row["image_name"];
+                            ?>
+                    <div class="col-sm-6">
+                        <div class="card mb-4 rounded-3 shadow shadow-md">
+                            <div class="card-header bg-dark text-white py-3">
+                                <h4 class="my-0 fw-normal"><?php echo $row['package_name']; ?></h4>
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-title pricing-card-title">
+                                    <span>&#8369</span><?php echo $row['package_rate']; ?></h1>
+                                <img src="<?php echo $imagePath; ?>" class="img-fluid mb-2" style="height: 500px;"
+                                    alt="Package 1 Image">
+                                <a href="portal/exclusive/exclusivebooking.php?id=<?php echo $row['id']; ?>&type=<?php echo $row['package_name']; ?>"
+                                    class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book
+                                    Now</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                    <h1 class="card-title pricing-card-title"><span>&#8369</span><?php echo $row['package_rate']; ?></h1>
-                    <img src="<?php echo $imagePath; ?>" class="img-fluid mb-2" style="height: 500px;" alt="Package 1 Image">
-                        <a href="portal/exclusive/exclusivebooking.php?id=<?php echo $row['id']; ?>&type=<?php echo $row['package_name']; ?>"class="w-100 btn btn-lg btn-outline-primary"><i class="fas fa-book"></i> Book Now</a>
-                    </div>
-                </div>
-            </div>
-            <?php
+                    <?php
                 }
             } else {
                 echo "No packages found.";
             }
-
-            // Close the database connection
             $conn->close();
             ?>
-        </div>
+                </div>
 
             </section>
             <!--Section: Gallery-->
@@ -532,12 +535,12 @@ header,
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
 
-<?php 
+    <?php 
 
 if (isset($_SESSION['status']) && $_SESSION['status'] != '') 
 { ?>
     <script>
-        Swal.fire({
+    Swal.fire({
         position: 'top-center',
         icon: '<?php echo $_SESSION['code'];?>',
         title: '<?php echo $_SESSION['status'];?>',

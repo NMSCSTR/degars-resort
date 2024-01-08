@@ -32,10 +32,20 @@ body {
     transition: background-color .5s;
 
 }
+
+@media print {
+    .hide-on-print {
+        display: none !important;
+    }
+
+    body {
+        font-size: 10pt;
+    }
+}
 </style>
 
 <body>
-    <header>
+    <header class="hide-on-print">
         <nav class="navbar navbar-expand-xl bg-light bg-gradient navbar-light shadow">
             <div class="container">
                 <a class="navbar-brand fw-bold" href="#">
@@ -119,32 +129,29 @@ body {
                 while ($row = mysqli_fetch_assoc($fetch)) { 
                     
             ?>
-        <div class="card">
+        <div class="card border-0">
             <div class="card-body">
                 <div class="container mb-5 mt-3">
                     <div class="row d-flex align-items-baseline">
-                        <div class="col-xl-9">
-                            <p style="color: #7e8d9f;font-size: 20px;">Transac Ref. >> <strong>
+                        <div class="col-xl-8">
+                            <p style="color: #7e8d9f;font-size: 20px;">Transac Ref. >> <strong class="text-danger">
                                     <?php echo $row['transaction_ref']; ?></strong></p>
                         </div>
-                        <div class="col-xl-3 float-end">
+                        <div class="col-xl-4 float-end">
                             <?php 
                                 if ($row['status'] ===  "Pending" || $row['status'] === "Refunded" ||$row['status'] === "Declined" || $row['status'] === "Done") { ?>
-                            <a hidden class="btn btn-light text-capitalize border-0"
-                                onclick="return confirm('8% of the total amount will be deducted for transaction refund. Are you sure you want to cancel your reservation and request refund?');"
-                                data-mdb-ripple-color="dark" 
-                                href="requestrefund.php?wtransac_id=<?php echo $row['wtransac_id']; ?>&walkin_id=<?php echo $row['walkin_id']; ?>&wcustomer_id=<?php echo $row['wcustomer_id']; ?>&">
-                                <i class="fas fa-hand-paper"></i>
-                                Request refund
-                            </a>
+                            <button id="forDisabled" class="btn btn-light text-capitalize border-0"><i class="fas fa-hand-paper"></i> Request refund</button>
+
                             <?php } else { ?>
                             <a class="btn btn-light text-capitalize border-0"
                                 onclick="return confirm('8% of the total amount will be deducted for transaction refund. Are you sure you want to cancel your reservation and request refund?');"
                                 data-mdb-ripple-color="dark" href="requestrefund.php?"><i class="fas fa-hand-paper"></i>
                                 Request refund</a>
                             <?php } ?>
-                            <a href="../../index.php" class="btn btn-light text-capitalize"
+                            <a href="../../index.php" class="btn btn-light text-capitalize hide-on-print"
                                 data-mdb-ripple-color="dark"><i class="fas fa-undo text-dark"></i> Back</a>
+                            <button id="printButton" class="btn btn-primary text-capitalize hide-on-print"><i
+                                    class="fas fa-print"></i> Print</button>
                         </div>
                         <hr>
                     </div>
@@ -244,7 +251,7 @@ body {
                                     class="btn btn-primary text-capitalize">Pay Now <i class="fas fa-lock"></i></a>
                                 <?php } else { ?>
                                 <a href="<?php echo $row['checkouturl']; ?>" id="payNowBtn"
-                                    class="btn btn-primary text-capitalize">Pay Now </a>
+                                    class="btn btn-primary text-capitalize hide-on-print">Pay Now </a>
                                 <?php } ?>
                             </div>
                         </div>
@@ -261,6 +268,18 @@ body {
         </div>
         </div>
     </main>
+    <!-- Add this script at the end of your HTML body -->
+    <script>
+    // Wait for the document to be fully loaded
+    document.addEventListener("DOMContentLoaded", function() {
+        // Add a click event listener to the "Print" button
+        document.getElementById("printButton").addEventListener("click", function() {
+            // Call the window.print() method to trigger the browser's print functionality
+            window.print();
+        });
+    });
+    </script>
+    <script>document.getElementById("forDisabled").disabled = true;</script>
 
 
 

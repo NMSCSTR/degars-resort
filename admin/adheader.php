@@ -107,6 +107,11 @@ body {
         font-size: 18px;
     }
 }
+    @media print {
+        .hide-on-print {
+            display: none !important;
+        }
+    }
 </style>
 
 <body>

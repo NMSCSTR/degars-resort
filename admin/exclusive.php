@@ -19,6 +19,10 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 
     <div class="container">
         <div class="card border-0 p-4 shadow">
+            <!-- <div class="d-flex justify-content-end mb-3">
+                <button id="printButton" class="btn btn-primary text-capitalize hide-on-print shadow"><i
+                        class="fas fa-print"></i> Print</button>
+            </div> -->
             <div class="table-responsive">
                 <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">
                     <thead style="font-size: 15px;">
@@ -27,15 +31,15 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             <th>Status</th>
                             <th>Type</th>
                             <th>Reservation Date</th>
-                            <th>Due Date</th>
+                            <th class="hide-on-print">Due Date</th>
                             <th>Mode Of Payment</th>
                             <th>Total Amount</th>
                             <th>Service Fee</th>
                             <?php 
                             if ($is_admin) {
                                 ?>
-                                <th>Approvedby</th>
-                                <?php
+                            <th>Approvedby</th>
+                            <?php
                             }
                             ?>
                             <th>Checkout URL</th>
@@ -62,18 +66,19 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             </td>
                             <td><?php echo $row['type']; ?></td>
                             <td><?php echo date('F d, Y', strtotime($row['reservationdate'])) ?></td>
-                            <td><?php echo date('F d, Y', strtotime($row['paymentduedate'])) ?></td>
+                            <td class="hide-on-print"><?php echo date('F d, Y', strtotime($row['paymentduedate'])) ?></td>
                             <td><?php echo $row['modeofpayment']; ?></td>
                             <td><?php echo $totalamount; ?></td>
                             <td><?php echo number_format($row['servicefee'] ,2); ?></td>
                             <?php 
                             if ($is_admin) {
                                 ?>
-                                    <td><?php echo ucwords($row['approvedby'] === null ? "System" : $row['approvedby']); ?></td> 
-                                <?php
+                            <td><?php echo ucwords($row['approvedby'] === null ? "System" : $row['approvedby']); ?></td>
+                            <?php
                             }
                             ?>
-                            <td><a style="font-size: 15px;" href="<?php echo $row['checkouturl']; ?>"> <?php echo $row['checkouturl']; ?></a></td>
+                            <td><a style="font-size: 15px;" href="<?php echo $row['checkouturl']; ?>">
+                                    <?php echo $row['checkouturl']; ?></a></td>
 
                             <td>
                                 <a class="btn btn-outline-success btn-sm border-0" title="Mark as done"
@@ -99,7 +104,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                     <i class="far fa-calendar-check"></i> Check
                                 </a>
                                 <?php } ?>
-                                
+
                             </td>
                         </tr>
                         <?php } ?>
@@ -125,6 +130,18 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
     </div>
     </div>
 </main>
+<!-- Add this script at the end of your HTML body -->
+<script>
+    // Wait for the document to be fully loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        // Add a click event listener to the "Print" button
+        document.getElementById("printButton").addEventListener("click", function () {
+            // Call the window.print() method to trigger the browser's print functionality
+            window.print();
+        });
+    });
+</script>
+
 
 <?php include_once 'adfooter.php'; ?>
 <?php 
