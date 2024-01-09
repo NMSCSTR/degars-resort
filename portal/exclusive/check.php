@@ -143,7 +143,7 @@ body {
                         </div>
                         <div class="col-xl-4 float-end">
                             <?php 
-                                if ($row['status'] ===  "Pending" || $row['status'] === "Refunded" || $row['status'] === "Declined" || $row['status'] === "Done") { ?>
+                                if ($row['status'] ===  "Pending" || $row['status'] === "Refunded" || $row['status'] === "Declined" || $row['status'] === "Done" AND $row['checkouturl'] === "Via Qr") { ?>
                             <button id="forDisabled" class="btn btn-light text-capitalize border-0"><i class="fas fa-hand-paper"></i> Request refund</button>
                             <?php } else { ?>
                             <a class="btn btn-light text-capitalize border-0 hide-on-print"

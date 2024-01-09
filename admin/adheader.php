@@ -1,5 +1,10 @@
 <?php 
 $is_admin = ($_SESSION['users_role'] == "Admin");
+$db = mysqli_connect('localhost', 'root', '', 'capstwo');
+$countcr = mysqli_num_rows(mysqli_query($db, "SELECT * FROM `completed_reservation`"));
+$countw = mysqli_num_rows(mysqli_query($db, "SELECT * FROM `walkin_transac`"));
+$countpvqr = mysqli_num_rows(mysqli_query($db, "SELECT * FROM `payviaqr`"));
+$countr = mysqli_num_rows(mysqli_query($db, "SELECT * FROM `refund`"));
 ?>
 
 <!doctype html>
@@ -107,11 +112,12 @@ body {
         font-size: 18px;
     }
 }
-    @media print {
-        .hide-on-print {
-            display: none !important;
-        }
+
+@media print {
+    .hide-on-print {
+        display: none !important;
     }
+}
 </style>
 
 <body>
@@ -130,7 +136,8 @@ body {
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
                     <!-- <li><a class="dropdown-item" onclick="return confirm('Are you sure you want to change password?');"
                             href=""><i class="fas fa-edit me-2"></i>Change password</a></li> -->
-                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal4"><i class="far fa-question-circle"></i> Inquiries</a></li>
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal4"><i
+                                class="far fa-question-circle"></i> Inquiries</a></li>
                     <li><a class="dropdown-item" id="logout-btn" href="logout.php"><i
                                 class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
                 </ul>
@@ -181,7 +188,7 @@ body {
                     // Close the database connection
                     $db->close();
                     ?>
-                    
+
                 </div>
             </div>
         </div>
@@ -196,13 +203,30 @@ body {
         </a>
         <div class="collapse" id="inventory-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal small m-4 mt-0 mb-0">
-                <li><a href="exclusive.php" class="rounded" style="font-size: 18px;"><i class="fas fa-trophy"></i>
-                        Reservations</a></li>
-                <li><a href="walkin.php" class="rounded" style="font-size: 18px;"><i class="fas fa-walking"></i>
-                        Walkin</a></li>
-                <li><a href="qrpayments.php" class="rounded" style="font-size: 18px;"><i class="fas fa-qrcode"></i> QR
-                        Payments</a></li>
-                <li><a href="refund.php" class="rounded" style="font-size: 18px;"><i class="fas fa-undo"></i> Refund</a>
+                <li><a href="exclusive.php" class="rounded position-relative" style="font-size: 18px;"><i
+                            class="fas fa-trophy"></i>
+                        Reservations <span
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?php echo $countcr ?>
+                            <span class="visually-hidden">unread messages</span>
+                        </span></a></li>
+                <li><a href="walkin.php" class="rounded position-relative" style="font-size: 18px;"><i
+                            class="fas fa-walking"></i>
+                        Walkin <span
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?php echo $countw ?>
+                            <span class="visually-hidden">unread messages</span></a></li>
+                <li><a href="qrpayments.php" class="rounded position-relative" style="font-size: 18px;"><i
+                            class="fas fa-qrcode"></i> QR
+                        Payments<span
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?php echo $countpvqr ?>
+                            <span class="visually-hidden">unread messages</span></a></li>
+                <li><a href="refund.php" class="rounded position-relative" style="font-size: 18px;"><i
+                            class="fas fa-undo"></i> Refund<span
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?php echo $countr ?>
+                            <span class="visually-hidden">unread messages</span></a>
                 </li>
             </ul>
         </div>
@@ -227,8 +251,7 @@ body {
 
         <div class="collapse" id="inventory-collapse1">
             <ul class="btn-toggle-nav list-unstyled fw-normal small m-4 mt-0 mb-0">
-                <li><a href="paymongo.php" class="rounded" style="font-size: 18px;"><i
-                            class="far fa-credit-card"></i>
+                <li><a href="paymongo.php" class="rounded" style="font-size: 18px;"><i class="far fa-credit-card"></i>
                         Payments & Payouts</a></li>
             </ul>
         </div>

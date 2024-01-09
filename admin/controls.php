@@ -98,7 +98,7 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                 <div class="card shadow bg-body rounded">
                     <div class="card-body">
                         <div>
-                            <h6>RESERVATION CONTROL</h6>
+                            <h6>RESERVATION</h6>
                             <hr>
                         </div>
                         <form method="post" action="">
@@ -218,24 +218,21 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                             <h6>OTHERS</h6>
                             <hr>
                         </div>
-                        <form action="functions/editcontrols.php" method="post">
+                        <form action="functions/editcontrols.php" method="post" enctype="multipart/form-data">
                             <div class="container-fluid mb-3">
                                 <div class="mb-3">
                                     <label for="">SMS API KEY</label>
                                     <input type="text" name="smsapi" value="<?php echo $fetchcp['smsapi'] ?>" class="form-control" id="">
                                 </div>
+                                </div>
                                 <div class="row g-2 mb-3">
                                     <div class="col-sm">
-                                        <label for="">Event Image Address</label>
-                                        <input type="text" name="eventimage" class="form-control form-cotrol-sm"
-                                            value="<?php echo urldecode($fetchcp['eventimage']) ?>" placeholder=""
-                                            aria-label="P1Rate">
+                                        <label for="">Event</label>
+                                        <input type="file" name="eventimage" class="form-control form-control-sm" id="">
                                     </div>
                                     <div class="col-sm">
-                                        <label for="">Announcement Image Address</label>
-                                        <input type="text" name="announcementimage" class="form-control form-cotrol-sm"
-                                            value="<?php echo urldecode($fetchcp['announcementimage']) ?>" placeholder=""
-                                            aria-label="P2Rate">
+                                        <label for="">Announcement</label>
+                                        <input type="file" name="announcementimage" class="form-control form-control-sm" id="">
                                     </div>
                                 </div>
                                 <button type="submit" name="otherPanel" onclick="return confirm('Save changes?')"

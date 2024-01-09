@@ -35,8 +35,10 @@ $countref = mysqli_num_rows(mysqli_query($db, "SELECT * FROM `refund`"));
 $currentCount = (int) file_get_contents('../visitor_count.txt');
 $all = getReservationCount($db);
 
-$sum = mysqli_fetch_assoc(mysqli_query($db, "SELECT SUM(totalamount) AS total FROM `completed_reservation` WHERE `status` IN ('Approved', 'Approved:QR')"));
-$total = $sum['total'];
+$sum = mysqli_fetch_assoc(mysqli_query($db, "SELECT SUM(totalamount) AS total FROM `completed_reservation` WHERE `status` IN ('Approved', 'Approved:QR', 'Done')"));
+$sum1 = mysqli_fetch_assoc(mysqli_query($db, "SELECT SUM(totalamount) AS total1 FROM `walkin_transac` WHERE `status` IN ('Approved', 'Done')"));
+$total = $sum['total'] + $sum1['total1'];
+
 
 // Calculate percentages and progress widths
 $refundData = calculateProgress($countref, 100);  // Assuming a maximum of 100 for products
@@ -162,7 +164,7 @@ $revenueData = calculateProgress($total, 100000);  // Assuming a maximum of 1000
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-8">
                                     <h2 class="d-flex align-items-center mb-0">
-                                        <?php echo $sum['total'] / 100; ?>
+                                        <?php echo number_format($total / 100, 2); ?>
                                     </h2>
                                 </div>
                                 <div class="col-4 text-right">
