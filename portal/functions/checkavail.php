@@ -10,7 +10,9 @@ if (isset($_POST["reservationdate"])) {
             LEFT JOIN
                 reservation ON reservation.reservation_id = completed_reservation.reservation_id
             WHERE 
-            reservation.reservationdate = '" . $_POST["reservationdate"] . "' AND completed_reservation.status = 'Approved'";
+                (reservation.reservationdate = '" . $_POST["reservationdate"] . "' AND completed_reservation.status = 'Approved') OR
+                reservation.reservationdate = '" . $_POST["reservationdate"] . "' AND completed_reservation.status = 'Approved:QR'";
+
 
             $result = mysqli_query($db, $sql);
             if (mysqli_num_rows($result)) {

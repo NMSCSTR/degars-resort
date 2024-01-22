@@ -10,8 +10,10 @@ if (isset($_POST['changeDate'])) {
     $changedate = mysqli_query($db,"UPDATE `reservation` SET `reservationdate`='$reservationdate',`paymentduedate`='$paymentduedate' WHERE `reservation_id` = '$reservation_id'");
 
     if ($changedate) {
-        echo "<script>alert('Date change successfully'); window.location.href = '../exclusive/check.php?transaction_ref=" . $transaction_ref . "';</script>";
-
+        $_SESSION['status'] = "Reservation date changed!";
+        $_SESSION['code'] = "success";
+        header('Location: ../exclusive/check.php?transaction_ref=' . $transaction_ref);
+        
     }else {
         header('Location: ../exclusive/check.php?transaction_ref='. $transaction_ref);
     }

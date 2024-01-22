@@ -1,16 +1,14 @@
-<?php 
-include 'portHeader.php';
-?>
-
+<?php session_start(); ?>
+<?php include 'portHeader.php'; ?>
 <title>Quickstart</title>
 <main>
     <div class="container">
         <div class="row d-flex justify-content-center mt-4">
-            <div class="col-sm-12">
-                <p class="h6 d-flex justify-content-center text-center text-wrap">Please take a moment on viewing our
-                    resort rules before making a reservation. Thank you!</p>
+            <div class="col-sm-12 mt-5">
+                <p class="h4 d-flex justify-content-center text-center text-wrap"><strong>Please take a moment on viewing our
+                    resort rules before making a reservation. Thank you!</strong> </p><br>
                 <a class="d-flex justify-content-center" href="" data-bs-toggle="modal" data-bs-target="#resortrules">
-                    View Resort Rules</a>
+                    View Resort Rules</a><br>
                 <a class="d-flex justify-content-center" href="" data-bs-toggle="modal"
                     data-bs-target="#reservationrules"> View Reservation Rules</a>
             </div>

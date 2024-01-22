@@ -97,7 +97,7 @@ $db = mysqli_connect("localhost", "root", "", "capstwo");
     <?php
         }
 
-        $data = "http://192.168.1.4/degars-resort/portal/exclusive/wcheck.php?transaction_ref=wref82878c";
+        $data = "http://192.168.51.5/degars-resort/portal/exclusive/wcheck.php?transaction_ref=wref82878c";
 
         // Call the function to generate and display the QR code
         generateQRCode($data);

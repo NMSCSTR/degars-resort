@@ -139,7 +139,7 @@ if (isset($_GET['reservation_id']) && isset($_GET['customer_id'])) {
     <?php
         }
 
-        $data = "http://192.168.1.4/degars-resort/portal/exclusive/check.php?transaction_ref={$refno}";
+        $data = "http://192.168.51.5/degars-resort/portal/exclusive/check.php?transaction_ref={$refno}";
 
         // Call the function to generate and display the QR code
         generateQRCode($data);

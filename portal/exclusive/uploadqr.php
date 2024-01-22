@@ -22,10 +22,10 @@
                 <label for="floatingSelect"> Select Payment</label>
             </div>
             <div class="dd-grid gap-2 d-md-flex justify-content-md-end mb-3">
-                <a href="http://192.168.1.4/degars-resort/portal/exclusive/review.php" class="btn btn-outline-danger">
+                <a href="http://192.168.51.5/degars-resort/portal/exclusive/review.php" class="btn btn-outline-danger">
                     Back
                 </a>
-                <a href="192.168.1.4/degars-resort/portal/exclusive/success.php" class="btn btn-dark">
+                <a href="http://192.168.51.5/degars-resort/portal/exclusive/success.php" class="btn btn-dark">
                     Submit
                 </a>
             </div>

@@ -58,10 +58,10 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             ?>
                             <td><?php echo $row['payment_id']; ?></td>
                             <td>
-                                <?php if ($row['status'] === 'Refunded') { ?>
+                                <?php if ($row['status'] === 'Refunded' || $row['status'] === "Declined") { ?>
                                     <a hidden class="btn btn-outline-success btn-sm border-0" title="Grant Request"
                                 onclick="return confirm('Confirm refund, Click Ok!')"
-                                    href="functions/grantrefund.php?transaction_ref=<?php echo $row['transaction_ref']; ?>&refundedamount=<?php echo $row['refundedamount']; ?>&reason=<?php echo $row['reason']; ?>&payment_id=<?php echo $row['payment_id']; ?>&comres_id=<?php echo $row['comres_id']; ?>&refund_id=<?php echo $row['refund_id']?>"><i class="fas fa-check-circle"></i> Approved 
+                                    href="functions/grantrefund.php?transaction_ref=<?php echo $row['transaction_ref']; ?>&refundedamount=<?php echo $row['refundedamount']; ?>&reason=<?php echo $row['reason']; ?>&payment_id=<?php echo $row['payment_id']; ?>&comres_id=<?php echo $row['comres_id']; ?>&refund_id=<?php echo $row['refund_id']?>&approvedby=<?php echo $_SESSION['users_username']; ?>"><i class="fas fa-check-circle"></i> Approved 
                                 </a>
                                 
                                     <a hidden class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
@@ -71,11 +71,11 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                 <?php } else { ?>
                                     <a class="btn btn-outline-success btn-sm border-0" title="Grant Request"
                                 onclick="return confirm('Confirm refund, Click Ok!')"
-                                    href="functions/grantrefund.php?transaction_ref=<?php echo $row['transaction_ref']; ?>&refundedamount=<?php echo $row['refundedamount']; ?>&reason=<?php echo $row['reason']; ?>&payment_id=<?php echo $row['payment_id']; ?>&comres_id=<?php echo $row['comres_id']; ?>&refund_id=<?php echo $row['refund_id']?>"><i class="fas fa-check-circle"></i> Approved 
+                                    href="functions/grantrefund.php?transaction_ref=<?php echo $row['transaction_ref']; ?>&refundedamount=<?php echo $row['refundedamount']; ?>&reason=<?php echo $row['reason']; ?>&payment_id=<?php echo $row['payment_id']; ?>&comres_id=<?php echo $row['comres_id']; ?>&refund_id=<?php echo $row['refund_id']?>&approvedby=<?php echo $row['approvedby']; ?>"><i class="fas fa-check-circle"></i> Approved 
                                 </a>
                                 
                                     <a class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
-                                    href="">
+                                    href="functions/declinerefund.php?transaction_ref=<?php echo $row['transaction_ref']; ?>&refundedamount=<?php echo $row['refundedamount']; ?>&reason=<?php echo $row['reason']; ?>&payment_id=<?php echo $row['payment_id']; ?>&comres_id=<?php echo $row['comres_id']; ?>&refund_id=<?php echo $row['refund_id']?>">
                                     <i class="fas fa-times-circle"></i> Decline
                                 </a>
                                 <?php } ?> 

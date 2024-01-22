@@ -168,10 +168,10 @@ function generateQRCode($data) {
 }
 
 if ($f_row) {
-    $data = "http://192.168.1.4/degars-resort/portal/exclusive/wcheck.php?transaction_ref={$refno}";
+    $data = "http://192.168.51.5/degars-resort/portal/exclusive/wcheck.php?transaction_ref={$refno}";
 }
 else {
-    $data = "http://192.168.1.4/degars-resort/portal/exclusive/check.php?transaction_ref={$refno}";
+    $data = "http://192.168.51.5/degars-resort/portal/exclusive/check.php?transaction_ref={$refno}";
 }
 // Example data (replace this with your actual data)
 

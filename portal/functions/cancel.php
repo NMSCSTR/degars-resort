@@ -9,12 +9,15 @@ if(isset($_GET['reservation_id']) && isset($_GET['customer_id'])){
     $cr =mysqli_query($db, "DELETE FROM `customer` WHERE `customer_id` = '$c'");
 
     if ($dr && $cr) {
-        echo "<script>
-                alert('Transaction successfully cancelled');
-                setTimeout(function() {
-                    window.location.href = '../quickstart.php';
-                }, 1000);
-            </script>";
+        $_SESSION['status'] = "Transaction successfully cancelled";
+        $_SESSION['code'] = "success";
+        header('Location: ../quickstart.php');
+        // echo "<script>
+        //         alert('Transaction successfully cancelled');
+        //         setTimeout(function() {
+        //             window.location.href = '../quickstart.php';
+        //         }, 1000);
+        //     </script>";
     } else {
         echo "<script>alert('Error: " . $db->error . "');</script>";
     }

@@ -40,7 +40,7 @@
                         <label for="floatingInput"><i class="fas fa-envelope"></i> Email Address </label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" name="phone_number" class="form-control fw-bold" value="+63"
+                        <input type="text" name="phone_number" class="form-control fw-bold" value=""
                             id="floatingInput" placeholder="Mobile number" required>
                         <label for="floatingInput"><i class="fas fa-phone text-dark"></i>
 

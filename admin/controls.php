@@ -44,35 +44,26 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
         $body = json_decode($response, true);
 
         if ($statusCode == 200 && isset($body['id'])) {
-            return $body['id']; // Shortened URL
+            return $body['id'];
         } else {
-            echo 'API Response Error: ' . print_r($body, true);
-            return false; // Unable to shorten URL
+            echo 'Number of trial reach: ' . print_r($body, true);
+            return false; 
         }
     }
 
-    // Replace 'YOUR_ACCESS_TOKEN' with your actual Bitly OAuth token
+   
     $accessToken = '3f8a13975d5644367cbebe8b93c83054402a2fc0';
-
-    // Initialize the long URL variable
     $longUrl = '';
 
-    // Check if the form is submitted
-    // Check if the form is submitted
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['long_url'])) {
-        // Get the long URL from the form
         $longUrl = $_POST['long_url'];
-
-        // Call the function to shorten the URL
         $shortUrl = shortenUrl($longUrl, $accessToken);
 
         if ($shortUrl) {
-            // Update the long URL variable with the shortened URL
             $longUrl = $shortUrl;
             $_SESSION['status'] = "Link Shortened Successfully";
             $_SESSION['code'] = "success";
 
-            // Display the shortened URL in the input field
             echo '<script>';
             echo 'document.getElementById("long_url").value = "' . htmlspecialchars($shortUrl) . '";';
             echo '</script>';
@@ -155,7 +146,7 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                                     </div>
                                     <hr>
                                 </div>
-                                <button type="submit" name="reservationPanel" class="btn btn-secondary btn-md mt-2"
+                                <button type="submit" name="reservationPanel" class="btn btn-success btn-sm mt-2"
                                     onclick="return confirm('Save changes?')">
                                     <i class="far fa-save"></i> Save Changes
                                 </button>
@@ -203,7 +194,7 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                                     </div>
                                 </div>
                                 <button type="submit" onclick="return confirm('Save changes?')" name="socialMediaPanel"
-                                    class="btn btn-secondary btn-md mt-2"><i class="far fa-save"></i> Save
+                                    class="btn btn-success btn-sm mt-2"><i class="far fa-save"></i> Save
                                     Changes</button>
                             </div>
                         </form>
@@ -236,7 +227,7 @@ $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `
                                     </div>
                                 </div>
                                 <button type="submit" name="otherPanel" onclick="return confirm('Save changes?')"
-                                    class="btn btn-secondary btn-md mt-2"><i class="far fa-save"></i> Save
+                                    class="btn btn-success btn-sm mt-2"><i class="far fa-save"></i> Save
                                     Changes</button>
                             </div>
                         </form>

@@ -121,7 +121,7 @@ body {
 </style>
 
 <body>
-    <nav class="navbar navbar-light bg-light shadow">
+    <nav class="navbar navbar-light bg-light shadow hide-on-print">
         <div class="container">
             <div class="btn btn-light">
                 <h5 id="openNav" title="Open Sidebar" class="fw-bolder" style="font-size:20px;cursor:pointer;"
@@ -258,6 +258,7 @@ body {
 
         <a href="controls.php" style="font-size: 18px;"><i class="fas fa-sliders-h"></i> Control Panel</a>
         <a href="users.php" style="font-size: 18px;"><i class="fas fa-users"></i> Users</a>
+        <a href="reports.php?fromDate=0&toDate=0" style="font-size: 18px;"><i class="fas fa-book"></i> Reports</a>
         <?php
     }
     ?>
@@ -290,7 +291,7 @@ body {
     </script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
         const collapseLink = document.querySelector('.collapse-link');
 
         collapseLink.addEventListener('click', function() {

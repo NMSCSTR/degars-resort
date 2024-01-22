@@ -169,12 +169,16 @@ header,
                         </button>
                     </div>
                     <div class="modal-body">
-                    <?php 
+
+                    <?php
                         $db = mysqli_connect('localhost', 'root', '', 'capstwo');
-                        $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1"));
+                        $fetchcp = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM `control` WHERE `control_id` = 1 ORDER BY `dateadded` DESC"));
+                        $image_fath = 'admin/event_images/' . $fetchcp["eventimage"];
+                        $image_fath2 = 'admin/announcement_images/' . $fetchcp["announcementimage"];
                     ?>
-                    <img src="<?php echo urldecode($fetchcp['eventimage']) ?>" class="img-fluid" alt="">
-                    <img src="<?php echo urldecode($fetchcp['announcementimage']) ?>" class="img-fluid" alt="">
+                    <img src="<?php echo $image_fath ?>" class="img-fluid" alt="">
+                    <img src="<?php echo $image_fath2 ?>" class="img-fluid" alt="">
+
                     </div>
                 </div>
             </div>
@@ -227,7 +231,7 @@ header,
         </div>
     </header>
     <main class="mt-5" id="best-features">
-        <div class="container-fluid" style="background-color: rgba(255, 255, 255, 0.5);">
+        <div class="container" style="background-color: rgba(255, 255, 255, 0.5);">
             <!--Section: Best Features-->
             <section class="text-center">
                 <!-- Heading -->

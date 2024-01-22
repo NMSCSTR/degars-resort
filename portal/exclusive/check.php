@@ -1,6 +1,6 @@
+<?php session_start(); ?>
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Check Reservation</title>
 </head>
 <style>
@@ -33,15 +35,16 @@ body {
     transition: background-color .5s;
 
 }
+
 @media print {
-        .hide-on-print {
-            display: none !important;
-        }
+    .hide-on-print {
+        display: none !important;
     }
+}
 </style>
 
 <body>
-    <header  class="hide-on-print">
+    <header class="hide-on-print">
         <nav class="navbar navbar-expand-xl bg-light bg-gradient navbar-light shadow">
             <div class="container">
                 <a class="navbar-brand fw-bold" href="#">
@@ -49,8 +52,9 @@ body {
                         alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
                     Degars Resort
                 </a>
-                <button class="navbar-toggler hide-on-print" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler hide-on-print" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end hide-on-print" id="navbarText">
@@ -112,7 +116,7 @@ body {
                     customer.email_address,
                     customer.phone_number
                 FROM
-                    completed_reservation AS cr
+                    completed_reservation AS cr 
                 LEFT JOIN
                     reservation ON reservation.reservation_id = cr.reservation_id
                 LEFT JOIN
@@ -143,19 +147,19 @@ body {
                         </div>
                         <div class="col-xl-4 float-end">
                             <?php 
-                                if ($row['status'] ===  "Pending" || $row['status'] === "Refunded" || $row['status'] === "Declined" || $row['status'] === "Done" AND $row['checkouturl'] === "Via Qr") { ?>
-                            <button id="forDisabled" class="btn btn-light text-capitalize border-0"><i class="fas fa-hand-paper"></i> Request refund</button>
+                                if ($row['status'] ===  "Pending" || $row['status'] === "Refunded" || $row['status'] === "Declined" || $row['status'] === "Done" || $row['status'] === "Approved:QR" || $row['checkouturl'] === "Via Qr" ) { ?>
+                            <button id="forDisabled" class="btn btn-danger text-capitalize btn-sm"><i
+                                    class="fas fa-times"></i> Refund Not Allowed</button>
                             <?php } else { ?>
-                            <a class="btn btn-light text-capitalize border-0 hide-on-print"
+                            <a class="btn btn-light text-capitalize btn-sm hide-on-print"
                                 onclick="return confirm('8% of the total amount will be deducted for transaction refund. Are you sure you want to cancel your reservation and request refund?');"
                                 data-mdb-ripple-color="dark"
                                 href="requestrefund.php?comres_id=<?php echo $row['comres_id']; ?>&reservation_id=<?php echo $row['reservation_id']; ?>&customer_id=<?php echo $row['customer_id']; ?>&checkout_id=<?php echo $row['checkout_id']; ?>&transaction_ref=<?php echo $row['transaction_ref'] ?>&payment_id=<?php echo $row['payment_id'] ?>&rates=<?php echo $row['rates'] ?>&totalamount=<?php echo $row['totalamount']?>&modeofpayment=<?php echo $row['modeofpayment']?>"><i
-                                    class="fas fa-hand-paper"></i> Request refund</a>
+                                    class="fas fa-hand-paper"></i> Cancel & Request refund</a>
                             <?php } ?>
-                            <a href="../../index.php" class="btn btn-light text-capitalize hide-on-print"
-                                data-mdb-ripple-color="dark"><i class="fas fa-undo text-dark"></i> Back</a>
                             <!-- Add this button where you want it in your HTML -->
-                            <button id="printButton" class="btn btn-primary text-capitalize hide-on-print"><i class="fas fa-print"></i> Print</button>
+                            <button id="printButton" class="btn btn-primary text-capitalize btn-sm hide-on-print"><i
+                                    class="fas fa-print"></i> Print</button>
 
                         </div>
                         <hr>
@@ -166,7 +170,7 @@ body {
                             <div class="text-center">
                                 <img src="https://img.icons8.com/external-others-inmotus-design/67/external-D-qwerty-keypad-others-inmotus-design.png"
                                     alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-                                <p class="pt-0">degars-resort.com</p>
+                                <p class="pt-0">Degars Resort</p>
                             </div>
 
                         </div>
@@ -192,9 +196,10 @@ body {
                                             class="fw-bold">ID:</span>#<?php echo $row['comres_id']; ?></li>
                                     <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                                             class="fw-bold">Reservation Date:
-                                        </span><?php echo date('F d, Y', strtotime($row['reservationdate'])); ?> <a class="hide-on-print"
-                                            href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                                            aria-controls="offcanvasRight"> Change</a></li>
+                                        </span><?php echo date('F d, Y', strtotime($row['reservationdate'])); ?> <a
+                                            class="hide-on-print" href="" data-bs-toggle="offcanvas"
+                                            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> Change</a>
+                                    </li>
                                     <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                                             class="fw-bold">Due Date:
                                         </span><?php echo date('F d, Y', strtotime($row['paymentduedate'])); ?></li>
@@ -216,9 +221,9 @@ body {
                             <div class="offcanvas-body">
                                 <form action="../functions/changedate.php" method="post">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="reservation_id" class="form-control"
+                                        <input hidden type="text" name="reservation_id" class="form-control"
                                             value="<?php echo $row['reservation_id']; ?>" id="">
-                                        <input type="text" name="transaction_ref" class="form-control"
+                                        <input hidden type="text" name="transaction_ref" class="form-control"
                                             value="<?php echo $row['transaction_ref']; ?>" id="">
                                     </div>
                                     <div class="form-floating mb-3">
@@ -290,7 +295,9 @@ body {
                         <hr>
                         <div class="row">
                             <div class="col-xl-10">
-                                <p>Thank you for booking @degars-resort.com</p>
+                                <p>Thank you for booking @degars-resort</p>
+                                <a href="../../index.php" class="btn btn-danger text-capitalize hide-on-print"
+                                    data-mdb-ripple-color="dark"><i class="fas fa-undo"></i> Back</a>
                             </div>
                             <div class="col-xl-2">
                                 <?php 
@@ -316,15 +323,15 @@ body {
         </div>
     </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
-</script>
-<script src="sweetalert.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+    </script>
+    <script src="sweetalert.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
     $(document).ready(function() {
         $('#reservationdate').blur(function() {
             var resDate = $(this).val();
@@ -341,15 +348,37 @@ body {
             });
         });
     });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("printButton").addEventListener("click", function () {
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("printButton").addEventListener("click", function() {
             window.print();
         });
     });
-</script>
-<script>document.getElementById("forDisabled").disabled = true;</script>
+    </script>
+    <script>
+    document.getElementById("forDisabled").disabled = true;
+    </script>
+
+<?php 
+
+if (isset($_SESSION['status']) && $_SESSION['status'] != '') 
+{ ?>
+    <script>
+        Swal.fire({
+        position: 'top-center',
+        icon: '<?php echo $_SESSION['code'];?>',
+        title: '<?php echo $_SESSION['status'];?>',
+        html: '<?php echo $_SESSION['code'];?>',
+        showConfirmButton: false,
+        timer: 2500
+    })
+    </script>
+    <?php 
+    unset ($_SESSION['status']); 
+    unset ($_SESSION['code']); 
+}
+?>
 
 </body>
 

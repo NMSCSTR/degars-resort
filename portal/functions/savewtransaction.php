@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CHECKOUT</title>
+    <title>Redirecting</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -51,16 +51,19 @@ curl_setopt_array($curl, [
             'send_email_receipt' => true,
             'show_description' => true,
             'show_line_items' => false,
-            'cancel_url' => 'http://192.168.1.4/degars-resort/portal/exclusive/failed.php?walkin_id=' . $walkin_id . '&wcustomer_id=' . $wcustomer_id,
-            'description' => 'WALKIN TRANSACTION PAYMENT : ' . $transaction_ref,
+            'cancel_url' => 'http://192.168.51.5/degars-resort/portal/exclusive/failed.php?walkin_id=' . $walkin_id . '&wcustomer_id=' . $wcustomer_id,
+            'description' => 'Walkin Reservation Payment - ' . $transaction_ref,
             'payment_method_types' => [
-                'gcash',
+                'billease',
                 'card',
                 'dob',
                 'dob_ubp',
+                'gcash',
+                'grab_pay',
                 'paymaya'
             ],
-            'success_url' => 'http://192.168.1.4/degars-resort/portal/exclusive/success.php?walkin_id=' . $walkin_id . '&wcustomer_id=' . $wcustomer_id,
+            'reference_number' => $transaction_ref,
+            'success_url' => 'http://192.168.51.5/degars-resort/portal/exclusive/success.php?walkin_id=' . $walkin_id . '&wcustomer_id=' . $wcustomer_id,
             'line_items' => [
                 [
                     'currency' => 'PHP',

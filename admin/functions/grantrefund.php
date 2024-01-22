@@ -8,6 +8,8 @@ $reason = $_GET['reason'];
 $transaction_ref = $_GET['transaction_ref'];
 $comres_id = $_GET['comres_id'];
 $refund_id = $_GET['refund_id'];
+$approvedby = $_GET['approvedby'];
+
 
 $notes  = "Reason: " . $reason . "(" . $transaction_ref . ")";
 
@@ -24,10 +26,10 @@ curl_setopt_array($curl, [
   CURLOPT_POSTFIELDS => json_encode([
     'data' => [
         'attributes' => [
-                'amount' => $refundedamount,
-                'notes' => $notes,
-                'payment_id' => $payment_id,
-                'reason' => 'requested_by_customer'
+          'amount' => $refundedamount,
+          'notes' => $notes,
+          'payment_id' => $payment_id,
+          'reason' => 'requested_by_customer'
         ]
     ]
   ]),
@@ -61,10 +63,10 @@ if ($err) {
             VALUES ('$refund_id', $amount, '$currency', '$status', '$notes', FROM_UNIXTIME($created_at))");
 
     $updatecr = mysqli_query($db,"UPDATE `completed_reservation` SET `status` ='Refunded', `approvedby` = '$approvedby' WHERE `comres_id` = $comres_id");
-    $updaterefund = mysqli_query($db,"UPDATE `refund` SET `status` ='Refunded', `approvedby` = '$approvedby' WHERE `refund_id` = $refund_id");
+    $updaterefund = mysqli_query($db,"UPDATE `refund` SET `status` ='Refunded', `approvedby` = '$approvedby' WHERE `refund_id` = $refund_id ");
 
     if ($insert && $updatecr && $updaterefund) {
-      $_SESSION['status'] = "Refunded successfullyn";
+      $_SESSION['status'] = "Refunded successfully";
       $_SESSION['code'] = "success";
         header("Location: ../refund.php?message=Refund Successful!");
     } else {

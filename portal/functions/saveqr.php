@@ -57,10 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($_POST['modeofpayment'] === "Full Payment") {
                 $modeofpayment = $_POST['modeofpayment'];
-                $totalamount = $_POST['totalamount'] * 100;
+                $totalamount = $_POST['totalamount'];
             } else {
                 $modeofpayment = $_POST['modeofpayment'];
-                $totalamount = ($_POST['totalamount'] * 100) / 2;
+                $totalamount = $_POST['totalamount'] / 2;
             }
 
             $sql = "INSERT INTO payviaqr ( `transaction_ref`, `reservation_id`, `customer_id`, `status`, `gcash_name`, `gcash_number`, `mode_of_payment`, `receipt_img`) VALUES ('$transaction_ref','$reservation_id','$customer_id','$status','$gcash_name','$gcash_number','$modeofpayment','$target_file')";

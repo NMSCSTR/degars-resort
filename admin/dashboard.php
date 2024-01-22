@@ -13,6 +13,7 @@ include 'adheader.php';
 ?>
 <?php
 $db = mysqli_connect('localhost', 'root', '', 'capstwo');
+$partialAmount = 0;
 
 // Function to get reservation count
 function getReservationCount($db) {
@@ -35,16 +36,26 @@ $countref = mysqli_num_rows(mysqli_query($db, "SELECT * FROM `refund`"));
 $currentCount = (int) file_get_contents('../visitor_count.txt');
 $all = getReservationCount($db);
 
-$sum = mysqli_fetch_assoc(mysqli_query($db, "SELECT SUM(totalamount) AS total FROM `completed_reservation` WHERE `status` IN ('Approved', 'Approved:QR', 'Done')"));
+$sum = mysqli_fetch_assoc(mysqli_query($db, "SELECT SUM(totalamount) AS total, `modeofpayment`,`totalamount`, `status` FROM `completed_reservation` WHERE `status` IN ('Approved', 'Approved:QR', 'Done')"));
+
+$getPartial =mysqli_fetch_assoc(mysqli_query($db, "SELECT SUM(totalamount) AS totally FROM `completed_reservation` WHERE `modeofpayment` = '50% Downpayment' AND `status` LIKE '%Approved%'"));
+$partialAmount = $getPartial['totally'] / 2;
+
 $sum1 = mysqli_fetch_assoc(mysqli_query($db, "SELECT SUM(totalamount) AS total1 FROM `walkin_transac` WHERE `status` IN ('Approved', 'Done')"));
-$total = $sum['total'] + $sum1['total1'];
+$sum['total'];
+// echo "<br>";
+$walkin = $sum1['total1']  / 100;
+// echo "<br>";
+$partialAmount; 
+// echo "<br>"; 
+$total = ($sum['total'] + $walkin) - $partialAmount;
 
 
 // Calculate percentages and progress widths
-$refundData = calculateProgress($countref, 100);  // Assuming a maximum of 100 for products
-$visitorData = calculateProgress($currentCount, 10000);  // Assuming a maximum of 10000 for visitors
-$reservationData = calculateProgress($all, 1000);  // Assuming a maximum of 1000 for reservations
-$revenueData = calculateProgress($total, 100000);  // Assuming a maximum of 100000 for revenue
+$refundData = calculateProgress($countref, 100);
+$visitorData = calculateProgress($currentCount, 10000);
+$reservationData = calculateProgress($all, 1000); 
+$revenueData = calculateProgress($total, 100000);  
 ?>
 <title>Dashboard</title>
 <div id="main">
@@ -63,7 +74,7 @@ $revenueData = calculateProgress($total, 100000);  // Assuming a maximum of 1000
             <div class="row">
                 <!-- Refund Section -->
                 <div class="col-xl-3 col-lg-6">
-                    <a href="product.php" style="text-decoration: none;">
+                    <a href="refund.php" style="text-decoration: none;">
                         <div class=" card l-bg-cherry">
                             <div class="card-statistic-3 p-4">
                                 <div class="card-icon card-icon-large"><i class="fas fa-undo"></i></div>
@@ -72,12 +83,12 @@ $revenueData = calculateProgress($total, 100000);  // Assuming a maximum of 1000
                                 </div>
                                 <div class="row align-items-center mb-2 d-flex">
                                     <div class="col-8">
-                                        <h2 class="d-flex align-items-center mb-0">
+                                        <h2 class="d-flex align-items-center mb-0 font-monospace">
                                             <?php echo $countref ?>
                                         </h2>
                                     </div>
                                     <div class="col-4 text-right">
-                                        <span><?php echo $refundData['percentage'] ?>% <i
+                                        <span><?php echo $refundData['percentage'] ?>% out of 100<i
                                                 class="fa fa-arrow-up"></i></span>
                                     </div>
                                 </div>
@@ -103,7 +114,7 @@ $revenueData = calculateProgress($total, 100000);  // Assuming a maximum of 1000
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-8">
-                                    <h2 class="d-flex align-items-center mb-0">
+                                    <h2 class="d-flex align-items-center mb-0 font-monospace">
                                         <?php echo $currentCount; ?>
                                     </h2>
                                 </div>
@@ -133,7 +144,7 @@ $revenueData = calculateProgress($total, 100000);  // Assuming a maximum of 1000
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-8">
-                                    <h2 class="d-flex align-items-center mb-0">
+                                    <h2 class="d-flex align-items-center mb-0 font-monospace">
                                         <?php echo $all; ?>
                                     </h2>
                                 </div>
@@ -163,12 +174,12 @@ $revenueData = calculateProgress($total, 100000);  // Assuming a maximum of 1000
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-8">
-                                    <h2 class="d-flex align-items-center mb-0">
-                                        <?php echo number_format($total / 100, 2); ?>
+                                    <h2 class="d-flex align-items-center mb-0 font-monospace">
+                                        <?php echo number_format($total, 2); ?>
                                     </h2>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <span><?php echo ($revenueData['percentage'] / 100); ?>% <i
+                                    <span><?php echo $revenueData['percentage']; ?>% <i
                                             class="fa fa-arrow-up"></i></span>
                                 </div>
                             </div>
@@ -176,7 +187,7 @@ $revenueData = calculateProgress($total, 100000);  // Assuming a maximum of 1000
                                 <div class="progress-bar l-bg-cyan" role="progressbar"
                                     data-width="<?php echo $revenueData['progressWidth'] / 100; ?>%"
                                     aria-valuenow="<?php echo $revenueData['progressWidth'] / 100; ?>%" aria-valuemin="0"
-                                    aria-valuemax="100" style="width: <?php echo $revenueData['progressWidth'] / 100; ?>%;">
+                                    aria-valuemax="100" style="width: <?php echo $revenueData['progressWidth']; ?>%;">
                                 </div>
                             </div>
                         </div>

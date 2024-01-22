@@ -117,7 +117,7 @@
                                         Service Fee (2.5%)
                                         <?php
                                             $resfee = $fetch_res_details['rates'];
-                                            $percentage = 0; // 2.5
+                                            $percentage = 2.5; // 2.5
                                             $servicefee = ($percentage / 100) * $resfee;
 
                                             $totalamount = $resfee + $servicefee;

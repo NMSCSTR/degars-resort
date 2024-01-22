@@ -161,7 +161,7 @@ body {
                             <div class="text-center">
                                 <img src="https://img.icons8.com/external-others-inmotus-design/67/external-D-qwerty-keypad-others-inmotus-design.png"
                                     alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-                                <p class="pt-0">degars-resort.com</p>
+                                <p class="pt-0">Degars Resort</p>
                             </div>
 
                         </div>
