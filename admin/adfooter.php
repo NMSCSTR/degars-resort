@@ -1,6 +1,5 @@
 
 <?php 
-
     if (isset($_SESSION['status']) && $_SESSION['status'] != '') 
     { ?>
         <script>

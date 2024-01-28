@@ -188,7 +188,6 @@ body {
                     // Close the database connection
                     $db->close();
                     ?>
-
                 </div>
             </div>
         </div>
@@ -291,7 +290,7 @@ body {
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         const collapseLink = document.querySelector('.collapse-link');
 
         collapseLink.addEventListener('click', function() {

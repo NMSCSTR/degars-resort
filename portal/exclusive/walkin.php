@@ -27,25 +27,29 @@ body {
         <div class="row g-0 position-relative">
             <div id="image-container" class="image-container"></div>
             <div class="container-fluid col-md-8 p-4 ps-md-0">
-                <h4 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> W A L K - I N</h4>
+                <h5 class="mt-0 fw-bold"><i class="fas fa-calendar-alt"></i> WALK-IN | <span class="text-success">ADVANCE PAYMENT</span> </h5>
                 <hr>
                 <form action="../functions/savewalkin.php" method="post">
-                    <a href="" class="d-flex justify-content-end" data-bs-toggle="modal"
+                    <a href="" class="d-flex justify-content-end link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">View Aminities</a>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control text-capitalize fw-bold" name="entrancefee"
                             id="floatingInput" value="<?php echo $fetchcp['entrancefee']; ?>" placeholder="entrancefee"
                             required readonly>
-                        <label for="floatingInput"><i class="fas fa-dollar-sign"></i> Entrance fee</label>
+                        <label for="floatingInput"><i class="fas fa-dollar-sign"></i> Entrance fee (4 years old above)</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="number" class="form-control text-capitalize fw-bold" name="numberofheads"
+                        <input type="date" class="form-control text-capitalize fw-bold" name="numberofheads"
                             id="floatingInput" value="1" placeholder="" required oninput="validateInput(this)">
-
+                        <label for="floatingInput"><i class="fas fa-calendar"></i> Date</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control text-capitalize fw-bold hover" name="numberofheads"
+                            id="floatingInput" value="1" placeholder="" required oninput="validateInput(this)">
                         <label for="floatingInput"><i class="fas fa-hashtag"></i> Number of People</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="form-select" id="floatingSelect" name="aminities_id"
+                        <select class="form-select fw-bold" id="floatingSelect" name="aminities_id"
                             aria-label="Floating label select example" required>
                             <option value="8" selected>Open this select cottages</option>
                             <?php 

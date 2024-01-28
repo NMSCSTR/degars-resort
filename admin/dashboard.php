@@ -83,12 +83,12 @@ $revenueData = calculateProgress($total, 100000);
                                 </div>
                                 <div class="row align-items-center mb-2 d-flex">
                                     <div class="col-8">
-                                        <h2 class="d-flex align-items-center mb-0 font-monospace">
+                                        <h2 class="d-flex align-items-center mb-0">
                                             <?php echo $countref ?>
                                         </h2>
                                     </div>
                                     <div class="col-4 text-right">
-                                        <span><?php echo $refundData['percentage'] ?>% out of 100<i
+                                        <span><?php echo $refundData['percentage'] ?>%<i
                                                 class="fa fa-arrow-up"></i></span>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@ $revenueData = calculateProgress($total, 100000);
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-8">
-                                    <h2 class="d-flex align-items-center mb-0 font-monospace">
+                                    <h2 class="d-flex align-items-center mb-0">
                                         <?php echo $currentCount; ?>
                                     </h2>
                                 </div>
@@ -144,7 +144,7 @@ $revenueData = calculateProgress($total, 100000);
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-8">
-                                    <h2 class="d-flex align-items-center mb-0 font-monospace">
+                                    <h2 class="d-flex align-items-center mb-0">
                                         <?php echo $all; ?>
                                     </h2>
                                 </div>
@@ -174,7 +174,7 @@ $revenueData = calculateProgress($total, 100000);
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-8">
-                                    <h2 class="d-flex align-items-center mb-0 font-monospace">
+                                    <h2 class="d-flex align-items-center mb-0">
                                         <?php echo number_format($total, 2); ?>
                                     </h2>
                                 </div>

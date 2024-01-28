@@ -31,9 +31,10 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             <th>Status</th>
                             <th>Type</th>
                             <th>Reservation Date</th>
-                            <th class="hide-on-print">Due Date</th>
+                            <th hidden class="hide-on-print">Due Date</th>
                             <th>Mode Of Payment</th>
-                            <th>Total Amount</th>
+                            <th>Payment</th>
+                            <th>Balance</th>
                             <th>Service Fee</th>
                             <?php 
                             if ($is_admin) {
@@ -62,13 +63,14 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             ?>
                             <td><a href="../portal/exclusive/check.php?transaction_ref=<?php echo $row['transaction_ref']; ?>"><?php echo $row['transaction_ref']; ?></a></td>
                             <td><span
-                                    class="badge <?php echo ($row['status'] === 'Approved' ||  $row['status'] === 'Approved:QR'||  $row['status'] === 'Done') ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?>"><?php echo $row['status']; ?></span>
+                                    class="badge <?php echo ($row['status'] === 'Approved' ||  $row['status'] === 'Approved:QR'||  $row['status'] === 'Done' ||  $row['status'] === 'Refunded') ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?>"><?php echo $row['status']; ?></span>
                             </td>
                             <td><?php echo $row['type']; ?></td>
                             <td><?php echo date('F d, Y', strtotime($row['reservationdate'])) ?></td>
-                            <td class="hide-on-print"><?php echo date('F d, Y', strtotime($row['paymentduedate'])) ?></td>
+                            <td hidden class="hide-on-print"><?php echo date('F d, Y', strtotime($row['paymentduedate'])) ?></td>
                             <td><?php echo $row['modeofpayment']; ?></td>
                             <td><?php echo $totalamount; ?></td>
+                            <td><?php echo ($row['modeofpayment'] === 'Full Payment' ? "Paid" : $totalamount) ; ?></td>
                             <td><?php echo number_format($row['servicefee'] ,2); ?></td>
                             <?php 
                             if ($is_admin) {

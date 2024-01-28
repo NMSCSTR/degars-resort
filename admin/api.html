@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const options = {
+    method: 'POST',
+    headers: {
+    accept: 'application/json',
+    'Content-Type': 'application/json',
+    authorization: 'Basic c2tfdGVzdF9kZjZMWjdFMk1aaUNLdTRyamlaVkdzV3Q6'
+    },
+    body: JSON.stringify({
+    data: {
+        attributes: {
+        billing: {name: 'Rhondel', email: 'rhondelpagobo99@gmail.com', phone: '09506587329'},
+        send_email_receipt: true,
+        show_description: true,
+        show_line_items: true,
+        cancel_url: 'https://dashboard.paymongo.com/payments/all',
+        success_url: 'https://dashboard.paymongo.com/payouts-v2',
+        reference_number: 'refnum240127',
+        description: 'Nodejs or JavaScript Practice',
+        line_items: [
+            {
+            currency: 'PHP',
+            amount: 10000,
+            description: 'NodeJs',
+            name: 'NodeJs',
+            quantity: 1
+            }
+        ],
+        payment_method_types: ['gcash', 'card'],
+        statement_descriptor: 'JAVASCRIPT'
+        }
+    }
+    })
+};
+
+fetch('https://api.paymongo.com/v1/checkout_sessions', options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+    </script>
+</body>
+</html>
