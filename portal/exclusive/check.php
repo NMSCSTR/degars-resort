@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -205,7 +206,7 @@ body {
                                         </span><?php echo date('F d, Y', strtotime($row['paymentduedate'])); ?></li>
                                     <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                                             class="me-1 fw-bold">Status:</span><span
-                                            class="badge badge <?php echo $row['status'] === 'Approved' || $row['status'] === 'Done' || $row['status'] === 'Approved:QR' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?> fw-bold">
+                                            class="badge badge <?php echo $row['status'] === 'Approved' || $row['status'] === 'Done' || $row['status'] === 'Refunded' || $row['status'] === 'Approved:QR' ? 'bg-success' : ($row['status'] === 'Pending' ? 'bg-warning' : 'bg-danger'); ?> fw-bold">
                                             <?php echo $row['status']; ?></span></li>
                                 </ul>
                             </div>
@@ -360,12 +361,12 @@ body {
     document.getElementById("forDisabled").disabled = true;
     </script>
 
-<?php 
+    <?php 
 
 if (isset($_SESSION['status']) && $_SESSION['status'] != '') 
 { ?>
     <script>
-        Swal.fire({
+    Swal.fire({
         position: 'top-center',
         icon: '<?php echo $_SESSION['code'];?>',
         title: '<?php echo $_SESSION['status'];?>',

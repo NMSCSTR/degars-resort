@@ -198,11 +198,11 @@ body {
         <a href="javascript:void(0)" class="closebtn text-danger" title="Hide Sidebar" onclick="closeNav()">&times;</a>
         <a href="dashboard.php" style="font-size: 18px;"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
         <a href="#inventory-collapse" data-bs-toggle="collapse" class="collapsed" style="font-size: 18px;">
-            <i class="fas fa-calendar-plus"></i> Reservation <span class="toggle-icon fw-bolder">&#60;</span>
+        <i class="fas fa-stream"></i> Reservation <span class="toggle-icon fw-bolder">&#60;</span>
         </a>
         <div class="collapse" id="inventory-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal small m-4 mt-0 mb-0">
-                <li><a href="exclusive.php" class="rounded position-relative" style="font-size: 18px;"><i
+                <li><a href="exclusive.php?fromDate=2023-01-30&toDate=2050-01-30" class="rounded position-relative" style="font-size: 18px;"><i
                             class="fas fa-trophy"></i>
                         Reservations <span
                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -221,7 +221,7 @@ body {
                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             <?php echo $countpvqr ?>
                             <span class="visually-hidden">unread messages</span></a></li>
-                <li><a href="refund.php" class="rounded position-relative" style="font-size: 18px;"><i
+                <li><a href="refund.php?fromDate=2023-01-30&toDate=2050-01-30" class="rounded position-relative" style="font-size: 18px;"><i
                             class="fas fa-undo"></i> Refund<span
                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             <?php echo $countr ?>
@@ -238,14 +238,14 @@ body {
             <li><a href="category.php" class="rounded" style="font-size: 18px;"><i class="fas fa-list"></i> Category</a></li>
         </ul>
     </div> -->
-        <a href="rules.php" style="font-size: 18px;"><i class="fas fa-book"></i> Rules</a>
-        <a href="package.php" style="font-size: 18px;"><i class="fas fa-box"></i> Packages</a>
+        <a href="rules.php" style="font-size: 18px;"><i class="fas fa-info-circle"></i> Rules</a>
+        <a href="package.php" style="font-size: 18px;"><i class="fas fa-box-open"></i> Packages</a>
         <a href="cottages.php" style="font-size: 18px;"><i class="fas fa-home"></i> Aminities</a>
         <?php 
         if ($is_admin) {
         ?>
         <a href="#inventory-collapse1" data-bs-toggle="collapse" class="collapsed" style="font-size: 18px;">
-            <i class="fas fa-briefcase"></i> Paymongo <span class="toggle-icon fw-bolder">&#60;</span>
+            <i class="fas fa-money-check-alt"></i> Paymongo <span class="toggle-icon fw-bolder">&#60;</span>
         </a>
 
         <div class="collapse" id="inventory-collapse1">
@@ -257,7 +257,7 @@ body {
 
         <a href="controls.php" style="font-size: 18px;"><i class="fas fa-sliders-h"></i> Control Panel</a>
         <a href="users.php" style="font-size: 18px;"><i class="fas fa-users"></i> Users</a>
-        <a href="reports.php?fromDate=0&toDate=0" style="font-size: 18px;"><i class="fas fa-book"></i> Reports</a>
+        <a href="reports.php?fromDate=0&toDate=0" style="font-size: 18px;"><i class="fas fa-book-open"></i> Reports</a>
         <?php
     }
     ?>

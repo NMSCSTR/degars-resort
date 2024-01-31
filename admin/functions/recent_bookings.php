@@ -31,8 +31,7 @@ $fetchex = mysqli_query($db,"
         reservation ON reservation.reservation_id = cr.reservation_id
     LEFT JOIN
         customer ON customer.customer_id = cr.customer_id
-    WHERE
-        reservation.reservationdate BETWEEN  '".$fromDate."' AND '".$toDate."'
     ORDER BY 
-        cr.dateadded DESC;
+        cr.dateadded DESC
+    LIMIT 5
 ");

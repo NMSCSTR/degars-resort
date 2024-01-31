@@ -20,7 +20,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                 <div class="card-body">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4">
                         <button type="button" class="btn btn-warning shadow rounded me-md-2" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"><i class="fas fa-plus me-2"></i>Add User</button>
+                            data-bs-target="#exampleModal"><i class="fas fa-user-plus"></i></button>
                     </div>
                     <!-- Datatables -->
                     <div class="table-responsive">
@@ -54,8 +54,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                                 class="fas fa-trash-alt"></i>
                                             Delete</a>
                                         <a href="" class="btn btn-outline-primary border-0" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal<?php echo $row['users_id']; ?>"><i
-                                                class="fas fa-sync-alt"></i> Update</a>
+                                            data-bs-target="#exampleModal<?php echo $row['users_id']; ?>"><i class="fas fa-user-edit"></i> Update</a>
                                     </td>
 
                                     <!-- Edit Cottages Modal -->
@@ -118,8 +117,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                                     <div class="modal-footer">
                                                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                                                         <button type="submit" name="edituser"
-                                                            class="btn btn-dark shadow-lg rounded"><i
-                                                                class="fas fa-sync-alt"></i> Update User</button>
+                                                            class="btn btn-dark shadow-lg rounded">Submit <i class="fas fa-angle-double-right"></i></button>
 
                                                     </div>
                                                 </form>
@@ -186,8 +184,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                 </div>
                                 <div class="modal-footer">
                                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                                    <button type="submit" name="submit" class="btn btn-dark shadow-lg rounded"><i
-                                            class="fas fa-solid fa-save"></i> Add User</button>
+                                    <button type="submit" name="submit" class="btn btn-dark shadow-lg rounded">Submit <i class="fas fa-angle-double-right"></i></button>
 
                                 </div>
                             </form>

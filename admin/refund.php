@@ -17,6 +17,23 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
 
     <div class="container">
         <div class="card p-4 shadow">
+            <div class="d-flex justify-content-start shadow p-3 mb-3">
+                <!-- <button id="printButton" class="btn btn-primary text-capitalize hide-on-print shadow"><i
+                        class="fas fa-print"></i> Print</button> -->
+                <form action="" method="get">
+                    <div class="input-group rounded">
+                        <input type="date" class="form-control form-control-sm" id="fromDate" value="" name="fromDate"
+                            required>
+                        <input type="date" class="form-control form-control-sm" id="toDate" value="" name="toDate"
+                            required>
+                        <button class="btn btn-primary" type="submit">Filter</button>
+                    </div>
+                </form>
+            </div>
+            <div class="alert alert-warning" role="alert"> Filtered data:
+                <?php echo ($_GET['fromDate'] === 0) ? 'To' : date('F d, Y', strtotime($_GET['fromDate']));?> -
+                <?php echo ($_GET['toDate'] === 0) ? 'To' : date('F d, Y', strtotime($_GET['toDate']));?>
+            </div>
             <div class="table-responsive">
                 <table id="dataTable" class="table table-sm table-hover table-border" style="width:100%">
                     <thead style="font-size: 15px;">
@@ -28,8 +45,8 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             <?php 
                             if ($is_admin) {
                                 ?>
-                                    <th>ApprovedBy</th>
-                                <?php
+                            <th>ApprovedBy</th>
+                            <?php
                             }
                             ?>
                             <th>Payment Id</th>
@@ -38,9 +55,11 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                     </thead>
                     <tbody style="font-size: 15px;">
                         <tr>
-                        <?php
+                            <?php
                             $db = mysqli_connect("localhost","root","","capstwo");
-                            $fetchqrpay = mysqli_query($db, "SELECT * FROM refund ");
+                            $fromDate = isset($_GET["fromDate"]) ? $_GET["fromDate"] : '';
+                            $toDate = isset($_GET["toDate"]) ? $_GET["toDate"] : '';      
+                            $fetchqrpay = mysqli_query($db, "SELECT * FROM refund WHERE requestdate BETWEEN  '".$fromDate."' AND '".$toDate."' ");
 
                             while ($row = $fetchqrpay->fetch_array()) { ?>
                             <td><?php echo $row['transaction_ref']; ?></td>
@@ -52,34 +71,36 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                             <?php 
                             if ($is_admin) {
                                 ?>
-                                    <td><?php echo $row['approvedby']; ?></td>
-                                <?php
+                            <td><?php echo $row['approvedby']; ?></td>
+                            <?php
                             }
                             ?>
                             <td><?php echo $row['payment_id']; ?></td>
                             <td>
                                 <?php if ($row['status'] === 'Refunded' || $row['status'] === "Declined") { ?>
-                                    <a hidden class="btn btn-outline-success btn-sm border-0" title="Grant Request"
-                                onclick="return confirm('Confirm refund, Click Ok!')"
-                                    href="functions/grantrefund.php?transaction_ref=<?php echo $row['transaction_ref']; ?>&refundedamount=<?php echo $row['refundedamount']; ?>&reason=<?php echo $row['reason']; ?>&payment_id=<?php echo $row['payment_id']; ?>&comres_id=<?php echo $row['comres_id']; ?>&refund_id=<?php echo $row['refund_id']?>&approvedby=<?php echo $_SESSION['users_username']; ?>"><i class="fas fa-check-circle"></i> Approved 
+                                <a hidden class="btn btn-outline-success btn-sm border-0" title="Grant Request"
+                                    onclick="return confirm('Confirm refund, Click Ok!')"
+                                    href="functions/grantrefund.php?transaction_ref=<?php echo $row['transaction_ref']; ?>&refundedamount=<?php echo $row['refundedamount']; ?>&reason=<?php echo $row['reason']; ?>&payment_id=<?php echo $row['payment_id']; ?>&comres_id=<?php echo $row['comres_id']; ?>&refund_id=<?php echo $row['refund_id']?>&approvedby=<?php echo $_SESSION['users_username']; ?>"><i
+                                        class="fas fa-check-circle"></i> Approved
                                 </a>
-                                
-                                    <a hidden class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
+
+                                <a hidden class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
                                     href="">
                                     <i class="fas fa-times-circle"></i> Decline
                                 </a>
                                 <?php } else { ?>
-                                    <a class="btn btn-outline-success btn-sm border-0" title="Grant Request"
-                                onclick="return confirm('Confirm refund, Click Ok!')"
-                                    href="functions/grantrefund.php?transaction_ref=<?php echo $row['transaction_ref']; ?>&refundedamount=<?php echo $row['refundedamount']; ?>&reason=<?php echo $row['reason']; ?>&payment_id=<?php echo $row['payment_id']; ?>&comres_id=<?php echo $row['comres_id']; ?>&refund_id=<?php echo $row['refund_id']?>&approvedby=<?php echo $row['approvedby']; ?>"><i class="fas fa-check-circle"></i> Approved 
+                                <a class="btn btn-outline-success btn-sm border-0" title="Grant Request"
+                                    onclick="return confirm('Confirm refund, Click Ok!')"
+                                    href="functions/grantrefund.php?transaction_ref=<?php echo $row['transaction_ref']; ?>&refundedamount=<?php echo $row['refundedamount']; ?>&reason=<?php echo $row['reason']; ?>&payment_id=<?php echo $row['payment_id']; ?>&comres_id=<?php echo $row['comres_id']; ?>&refund_id=<?php echo $row['refund_id']?>&approvedby=<?php echo $row['approvedby']; ?>"><i
+                                        class="fas fa-check-circle"></i> Approved
                                 </a>
-                                
-                                    <a class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
+
+                                <a class="btn btn-outline-danger btn-sm border-0" title="Decline reservation"
                                     href="functions/declinerefund.php?transaction_ref=<?php echo $row['transaction_ref']; ?>&refundedamount=<?php echo $row['refundedamount']; ?>&reason=<?php echo $row['reason']; ?>&payment_id=<?php echo $row['payment_id']; ?>&comres_id=<?php echo $row['comres_id']; ?>&refund_id=<?php echo $row['refund_id']?>">
                                     <i class="fas fa-times-circle"></i> Decline
                                 </a>
-                                <?php } ?> 
-                                
+                                <?php } ?>
+
 
 
                             </td>

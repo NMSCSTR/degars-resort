@@ -500,6 +500,7 @@ CREATE TABLE `visitors` (
 CREATE TABLE `walkin` (
   `walkin_id` int(11) NOT NULL,
   `entrancefee` varchar(50) NOT NULL,
+  `walkindate` varchar(20) NOT NULL,
   `numberofheads` varchar(50) NOT NULL,
   `aminities_id` int(11) NOT NULL,
   `dateadded` datetime NOT NULL DEFAULT current_timestamp()

@@ -151,8 +151,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                                     <div class="modal-footer">
                                                         <button type="submit" name="submit"
                                                             class="btn btn-dark shadow-lg rounded"><i
-                                                                class="fas fa-solid fa-save"></i> Update
-                                                            Aminities</button>
+                                                                class="fas fa-solid fa-save"></i> Submit <i class="fas fa-angle-double-right"></i></button>
                                                     </div>
                                                 </form>
 
@@ -214,7 +213,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
                                 <div class="modal-footer">
                                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                                     <button type="submit" name="submit" class="btn btn-dark shadow-lg rounded"><i
-                                            class="fas fa-solid fa-save"></i> Add Aminities</button>
+                                            class="fas fa-solid fa-save"></i> Submit <i class="fas fa-angle-double-right"></i></button>
 
                                 </div>
                             </form>

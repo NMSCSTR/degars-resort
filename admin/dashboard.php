@@ -224,7 +224,7 @@ $revenueData = calculateProgress($total, 100000);
                         <tbody>
 
                             <?php 
-                            include_once 'functions/getres.php';
+                            include_once 'functions/recent_bookings.php';
                             while ($row = $fetchex->fetch_array()) { ?>
                             <tr>
                                 <?php 

@@ -14,7 +14,7 @@ if (isset($_SESSION['users_id']) && isset($_SESSION['users_username'])) {
     }
     </style>
     <div class="container p-2">
-        <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5 shadow">
+        <div class="position-relative p-5 text-center text-muted bg-body">
             <img class="img-fluid"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/PayMongo_Logo.svg/2560px-PayMongo_Logo.svg.png"
                 width="300" alt="">
